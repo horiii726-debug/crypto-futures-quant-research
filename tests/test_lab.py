@@ -15,7 +15,8 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-os.environ.setdefault("XAU_LAB_LEDGER_SQLITE", str(ROOT / "ledger" / "lab.sqlite"))
+# isolated ledger - the S0 suite must not touch the production research ledger (R3)
+os.environ["XAU_LAB_LEDGER_SQLITE"] = str(ROOT / "ledger" / "_selftest.sqlite")
 
 from lab.engine import kernels                              # noqa: E402
 from lab.engine.backtest import (forward_returns, run_backtest,  # noqa: E402

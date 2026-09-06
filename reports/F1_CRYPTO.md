@@ -2,7 +2,7 @@
 
 [SPEC] Universe tag `prio50_2y`, 55 symbols (survivorship: delisted names retained). 1h base panel.
 
-Half-spread used: 0.854 bps (Corwin-Schultz / Abdi-Ranaldo on real OHLC, cross-checked vs aggTrades). Mean |funding|/8h: 1.17 bps. Assumed round-trip turnover 1.6x per rebalance.
+Half-spread used: 0.854 bps (realised, from aggTrades trade data across 22 symbols spanning the liquidity range; p60). Mean |funding|/8h: 1.17 bps. Round-trip turnover assumed 1.6x per rebalance. Cost floor is dominated by 2x taker fee (10 bps).
 
 | horizon | cost floor (bps) | dispersion D (bps) | typ move R (bps) | required IC | required hit-rate | FEASIBLE |
 |---|---|---|---|---|---|---|

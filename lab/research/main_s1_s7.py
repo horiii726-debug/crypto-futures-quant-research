@@ -149,10 +149,11 @@ def _f1_md(f1res, parts, bp) -> str:
     L = ["# F-1 — crypto feasibility (measured costs)\n",
          f"[SPEC] Universe tag `{f1res['tag']}`, {len(bp['kept'])} symbols "
          f"(survivorship: delisted names retained). 1h base panel.\n",
-         f"Half-spread used: {f1res['half_spread_bps']} bps (Corwin-Schultz / Abdi-Ranaldo "
-         f"on real OHLC, cross-checked vs aggTrades). Mean |funding|/8h: "
-         f"{f1res['mean_abs_funding_8h_bps']} bps. Assumed round-trip turnover "
-         f"{f1res['turnover_assumed']}x per rebalance.\n",
+         f"Half-spread used: {f1res['half_spread_bps']} bps (realised, from aggTrades "
+         f"trade data across 22 symbols spanning the liquidity range; p60). Mean "
+         f"|funding|/8h: {f1res['mean_abs_funding_8h_bps']} bps. Round-trip turnover "
+         f"assumed {f1res['turnover_assumed']}x per rebalance. Cost floor is "
+         f"dominated by 2x taker fee (10 bps).\n",
          "| horizon | cost floor (bps) | dispersion D (bps) | typ move R (bps) | required IC | required hit-rate | FEASIBLE |",
          "|---|---|---|---|---|---|---|"]
     for r in f1res["rows"]:
@@ -234,6 +235,12 @@ def _load_research_panel(parts: list[str], bar: str = "1h") -> Panel:
                 fsum[s] = _FUND_CACHE[s].resample(f"{_MULTIDAY[bar]}D", label="left",
                                                   closed="left").sum().reindex(close.index)
         fund = fsum
+    # survivorship (R10): a delisted coin has NaN close after its last bar -
+    # its funding rate must NOT be forward-filled into a live signal.
+    fund = fund.where(close.notna())
+    for k in ("quote_volume", "taker_buy_base", "volume", "high", "low"):
+        if frames[k] is not None:
+            frames[k] = frames[k].where(close.notna())
     return Panel(close=close, quote_volume=frames["quote_volume"],
                  taker_buy_base=frames["taker_buy_base"], volume=frames["volume"],
                  high=frames["high"], low=frames["low"], funding=fund,

@@ -40,3 +40,4 @@ data/raw/data/
 data/raw/_spec/*.log
 # keep: data/raw/_spec/*.json (venue spec, universe), data/processed/*.json (results)
 lab/rag/formulas.sqlite
+ledger/_selftest.sqlite*

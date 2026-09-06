@@ -83,7 +83,7 @@ def f_xsec_momentum(p: Panel, lookback: int = 168, skip: int = 1) -> pd.DataFram
 
 
 def f_xsec_st_reversal(p: Panel, lookback: int = 1) -> pd.DataFrame:
-    r = p.close.pct_change(lookback)
+    r = p.close.pct_change(lookback, fill_method=None)   # no pad -> delisted stays NaN
     return -zscore_x(r)
 
 
@@ -230,11 +230,12 @@ def f_xcoin_spillover_momentum(p: Panel, lookback: int = 168, corr_win: int = 33
 
 
 def f_xcoin_pca_residual(p: Panel, lookback: int = 336, n_pc: int = 3) -> pd.DataFrame:
-    r = p.logret().fillna(0.0)
+    lr = p.logret()
+    r = lr.fillna(0.0)
+    alive = lr.notna()                       # coin tradable at bar t
     out = pd.DataFrame(index=r.index, columns=r.columns, dtype=float)
     step = max(1, lookback // 8)
-    idxs = list(range(lookback, len(r), step))
-    for i in idxs:
+    for i in range(lookback, len(r), step):
         w = r.iloc[i - lookback:i]
         X = w.values - w.values.mean(0)
         try:
@@ -243,8 +244,9 @@ def f_xcoin_pca_residual(p: Panel, lookback: int = 336, n_pc: int = 3) -> pd.Dat
             resid_last = (X[-1] - recon[-1])
         except np.linalg.LinAlgError:
             resid_last = np.zeros(X.shape[1])
-        out.iloc[i] = -resid_last  # mean-revert the residual
-    return zscore_x(out.ffill(limit=step))
+        out.iloc[i] = -resid_last
+    out = out.ffill(limit=step)
+    return zscore_x(out.where(alive))        # drop delisted coins (R10 safe)
 
 
 def f_xcoin_dispersion_switch(p: Panel, lookback: int = 168, mom_lb: int = 168) -> pd.DataFrame:

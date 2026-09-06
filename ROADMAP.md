@@ -9,26 +9,30 @@ data download. Verification must be green:
 - calibration: `--edge 0` is NOT a candidate, `--edge 0.35` IS a candidate
 - `config/venue.yaml` still null (blocks pipeline on purpose)
 
-## S1 — Data  (awaiting confirmation)
-Fill `config/venue.yaml` from official Binance USDT-M spec. Staged download
-from data.binance.vision (klines, aggTrades, bookTicker, funding, OI,
-long/short, liquidations). Survivorship: every symbol ever listed, delisted
-included. Data quality gate (data-warden veto). Lock `config/universe.yaml`.
-Chronological partitions, test sealed, hashes to ledger. F-1 feasibility table
-→ `reports/F1_CRYPTO.md`; close INFEASIBLE horizons.
+## S1 — Data  ✅ (Option A run, tag `prio50_2y`)
+`config/venue.yaml` filled from official Binance USDT-M spec (fees, funding,
+per-symbol instrument map). 55-symbol universe, 2y 1m klines from
+data.binance.vision, **survivorship intact** (20 delisted/migrated names
+retained). Quality gate 55/55. Chronological partitions, **test sealed**,
+hashes in ledger `datasets`. Transaction costs **measured from aggTrades**
+(half-spread p60 0.85 bps) → `slippage_bps` 1.35. F-1 → `reports/F1_CRYPTO.md`:
+**only 3d feasible**; 5m/15m/1h/4h/1d closed (bounds in ledger).
+Not done: aggTrades full tape, bookTicker, depth (Tahap 3/4), Tahap 1c (100c/3y).
 
-## S2 — Formula corpus  (awaiting confirmation)
-`lab/rag/triage.py` + `extract_formula.py`. Tiered scan (title → abstract →
-full text only if ADMISSIBLE). Sources: arXiv, SSRN, OpenAlex, S2, RePEc,
-CORE, NBER/BIS/ECB/Fed, 1980–now. Admissibility filter
-(ADMISSIBLE / REJECT_DATA / REJECT_HORIZON / PARKED). Extract formulas, tag to
-one of 23 divisions (F_VOL … F_XCOIN). Target 150–300 per division. Store to
-`lab/rag/formulas.sqlite` + vector index. Priority: F_XSEC, F_FUND, F_FLOW,
-F_XCOIN.
+## S2 — Formula corpus  ✅ (limited: 4 priority families)
+`lab/rag/store.py` + `_seed_corpus*.py`. **50 papers, 66 formulas** for
+F_XSEC / F_FUND / F_FLOW / F_XCOIN (40 ADMISSIBLE, 9 PARKED, 1 REJECT_DATA).
+`lab/rag/formulas.sqlite`. Full 23-division / 150–300-per corpus not attempted.
 
-## S3+ — Research cycles  (not started)
-`/run-cycle` per objective. Gate ladder G0→G10. Discovery on train/valid;
-single sealed test look per family on sign-off. Paper trading → live (R8).
+## S3–S7 — Alpha research  ✅ (4 priority families) — **ZERO survivors**
+`lab/research/{panel,study,gates,campaign,main_s1_s7}.py`. 107 pre-registered
+cross-sectional configs, purged CV + embargo, placebo (random ranking),
+surrogate (block-shuffle), DSR on cumulative machine trial count. All FAIL.
+Bounds written per family. **Test partition never unsealed** (`test_looks`=0).
+See `reports/S1_S7_REPORT.md`.
+
+## S8–S10 — not started (S8 needs 60d wall-clock; S10 needs human sign-off)
+`lab/research/montecarlo.py` ($25k risk sim) built, unused — no candidate.
 
 ## Division families (23)
 F_VOL F_DIR F_ENTRY F_EXIT F_STATE F_SIZE F_FILTER F_TRANSFORM F_DIST F_DEP

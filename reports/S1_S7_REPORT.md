@@ -90,23 +90,30 @@ short-term reversal is largely a bid-ask-bounce artifact).
 cumulative count (107) — never reset.** Placebo = random cross-sectional
 ranking. Surrogate = block-shuffled forward returns.
 
-**Every config FAILED.** The recurring signature:
+**Every config FAILED.** The recurring signature — no config satisfies more
+than two of the five requirements at once:
 
 1. **A few features have real in-sample IC ~0.03–0.05 and beat the placebo**
    (placebo_p ≤ 0.05): `xsec_low_vol` |IC| 0.051, `xsec_idio_vol` 0.052,
    `xsec_st_reversal` 0.043, `xsec_max` 0.038, `flow_imb_momentum`@3d 0.032,
-   `fund_carry`@3d 0.029.
+   `xcoin_peer_return`@3d 0.038, `fund_carry`@3d 0.029.
 2. **…but their cross-validated IC collapses or flips sign** — e.g.
    `xsec_low_vol` +0.051 in-sample → **−0.025** out-of-fold; `xsec_idio_vol`
-   +0.052 → **−0.030**. Classic overfit: the full-sample IC is a fluke.
-3. **The few with a positive CV IC have a tiny raw IC** (0.005–0.014) and
-   **fail the surrogate test** (surrogate_p 0.5–0.9 → indistinguishable from
-   block-shuffled noise): `xsec_momentum`@3d cvIC +0.10 / raw IC 0.014 /
-   surr_p 0.51; `xcoin_pca_residual`@3d cvIC +0.13 / raw IC 0.007 / surr_p 0.50.
-4. **DSR against 107 cumulative trials is decisive** — best DSR anywhere is
-   ~0.21 (`xsec_momentum`@3d), gate needs ≥ 0.95.
-5. Net annualised Sharpe after the measured 12–17 bps cost floor: best ~+1.2,
-   but only on configs that fail (2)/(3)/(4).
+   +0.052 → **−0.030**; `xcoin_peer_return` −0.038 → −0.067. Classic overfit:
+   the full-sample IC is a fluke.
+3. **The few with a positive CV IC have a raw IC too small to matter** (0.005–
+   0.014) and **fail the surrogate test** (surrogate_p 0.5–0.9 →
+   indistinguishable from block-shuffled noise): `xsec_momentum`@3d cvIC +0.10 /
+   raw IC 0.014 / surr_p 0.51; `xcoin_pca_residual`@3d cvIC +0.13 / raw IC
+   0.008 / surr_p 0.50.
+4. **DSR against the cumulative machine trial count is decisive.** No config
+   anywhere reaches the 0.95 gate. The single highest DSR (0.55,
+   `xsec_momentum`@1d, scored early when the cumulative count was ~6) belongs to
+   a config whose |IC| is 0.010 — it fails the economic-significance floor. By
+   the time the identical mechanism is re-tested at higher trial counts its DSR
+   is ~0.2.
+5. Net annualised Sharpe after the measured 12–17 bps cost floor: best ~+1.2
+   (`xsec_residual_momentum`@3d), but that config fails (3) and (4).
 
 Nothing simultaneously satisfies: economic IC ≥ 0.03 **and** stable positive
 CV IC **and** clears the surrogate noise ceiling **and** DSR ≥ 0.95 **and**
@@ -114,12 +121,16 @@ net Sharpe ≥ family floor.
 
 ### Per-family verdict
 
-| family | configs | best in-sample \|IC\| | best net Sharpe (ann, after cost) | best DSR | verdict | evidence |
+| family | configs | best in-sample \|IC\| | best CV-stable config | best net Sharpe (ann) | best DSR | verdict |
 |---|---|---|---|---|---|---|
-| **F_XSEC**  | 58 | 0.057 (`xsec_low_vol`/`idio_vol`) | +1.24 (`residual_momentum`@3d, DSR 0.20) | 0.21 | **FAIL / bounded** | [EXP-0828b6 …] |
-| **F_FUND**  | 15 | 0.029 (`fund_carry`@3d) | +0.92 (`fund_momentum`@1d, DSR 0.18) | 0.18 | **FAIL / bounded** | [EXP-253663 …] |
-| **F_FLOW**  | 16 | 0.032 (`flow_imb_momentum`@3d) | +1.12 (`flow_imb_momentum`@1d, DSR 0.24) | 0.24 | **FAIL / bounded** | [EXP-1620bf …] |
-| **F_XCOIN** | 18 | 0.044 (`xcoin_peer_return`@3d) | +0.97 (`xcoin_pca_residual`@3d, DSR 0.11) | 0.11 | **FAIL / bounded** | [EXP-1d683b …] |
+| **F_XSEC**  | 58 | 0.052 (`idio_vol`@3d — CV −0.04) | `momentum`@3d cvIC +0.10 / rawIC 0.014 | +1.24 (`residual_mom`@3d) | 0.55 (fails IC floor) | **FAIL / bounded** |
+| **F_FUND**  | 15 | 0.029 (`fund_carry`@3d) | `fund_momentum`@1d cvIC +0.05 / rawIC 0.009 | +1.06 | 0.24 | **FAIL / bounded** |
+| **F_FLOW**  | 16 | 0.032 (`flow_imb_momentum`@3d) | `flow_imb_momentum` cvIC +0.04 / rawIC 0.011 | +1.12 | 0.24 | **FAIL / bounded** |
+| **F_XCOIN** | 18 | 0.038 (`peer_return`@3d — CV −0.07) | `pca_residual`@3d cvIC +0.13 / rawIC 0.008 | +0.93 | 0.10 | **FAIL / bounded** |
+
+Evidence: ledger experiments `EXP-*` for each family (`experiments` table,
+`hyp_id` linked); every config's metrics in `metrics`; every mechanism's
+verdict in `verdicts` (48 FAIL) with a `lessons` root-cause row (48).
 
 Placebo: the *directional* signals (momentum, reversal, imbalance-momentum,
 peer-return) mostly **do** beat random ranking (placebo_p 0.007–0.05) — there is

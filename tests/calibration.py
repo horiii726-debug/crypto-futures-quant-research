@@ -22,7 +22,9 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-os.environ.setdefault("XAU_LAB_LEDGER_SQLITE", str(ROOT / "ledger" / "lab.sqlite"))
+# S0 self-tests must NEVER write to the production research ledger - they would
+# pollute the cumulative trial count that DSR reads (R3). Force an isolated DB.
+os.environ["XAU_LAB_LEDGER_SQLITE"] = str(ROOT / "ledger" / "_selftest.sqlite")
 
 from lab.engine.backtest import run_backtest          # noqa: E402
 from lab.engine.signals import FeatureContext, build_signal  # noqa: E402
