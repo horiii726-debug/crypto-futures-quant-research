@@ -1,0 +1,83 @@
+# Gate ladder. A candidate advances only by clearing gates in order.
+# Thresholds are per family; `default` applies where a family is unlisted.
+# UNDERPOWERED and UNKNOWN are legal outcomes (R5) and do NOT count as PASS.
+
+gates:
+  G0_source:
+    desc: "identifiers resolve; falsification search done; not UNRETRIEVED"
+    checks: [doi_resolves, falsification_search_done, full_text_or_parked]
+  G1_data:
+    desc: "partition hashes in ledger; survivorship intact; quality gate clean"
+    checks: [partition_sha_logged, delisted_present, quality_gate_pass]
+  G2_code:
+    desc: "kernels bit-identical; feature causality < 1e-10; off-by-one test"
+    checks: [verify_kernels_identical, leak_canary_pass, offbyone_pass]
+  G3_discovery:
+    desc: "in-sample effect exceeds surrogate noise ceiling"
+    checks: [beats_surrogate_q99, mechanism_prespecified]
+  G3_5_power:
+    desc: "effective_n >= required_n for the effect size of interest"
+    checks: [effective_n_ge_required_n]
+    on_fail: UNDERPOWERED
+  G4_oos:
+    desc: "out-of-sample / walk-forward performance holds"
+    checks: [oos_sharpe_positive, walk_forward_stable]
+  G5_multiplicity:
+    desc: "DSR (ledger trial count) and PBO within bounds"
+    checks: [dsr_pass, pbo_below_ceiling]
+  G6_robustness:
+    desc: "MCS retains it vs alternatives; SPA/DM significant; param plateau"
+    checks: [in_model_confidence_set, spa_significant, parameter_plateau]
+  G7_cost:
+    desc: "survives measured cost floor + slippage + latency; F-1 feasible"
+    checks: [net_positive_at_cost_floor, horizon_feasible_in_F1]
+  G8_risk:
+    desc: "drawdown, tail, P(breach), P(ruin) within risk.yaml"
+    checks: [max_dd_ok, p_breach_ok, p_ruin_ok, monte_carlo_ok]
+  G9_red_team:
+    desc: "placebo/leakage/label-shuffle/cost-stress all fail to explain it"
+    checks: [placebo_null, no_leakage_found, survives_label_shuffle, cost_stress_ok]
+  G10_human:
+    desc: "human sign-off recorded (R8) before any live allocation"
+    checks: [human_signoff_token]
+
+incrementality:
+  desc: "a new candidate must add something over the surviving book"
+  max_correlation_to_book: 0.4
+  require_marginal_dsr_positive: true
+  require_distinct_mechanism: true
+
+thresholds:
+  default:
+    surrogate_q: 0.99
+    dsr_min: 0.95
+    pbo_max: 0.20
+    oos_sharpe_min: 0.0
+    net_sharpe_min_at_cost_floor: 0.30
+    max_drawdown_max: 0.25
+    p_breach_max: 0.05
+    power_alpha: 0.05
+    power_target: 0.80
+    min_effect_ic: 0.03
+  F_XSEC:
+    dsr_min: 0.95
+    pbo_max: 0.15
+    net_sharpe_min_at_cost_floor: 0.40
+    min_effect_ic: 0.02
+  F_FUND:
+    dsr_min: 0.95
+    pbo_max: 0.20
+    net_sharpe_min_at_cost_floor: 0.35
+  F_FLOW:
+    dsr_min: 0.97
+    pbo_max: 0.15
+    net_sharpe_min_at_cost_floor: 0.50
+  F_XCOIN:
+    dsr_min: 0.95
+    pbo_max: 0.20
+
+calibration:
+  desc: "S0 end-to-end sanity - not a research gate"
+  control_edge0_must_not_be_candidate: true
+  planted_edge_must_be_candidate: true
+  candidate_rule: "beats_surrogate_q99 AND dsr >= dsr_min AND net_sharpe > 0"

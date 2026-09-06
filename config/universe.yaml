@@ -1,0 +1,46 @@
+# Trading universe definition. LOCK THIS before research starts (S1).
+# Survivorship (R10): delisted coins STAY in the sample for every period they
+# were live. The universe is point-in-time, reconstructed per rebalance date.
+
+status: UNLOCKED               # -> "locked" after S1, with a ledger hash
+
+selection:
+  instrument: perp-usdm        # USDT-margined perpetuals only
+  rank_by: quote_volume_30d    # trailing 30-day USDT volume
+  top_n: 100
+  min_history_bars: null       # filled S1 (e.g. require >= 30d listed)
+  min_notional_liquidity: null # filled S1 from bookTicker depth
+
+rebalance:
+  frequency: monthly
+  effective: first_bar_of_month_utc
+  ranking_asof: last_bar_of_prior_month
+  no_lookahead: true           # ranking uses only data up to asof
+
+entry_rule: >
+  A symbol enters the universe at rebalance date D if, using data up to the
+  prior month end, it is in the top_n by rank_by AND has >= min_history_bars
+  of clean data AND contract status == TRADING.
+
+exit_rule: >
+  A symbol leaves the universe at rebalance date D if it falls out of top_n,
+  OR its contract status is not TRADING, OR it fails the data quality gate.
+  Positions in an exiting symbol are unwound over the first day at measured
+  cost, not marked to a stale price.
+
+delisting_rule: >
+  On delisting/settlement, the symbol is force-closed at the exchange
+  settlement price on the settlement bar. All bars up to settlement remain in
+  the dataset and in every backtest that covers that period (R10). The symbol
+  is tagged status=delisted in the ledger `universe` table, never removed.
+
+rename_handling: >
+  Symbol renames (e.g. contract migrations) are stitched via an explicit
+  alias map logged to the ledger; the pre-rename history is retained.
+
+partitions:
+  method: chronological
+  train:  null                 # date range, filled S1
+  valid:  null
+  test:   null                 # SEALED (R2)
+  embargo_bars: null

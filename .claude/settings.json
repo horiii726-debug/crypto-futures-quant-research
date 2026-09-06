@@ -1,0 +1,44 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./data/test/**)",
+      "Write(./data/test/**)",
+      "Edit(./data/test/**)",
+      "Read(data/test/**)",
+      "Write(data/test/**)",
+      "Edit(data/test/**)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(rm -rf:*)"
+    ]
+  },
+  "env": {
+    "XAU_LAB_LEDGER_SQLITE": "./ledger/lab.sqlite",
+    "PYTHONPATH": "."
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {"type": "command", "command": "python3 lab/guards/test_seal.py"}
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {"type": "command", "command": "python3 lab/guards/numeric_firewall.py"}
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {"type": "command", "command": "python3 lab/guards/leak_canary.py"}
+        ]
+      }
+    ]
+  }
+}

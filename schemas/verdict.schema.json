@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://crypto-lab/schemas/verdict.schema.json",
+  "title": "Verdict",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "subject_id",
+    "gate",
+    "evidence_exp_ids",
+    "status",
+    "rationale",
+    "strongest_surviving_objection"
+  ],
+  "properties": {
+    "subject_id": {"type": "string",
+      "description": "HYP-... or EXP-... the verdict is about"},
+    "gate": {"type": "string",
+      "enum": ["G0", "G1", "G2", "G3", "G3.5", "G4", "G5", "G6", "G7", "G8",
+               "G9", "G10", "final", "calibration"]},
+    "evidence_exp_ids": {"type": "array", "items": {"type": "string"},
+      "minItems": 1,
+      "description": "at least one ledger EXP id; numbers trace here (R1)"},
+    "status": {"type": "string",
+      "enum": ["PASS", "FAIL", "UNDERPOWERED", "UNKNOWN", "VETO"],
+      "description": "R5 - UNDERPOWERED and UNKNOWN are legal, non-rejecting"},
+    "by_role": {"type": "string",
+      "enum": ["director", "librarian", "theorist", "data-warden",
+               "research-coder", "experiment-runner", "validator", "red-team",
+               "risk-officer", "execution-analyst"]},
+    "rationale": {"type": "string", "minLength": 20},
+    "strongest_surviving_objection": {"type": "string", "minLength": 10,
+      "description": "the best remaining argument AGAINST the candidate, even on a PASS"}
+  }
+}

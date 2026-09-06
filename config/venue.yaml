@@ -1,0 +1,55 @@
+# Binance USDT-M perpetual futures - venue specification.
+#
+# EVERY value is null ON PURPOSE. The pipeline (lab/engine/backtest.py ->
+# _check_costs) REFUSES to run while required fields are null. This is a
+# deliberate block: S1 fills these in from the OFFICIAL Binance USDT-M
+# futures documentation. Do NOT guess a single number.
+#
+# Sources to use in S1 (official only):
+#   - Binance Futures "Trading Fee Rate" / "Fee Schedule"
+#   - Binance Futures "Funding Rate" methodology + funding cap
+#   - Binance Futures "Leverage & Margin" tiers per symbol
+#   - Binance Futures "Exchange Information" endpoint (tickSize, minNotional,
+#     stepSize, contract status)
+#   - Binance "Liquidation" / maintenance-margin documentation
+
+venue: binance-usdm-perp
+status: UNCONFIGURED          # -> "configured" only after S1 fills every field
+
+fees:
+  maker_fee: null             # fraction, e.g. 0.0002  (regular tier, no BNB)
+  taker_fee: null             # fraction, e.g. 0.0004
+  bnb_discount: null          # fraction discount if paying fees in BNB
+  fee_tier_basis: null        # "30d volume + BNB balance"
+
+funding:
+  interval_hours: null        # nominal funding interval (commonly 8)
+  cap: null                   # funding rate cap (per interval)
+  floor: null                 # funding rate floor
+  settlement: null            # "continuous mark-price interest + premium"
+  clamp_rule: null
+
+instrument:
+  tick_size: null             # per-symbol -> map, filled from exchangeInfo
+  step_size: null             # quantity step
+  min_notional: null          # minimum order notional in USDT
+  price_precision: null
+  quantity_precision: null
+
+leverage:
+  max_leverage: null          # per-symbol leverage tier ceiling
+  tiers: null                 # notional brackets -> [maint_margin_rate, max_lev]
+  initial_margin_rule: null
+
+liquidation:
+  maintenance_margin_rate: null
+  liquidation_fee: null
+  mark_price_basis: null      # "index price + moving-average basis"
+  adl_rule: null              # auto-deleveraging queue
+
+slippage_bps: null            # measured, not assumed - from S1 bookTicker/aggTrades
+
+_notes: >
+  slippage_bps must come from real bookTicker spreads and aggTrades impact in
+  S1, per horizon and per liquidity bucket. Until then the F-1 feasibility
+  table cannot be computed and no horizon can be declared feasible.

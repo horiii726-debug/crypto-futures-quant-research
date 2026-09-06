@@ -1,0 +1,50 @@
+# Search budgets. Trial counts are MACHINE-COUNTED from the ledger (R3);
+# these are ceilings the director enforces, not self-reported totals.
+
+families:
+  # 23 formula divisions from the S2 brief
+  F_VOL:   {max_configs: 400, test_looks: 1}
+  F_DIR:   {max_configs: 400, test_looks: 1}
+  F_ENTRY: {max_configs: 300, test_looks: 1}
+  F_EXIT:  {max_configs: 300, test_looks: 1}
+  F_STATE: {max_configs: 300, test_looks: 1}
+  F_SIZE:  {max_configs: 200, test_looks: 1}
+  F_FILTER:{max_configs: 200, test_looks: 1}
+  F_TRANSFORM: {max_configs: 300, test_looks: 1}
+  F_DIST:  {max_configs: 300, test_looks: 1}
+  F_DEP:   {max_configs: 300, test_looks: 1}
+  F_PATH:  {max_configs: 300, test_looks: 1}
+  F_MULTI: {max_configs: 300, test_looks: 1}
+  F_FORMULA: {max_configs: 500, test_looks: 1}
+  F_META:  {max_configs: 300, test_looks: 1}
+  F_EXEC:  {max_configs: 250, test_looks: 1}
+  F_FLOW:  {max_configs: 400, test_looks: 1}
+  F_BOOK:  {max_configs: 400, test_looks: 1}
+  F_LIQ:   {max_configs: 300, test_looks: 1}
+  F_FUND:  {max_configs: 400, test_looks: 1}
+  F_OI:    {max_configs: 300, test_looks: 1}
+  F_LIQD:  {max_configs: 300, test_looks: 1}
+  F_XSEC:  {max_configs: 500, test_looks: 1}
+  F_XCOIN: {max_configs: 400, test_looks: 1}
+
+global:
+  quarterly_test_look_budget: 4        # across all families combined
+  max_open_experiments: 6
+  test_look_per_family: 1              # R2 - hard limit, enforced in ledger
+
+escalation_ladder:
+  # On failure, move UP a level. Never sideways. (CLAUDE.md)
+  L1: "expand sample (more coins / longer history / more events)"
+  L2: "change horizon (within F-1 feasible set)"
+  L3: "re-spec the mechanism (new HYP, parent_id link)"
+  L4: "new mechanism entirely"
+  L5: "change the target variable"
+  L6: "write a BOUND to the ledger, move to the next objective"
+  exhausted_rule: "family out of budget => FROZEN permanently"
+
+forbidden:
+  - "loosen a gate threshold to pass"
+  - "tune on the test set"
+  - "hide a negative result"
+  - "reset a trial count"
+  - "pick the window that passes"

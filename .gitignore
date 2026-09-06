@@ -1,0 +1,32 @@
+# generated / large / local
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ledger is a local append-only DB; schema lives in lab/ledger.py
+ledger/*.sqlite
+ledger/*.sqlite-wal
+ledger/*.sqlite-shm
+
+# datasets - never committed (downloaded in S1)
+data/raw/**
+data/processed/**
+data/features/**
+data/train/**
+data/valid/**
+data/test/**
+!data/**/.gitkeep
+
+# synthetic calibration output
+lab/data/synth*/
+research/**/*.parquet
+research/**/*.csv
+
+# rag stores
+lab/rag/*.sqlite
+lab/rag/vecstore/
+
+# reports may contain generated numbers; keep the dir, ignore drafts
+reports/_scratch/
