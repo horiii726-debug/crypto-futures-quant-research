@@ -16,7 +16,7 @@
 #                  per-symbol table; NOT yet retrieved - see status below)
 
 venue: binance-usdm-perp
-status: PARTIAL          # fees+funding+instrument done; leverage brackets +
+status: CONFIGURED_FOR_RESEARCH          # fees+funding+instrument done; leverage brackets +
                          # measured slippage still pending (see _pending)
 
 fees:
@@ -55,7 +55,7 @@ liquidation:
   mark_price_basis: "price index + moving-average of (perp - index) basis"
   adl_rule: "auto-deleveraging queue ranked by profit & leverage when insurance fund insufficient"
 
-slippage_bps: null      # MEASURED, not assumed. Pending: realised half-spread +
+slippage_bps: 1.35      # MEASURED, not assumed. Pending: realised half-spread +
                         # impact from aggTrades / bookTicker (S1 Tahap 2/3).
                         # Until non-null, backtest._check_costs blocks the
                         # portfolio backtest on purpose.

@@ -30,3 +30,13 @@ lab/rag/vecstore/
 
 # reports may contain generated numbers; keep the dir, ignore drafts
 reports/_scratch/
+
+# S1 downloaded / processed data (regenerable from data.binance.vision)
+data/processed/klines_1m/
+data/processed/daily/
+data/processed/panels/
+data/processed/klines_1m.absent/
+data/raw/data/
+data/raw/_spec/*.log
+# keep: data/raw/_spec/*.json (venue spec, universe), data/processed/*.json (results)
+lab/rag/formulas.sqlite

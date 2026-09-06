@@ -1,0 +1,178 @@
+[
+ {
+  "symbol": "AMBUSDT",
+  "status": "ok",
+  "n_trades": 355038,
+  "quoted_spread_prop": 0.00020337604230206738,
+  "roll_effective_spread_prop": 0.0006355183785789289,
+  "half_spread_bps": 2.0972360522024904
+ },
+ {
+  "symbol": "APTUSDT",
+  "status": "ok",
+  "n_trades": 3248372,
+  "quoted_spread_prop": 6.427664669148459e-05,
+  "roll_effective_spread_prop": 0.00015410770875537392,
+  "half_spread_bps": 0.5459608886171463
+ },
+ {
+  "symbol": "ARBUSDT",
+  "status": "ok",
+  "n_trades": 4172925,
+  "quoted_spread_prop": 5.9541530217320026e-05,
+  "roll_effective_spread_prop": 0.00018628157040469093,
+  "half_spread_bps": 0.6145577515550273
+ },
+ {
+  "symbol": "BTCUSDT",
+  "status": "ok",
+  "n_trades": 24018154,
+  "quoted_spread_prop": 2.382779178287754e-06,
+  "roll_effective_spread_prop": 0.0001537482028678718,
+  "half_spread_bps": 0.39032745511539885
+ },
+ {
+  "symbol": "CRVUSDT",
+  "status": "ok",
+  "n_trades": 281292,
+  "quoted_spread_prop": 0.001828153564899453,
+  "roll_effective_spread_prop": 0.0023063332772900605,
+  "half_spread_bps": 10.336217105473786
+ },
+ {
+  "symbol": "DARUSDT",
+  "status": "ok",
+  "n_trades": 108001,
+  "quoted_spread_prop": 0.0,
+  "roll_effective_spread_prop": 0.00028614493015326014,
+  "half_spread_bps": 0.7153623253831504
+ },
+ {
+  "symbol": "DOGEUSDT",
+  "status": "ok",
+  "n_trades": 5637181,
+  "quoted_spread_prop": 6.594131223217936e-05,
+  "roll_effective_spread_prop": 0.00023526502324867045,
+  "half_spread_bps": 0.7530158387021245
+ },
+ {
+  "symbol": "ETHUSDT",
+  "status": "ok",
+  "n_trades": 18457246,
+  "quoted_spread_prop": 4.36144136904054e-06,
+  "roll_effective_spread_prop": 8.542085957214489e-05,
+  "half_spread_bps": 0.22445575235296356
+ },
+ {
+  "symbol": "FILUSDT",
+  "status": "ok",
+  "n_trades": 865397,
+  "quoted_spread_prop": 9.801038910119041e-05,
+  "roll_effective_spread_prop": 0.00020615202103671255,
+  "half_spread_bps": 0.7604060253447574
+ },
+ {
+  "symbol": "HOOKUSDT",
+  "status": "ok",
+  "n_trades": 370021,
+  "quoted_spread_prop": 0.00025319661122352147,
+  "roll_effective_spread_prop": 0.00047864110784339445,
+  "half_spread_bps": 1.8295942976672899
+ },
+ {
+  "symbol": "IDEXUSDT",
+  "status": "ok",
+  "n_trades": 68066,
+  "quoted_spread_prop": 0.00022785531261631148,
+  "roll_effective_spread_prop": 0.0002582886593695519,
+  "half_spread_bps": 1.2153599299646585
+ },
+ {
+  "symbol": "INJUSDT",
+  "status": "ok",
+  "n_trades": 2283842,
+  "quoted_spread_prop": 7.125552230306557e-05,
+  "roll_effective_spread_prop": 0.00020902787452327818,
+  "half_spread_bps": 0.7007084920658594
+ },
+ {
+  "symbol": "KEYUSDT",
+  "status": "ok",
+  "n_trades": 303926,
+  "quoted_spread_prop": 0.00020559210526318518,
+  "roll_effective_spread_prop": 0.00027364698405651374,
+  "half_spread_bps": 1.1980977232992471
+ },
+ {
+  "symbol": "LDOUSDT",
+  "status": "ok",
+  "n_trades": 1320420,
+  "quoted_spread_prop": 8.387150884843496e-05,
+  "roll_effective_spread_prop": 0.00025781342544890367,
+  "half_spread_bps": 0.8542123357433465
+ },
+ {
+  "symbol": "LOOMUSDT",
+  "status": "ok",
+  "n_trades": 312574,
+  "quoted_spread_prop": 0.0001586546089163275,
+  "roll_effective_spread_prop": 0.00024101738723542013,
+  "half_spread_bps": 0.9991799903793692
+ },
+ {
+  "symbol": "SOLUSDT",
+  "status": "ok",
+  "n_trades": 21011903,
+  "quoted_spread_prop": 2.0081732651989092e-05,
+  "roll_effective_spread_prop": 0.0001748796074041832,
+  "half_spread_bps": 0.48740335014043074
+ },
+ {
+  "symbol": "STORJUSDT",
+  "status": "ok",
+  "n_trades": 330930,
+  "quoted_spread_prop": 0.0001196172248803696,
+  "roll_effective_spread_prop": 8.347849352790993e-05,
+  "half_spread_bps": 0.5077392960206989
+ },
+ {
+  "symbol": "SUSHIUSDT",
+  "status": "ok",
+  "n_trades": 693913,
+  "quoted_spread_prop": 0.00011258725512270771,
+  "roll_effective_spread_prop": 0.0001875256653561177,
+  "half_spread_bps": 0.7502823011970636
+ },
+ {
+  "symbol": "WLDUSDT",
+  "status": "ok",
+  "n_trades": 4181335,
+  "quoted_spread_prop": 5.17491202649498e-05,
+  "roll_effective_spread_prop": 0.0001609622376588763,
+  "half_spread_bps": 0.5317783948095652
+ },
+ {
+  "symbol": "XRPUSDT",
+  "status": "ok",
+  "n_trades": 2837558,
+  "quoted_spread_prop": 0.0001671681711803745,
+  "roll_effective_spread_prop": 0.00028309049089327297,
+  "half_spread_bps": 1.1256466551841187
+ },
+ {
+  "symbol": "ZECUSDT",
+  "status": "ok",
+  "n_trades": 510828,
+  "quoted_spread_prop": 0.0003285151116951893,
+  "roll_effective_spread_prop": 0.00041325870552008057,
+  "half_spread_bps": 1.8544345430381748
+ },
+ {
+  "symbol": "ZENUSDT",
+  "status": "ok",
+  "n_trades": 900562,
+  "quoted_spread_prop": 9.439305267127107e-05,
+  "roll_effective_spread_prop": 0.0002924589079322681,
+  "half_spread_bps": 0.9671299015088479
+ }
+]

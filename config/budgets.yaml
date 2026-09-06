@@ -9,7 +9,7 @@ families:
   F_EXIT:  {max_configs: 300, test_looks: 1}
   F_STATE: {max_configs: 300, test_looks: 1}
   F_SIZE:  {max_configs: 200, test_looks: 1}
-  F_FILTER:{max_configs: 200, test_looks: 1}
+  F_FILTER: {max_configs: 200, test_looks: 1}
   F_TRANSFORM: {max_configs: 300, test_looks: 1}
   F_DIST:  {max_configs: 300, test_looks: 1}
   F_DEP:   {max_configs: 300, test_looks: 1}
