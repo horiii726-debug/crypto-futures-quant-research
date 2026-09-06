@@ -262,9 +262,11 @@ def s3_s6(L: Ledger, feasible_horizons: list[str]) -> dict:
         research_bars = ["1d"] + research_bars
     print(f"  research bar frequencies: {research_bars}")
 
+    from lab.research.campaign import HYPOTHESES
+    fams = list(HYPOTHESES.keys())
     out = {fam: {"family": fam, "n_configs": 0, "verdicts": [], "survivors": [],
                  "results": [], "frozen": False}
-           for fam in ["F_XSEC", "F_FUND", "F_FLOW", "F_XCOIN"]}
+           for fam in fams}
 
     for bar in research_bars:
         pdisc = _load_research_panel(["train", "valid"], bar=bar)
@@ -337,7 +339,28 @@ def main():
     L = Ledger()
     t0 = time.time()
     s1 = s1_data(L)
-    s36 = s3_s6(L, s1["f1"]["feasible_horizons"])
+
+    # ---- hybrid-execution F-1: which horizons reopen? ----
+    step("S1  F-1 (maker/hybrid execution)")
+    from lab.data import f1_hybrid as fh
+    es = json.loads((PROC / "exec_summary.json").read_text())
+    half_taker = json.loads((PROC / "spread_estimates.json").read_text())["realised_half_spread_bps_p60"]
+    venue = yaml.safe_load((ROOT / "config" / "venue.yaml").read_text())
+    fhres = fh.build(TAG, taker_half_spread_bps=half_taker,
+                     hybrid_roundtrip_bps=es["hybrid_roundtrip_bps_mean"],
+                     taker_fee=venue["fees"]["taker_fee"], mean_abs_funding_8h=0.000117)
+    (REPORTS / "F1_HYBRID.md").write_text(fh.to_md(fhres))
+    print(f"  hybrid feasible: {fhres['feasible_hybrid']} | reopened: {fhres['reopened_by_hybrid']}")
+    # research horizons = union of taker-feasible and hybrid-feasible, capped at 1d/3d
+    research_h = sorted(set(s1["f1"]["feasible_horizons"]) | set(fhres["feasible_hybrid"])
+                        | set(fhres["reopened_by_hybrid"]))
+    research_h = [h for h in research_h if h in ("1h", "4h", "1d", "3d")] or ["1d", "3d"]
+    for r in fhres["rows"]:
+        L.add_bound("EXEC", f"horizon {r['horizon']} hybrid",
+                    f"hybrid cost floor {r['hybrid_cost_floor_bps']}bps, required IC "
+                    f"{r['required_IC_hybrid']} ({'FEASIBLE' if r['FEASIBLE_hybrid'] else 'closed'})", [])
+
+    s36 = s3_s6(L, research_h)
     for fam, r in s36.items():
         if not r["survivors"]:
             r["bound_id"] = write_bound_if_empty(fam, r["results"], L)

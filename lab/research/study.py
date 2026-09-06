@@ -32,12 +32,26 @@ VENUE = yaml.safe_load((ROOT / "config" / "venue.yaml").read_text())
 GATES = yaml.safe_load((ROOT / "config" / "gates.yaml").read_text())
 
 
-def cost_per_unit_turnover() -> float:
-    f = VENUE["fees"]["taker_fee"]
+try:
+    _EXEC = json.loads((ROOT / "data" / "processed" / "exec_summary.json").read_text())
+    _HYBRID_ONEWAY = _EXEC["hybrid_roundtrip_bps_mean"] / 2.0 * 1e-4
+except Exception:
+    _HYBRID_ONEWAY = None
+
+EXEC_MODE = "hybrid"   # 'taker' or 'hybrid'; set by the campaign
+
+
+def cost_per_unit_turnover(mode: str | None = None) -> float:
+    mode = mode or EXEC_MODE
     slip = VENUE.get("slippage_bps")
     if slip is None:
         raise RuntimeError("venue.yaml slippage_bps is null - measure it first (S1)")
-    return float(f) + float(slip) * 1e-4
+    taker = float(VENUE["fees"]["taker_fee"]) + float(slip) * 1e-4   # one-way taker
+    if mode == "taker" or _HYBRID_ONEWAY is None:
+        return taker
+    # hybrid: limit-at-touch with taker fallback, calibrated on the real tape
+    # (lab/exec/maker_model.py). one-way effective cost.
+    return float(_HYBRID_ONEWAY)
 
 
 # ---- positions + backtest ------------------------------------------------

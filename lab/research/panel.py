@@ -258,6 +258,186 @@ def f_xcoin_dispersion_switch(p: Panel, lookback: int = 168, mom_lb: int = 168) 
     return mom.where(disp_hi, rev)  # momentum in high dispersion, reversal in low
 
 
+# =========================================================================
+# P2 expansion: additional divisions (cross-sectional, causal, from OHLCV+fund)
+# =========================================================================
+
+def _wilder_rsi(close: pd.DataFrame, n: int) -> pd.DataFrame:
+    d = close.diff()
+    up = d.clip(lower=0).ewm(alpha=1 / n, adjust=False).mean()
+    dn = (-d.clip(upper=0)).ewm(alpha=1 / n, adjust=False).mean()
+    rs = up / dn.replace(0, np.nan)
+    return 100 - 100 / (1 + rs)
+
+
+def f_dir_rsi(p: Panel, n: int = 14) -> pd.DataFrame:
+    return -zscore_x(_wilder_rsi(p.close, n) - 50)          # fade RSI extremes
+
+
+def f_dir_macd(p: Panel, fast: int = 12, slow: int = 26, sig: int = 9) -> pd.DataFrame:
+    lp = np.log(p.close)
+    macd = lp.ewm(span=fast, adjust=False).mean() - lp.ewm(span=slow, adjust=False).mean()
+    hist = macd - macd.ewm(span=sig, adjust=False).mean()
+    return zscore_x(hist)
+
+
+def f_dir_ma_cross(p: Panel, fast: int = 10, slow: int = 50) -> pd.DataFrame:
+    return zscore_x(p.close.rolling(fast).mean() / p.close.rolling(slow).mean() - 1.0)
+
+
+def f_dir_bollinger_z(p: Panel, n: int = 20, k: float = 2.0) -> pd.DataFrame:
+    m = p.close.rolling(n).mean()
+    s = p.close.rolling(n).std().replace(0, np.nan)
+    return -zscore_x((p.close - m) / (k * s))               # mean reversion
+
+
+def f_dir_trend_r2(p: Panel, n: int = 30) -> pd.DataFrame:
+    lp = np.log(p.close)
+    x = np.arange(n)
+    xd = x - x.mean()
+    def r2(col):
+        return col.rolling(n).apply(
+            lambda y: (np.dot(xd, y - y.mean()) ** 2) /
+                      ((xd @ xd) * np.sum((y - y.mean()) ** 2) + 1e-18) *
+                      np.sign(np.dot(xd, y - y.mean())), raw=True)
+    return zscore_x(lp.apply(r2))
+
+
+def f_dir_donchian_pos(p: Panel, n: int = 20) -> pd.DataFrame:
+    hi = p.high.rolling(n).max()
+    lo = p.low.rolling(n).min()
+    return zscore_x((p.close - lo) / (hi - lo).replace(0, np.nan))
+
+
+def f_transform_hurst(p: Panel, n: int = 60) -> pd.DataFrame:
+    lr = p.logret()
+    def hurst(y):
+        y = y[np.isfinite(y)]
+        if len(y) < 20:
+            return np.nan
+        z = np.cumsum(y - y.mean())
+        R = z.max() - z.min()
+        S = y.std()
+        return np.log(R / S + 1e-12) / np.log(len(y)) if S > 0 else np.nan
+    h = lr.rolling(n).apply(hurst, raw=True)
+    return zscore_x(h - 0.5)          # >0 trending, <0 mean-reverting
+
+
+def f_transform_spectral_entropy(p: Panel, n: int = 64) -> pd.DataFrame:
+    lr = p.logret().fillna(0.0)
+    def se(y):
+        f = np.abs(np.fft.rfft(y - y.mean())) ** 2
+        s = f.sum()
+        if s <= 0:
+            return np.nan
+        pr = f / s
+        return -np.sum(pr * np.log(pr + 1e-12))
+    return -zscore_x(lr.rolling(n).apply(se, raw=True))     # low entropy = structure
+
+
+def f_dep_variance_ratio(p: Panel, q: int = 5, n: int = 60) -> pd.DataFrame:
+    lr = p.logret()
+    var1 = lr.rolling(n).var()
+    varq = lr.rolling(n).sum().rolling(q).apply(lambda x: np.var(x), raw=True) if False else \
+        (lr.rolling(q).sum()).rolling(n).var() / q
+    vr = varq / var1.replace(0, np.nan)
+    return zscore_x(vr - 1.0)
+
+
+def f_dep_autocorr1(p: Panel, n: int = 45) -> pd.DataFrame:
+    lr = p.logret()
+    ac = lr.rolling(n).apply(lambda y: np.corrcoef(y[:-1], y[1:])[0, 1]
+                             if len(y) > 5 and np.std(y) > 0 else np.nan, raw=True)
+    return zscore_x(ac)
+
+
+def f_path_run_length(p: Panel, cap: int = 10) -> pd.DataFrame:
+    s = np.sign(p.close.diff())
+    def runlen(col):
+        out = np.zeros(len(col))
+        c = 0
+        for i in range(1, len(col)):
+            if col[i] == col[i - 1] and col[i] != 0:
+                c += 1
+            else:
+                c = 0
+            out[i] = c * (col[i] if col[i] != 0 else 0)
+        return np.clip(out, -cap, cap)
+    rl = s.apply(lambda c: pd.Series(runlen(c.values), index=c.index))
+    return -zscore_x(rl)             # long runs revert
+
+
+def f_path_mfe_mae(p: Panel, n: int = 20) -> pd.DataFrame:
+    hi = p.high.rolling(n).max()
+    lo = p.low.rolling(n).min()
+    mfe = hi / p.close.shift(n) - 1.0
+    mae = 1.0 - lo / p.close.shift(n)
+    return zscore_x(mfe / (mae + 1e-9))
+
+
+def f_multi_tf_agreement(p: Panel, tfs=(3, 7, 21, 45)) -> pd.DataFrame:
+    lp = np.log(p.close)
+    agree = sum(np.sign(lp - lp.shift(t)) for t in tfs)
+    return zscore_x(agree)
+
+
+def f_multi_fast_slow(p: Panel, fast: int = 7, slow: int = 45) -> pd.DataFrame:
+    lp = np.log(p.close)
+    return zscore_x((lp - lp.shift(fast)) - (lp - lp.shift(slow)))
+
+
+def f_vol_yang_zhang(p: Panel, n: int = 20) -> pd.DataFrame:
+    """No `open` panel available -> Parkinson high-low estimator blended with
+    close-to-close (a Garman-Klass variant without the open term)."""
+    h, l, c = np.log(p.high), np.log(p.low), np.log(p.close)
+    park = (1.0 / (4.0 * np.log(2.0))) * (h - l) ** 2
+    cc = (c - c.shift(1)) ** 2
+    gk = 0.5 * (h - l) ** 2 - (2 * np.log(2) - 1) * cc
+    est = (0.5 * park + 0.5 * gk).clip(lower=0).rolling(n, min_periods=n // 2).mean()
+    return -zscore_x(np.sqrt(est))                   # low-vol tilt
+
+
+def f_vol_semivar_skew(p: Panel, n: int = 20) -> pd.DataFrame:
+    r = p.logret()
+    rsp = (r.clip(lower=0) ** 2).rolling(n).sum()
+    rsm = (r.clip(upper=0) ** 2).rolling(n).sum()
+    return -zscore_x((rsp - rsm) / (rsp + rsm + 1e-12))   # signed-jump tilt
+
+
+def f_liq_kyle_bar(p: Panel, n: int = 30) -> pd.DataFrame:
+    return f_flow_kyle_lambda(p, n)                  # alias, kept in F_LIQ namespace
+
+
+def f_state_vol_regime_mom(p: Panel, vol_n: int = 20, mom_n: int = 20) -> pd.DataFrame:
+    """regime overlay expressed as a tradeable XS signal: in low-vol regime use
+    momentum, in high-vol regime use short reversal."""
+    r = p.logret()
+    rv = r.rolling(vol_n).std()
+    hi = rv > rv.rolling(120, min_periods=40).median()
+    lp = np.log(p.close)
+    mom = zscore_x(lp.shift(1) - lp.shift(1 + mom_n))
+    return (-mom).where(hi, mom)
+
+
+REGISTRY_P2 = {
+    "dir_rsi": (f_dir_rsi, "F_DIR"), "dir_macd": (f_dir_macd, "F_DIR"),
+    "dir_ma_cross": (f_dir_ma_cross, "F_DIR"), "dir_bollinger_z": (f_dir_bollinger_z, "F_DIR"),
+    "dir_donchian_pos": (f_dir_donchian_pos, "F_DIR"),
+    "transform_hurst": (f_transform_hurst, "F_TRANSFORM"),
+    "transform_spectral_entropy": (f_transform_spectral_entropy, "F_TRANSFORM"),
+    "dep_variance_ratio": (f_dep_variance_ratio, "F_DEP"),
+    "dep_autocorr1": (f_dep_autocorr1, "F_DEP"),
+    "path_run_length": (f_path_run_length, "F_PATH"),
+    "path_mfe_mae": (f_path_mfe_mae, "F_PATH"),
+    "multi_tf_agreement": (f_multi_tf_agreement, "F_MULTI"),
+    "multi_fast_slow": (f_multi_fast_slow, "F_MULTI"),
+    "vol_yang_zhang": (f_vol_yang_zhang, "F_VOL"),
+    "vol_semivar_skew": (f_vol_semivar_skew, "F_VOL"),
+    "liq_kyle_bar": (f_liq_kyle_bar, "F_LIQ"),
+    "state_vol_regime_mom": (f_state_vol_regime_mom, "F_STATE"),
+}
+
+
 REGISTRY = {
     # F_XSEC
     "xsec_momentum": (f_xsec_momentum, "F_XSEC"),
@@ -288,3 +468,5 @@ REGISTRY = {
     "xcoin_pca_residual": (f_xcoin_pca_residual, "F_XCOIN"),
     "xcoin_dispersion_switch": (f_xcoin_dispersion_switch, "F_XCOIN"),
 }
+
+REGISTRY.update(REGISTRY_P2)

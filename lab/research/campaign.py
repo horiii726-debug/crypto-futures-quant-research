@@ -30,7 +30,8 @@ BUDGETS = yaml.safe_load((ROOT / "config" / "budgets.yaml").read_text())
 # and converted to panel bars per research frequency (so the same hypothesis is
 # tested coherently at 1d and 3d). Params NOT in LOOKBACK_PARAMS are passed
 # through unchanged (e.g. n_pc, lead).
-LOOKBACK_PARAMS = {"lookback", "skip", "fast", "slow", "corr_win", "mom_lb"}
+LOOKBACK_PARAMS = {"lookback", "skip", "fast", "slow", "corr_win", "mom_lb",
+                   "n", "vol_n", "mom_n"}
 
 HYPOTHESES = {
     "F_XSEC": [
@@ -88,6 +89,51 @@ HYPOTHESES = {
          "residual after common factors mean-reverts cross-sectionally"),
         ("xcoin_dispersion_switch", dict(lookback=[14], mom_lb=[14, 30]), "zscore",
          "momentum in high-dispersion regimes, reversal in low"),
+    ],
+    # ---- P2 expansion divisions ----
+    "F_DIR": [
+        ("dir_rsi", dict(n=[7, 14, 30]), "decile", "RSI extremes fade (overreaction)"),
+        ("dir_macd", dict(fast=[8, 12], slow=[21, 34]), "decile", "MACD histogram trend"),
+        ("dir_ma_cross", dict(fast=[5, 10], slow=[30, 60]), "decile", "MA-cross trend"),
+        ("dir_bollinger_z", dict(n=[14, 30]), "decile", "Bollinger z mean-reversion"),
+        ("dir_donchian_pos", dict(n=[14, 30]), "decile", "position in the N-day channel"),
+    ],
+    "F_TRANSFORM": [
+        ("transform_hurst", dict(n=[30, 60, 120]), "zscore",
+         "Hurst > 0.5 trend / < 0.5 revert -> tilt"),
+        ("transform_spectral_entropy", dict(n=[32, 64]), "decile",
+         "low spectral entropy = exploitable structure"),
+    ],
+    "F_DEP": [
+        ("dep_variance_ratio", dict(n=[30, 60]), "zscore",
+         "VR < 1 mean-revert, > 1 trend"),
+        ("dep_autocorr1", dict(n=[21, 45]), "zscore",
+         "return AR(1): positive -> momentum, negative -> reversal"),
+    ],
+    "F_PATH": [
+        ("path_run_length", dict(), "decile", "long directional runs revert"),
+        ("path_mfe_mae", dict(n=[10, 20, 45]), "decile",
+         "favourable-vs-adverse excursion ratio = trend quality"),
+    ],
+    "F_MULTI": [
+        ("multi_tf_agreement", dict(), "decile",
+         "count of timeframes agreeing on trend direction"),
+        ("multi_fast_slow", dict(fast=[3, 7], slow=[21, 45]), "decile",
+         "fast minus slow momentum (acceleration)"),
+    ],
+    "F_VOL": [
+        ("vol_yang_zhang", dict(n=[14, 30]), "decile",
+         "low realised (Yang-Zhang) vol tilt"),
+        ("vol_semivar_skew", dict(n=[14, 30]), "decile",
+         "negative signed-jump variation -> future underperformance"),
+    ],
+    "F_LIQ": [
+        ("liq_kyle_bar", dict(n=[14, 30, 60]), "decile",
+         "low bar-level price impact (liquid) coins outperform risk-adjusted"),
+    ],
+    "F_STATE": [
+        ("state_vol_regime_mom", dict(vol_n=[14, 30], mom_n=[14, 30]), "zscore",
+         "momentum in calm regimes, reversal in stressed regimes"),
     ],
 }
 

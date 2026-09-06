@@ -41,3 +41,6 @@ data/raw/_spec/*.log
 # keep: data/raw/_spec/*.json (venue spec, universe), data/processed/*.json (results)
 lab/rag/formulas.sqlite
 ledger/_selftest.sqlite*
+data/processed/bookdepth_daily/
+data/processed/bookdepth_features.json
+lab/data/_collect_micro.py

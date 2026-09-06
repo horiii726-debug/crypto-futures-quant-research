@@ -85,11 +85,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.009646861465060034,
-      "sharpe_net_ann": 0.8972378159694931,
-      "dsr": 0.5535787291611848,
+      "sharpe_net_ann": 0.9511006845186091,
+      "dsr": 0.09360984728691235,
       "placebo_p_value": 0.006622516556291391,
       "surrogate_p_value": 0.6688741721854304,
-      "cv_sharpe_mean": 0.047193548387006096,
+      "cv_sharpe_mean": 0.05026076200892119,
       "objection": "|IC|=0.0096 below the 0.02 economic-significance floor even in-sample"
      },
      "bar": "1d"
@@ -104,12 +104,12 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.043266056329377064,
-      "sharpe_net_ann": 0.1945120052877757,
-      "dsr": 0.12933447022385414,
-      "placebo_p_value": 0.013245033112582781,
+      "sharpe_net_ann": 0.3557175691347657,
+      "dsr": 0.017486035872015134,
+      "placebo_p_value": 0.019867549668874173,
       "surrogate_p_value": 0.006622516556291391,
-      "cv_sharpe_mean": 0.01968225648572287,
-      "objection": "DSR=0.129 < 0.95 against 7 cumulative lab trials - indistinguishable from the best of that many tries"
+      "cv_sharpe_mean": 0.028717526772712467,
+      "objection": "DSR=0.017 < 0.95 against 115 cumulative lab trials - indistinguishable from the best of that many tries"
      },
      "bar": "1d"
     },
@@ -123,11 +123,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.05092266308989167,
-      "sharpe_net_ann": -0.162252616518875,
-      "dsr": 0.03684334579906474,
-      "placebo_p_value": 0.006622516556291391,
+      "sharpe_net_ann": -0.14846790052588815,
+      "dsr": 0.0026863242502758737,
+      "placebo_p_value": 0.059602649006622516,
       "surrogate_p_value": 0.026490066225165563,
-      "cv_sharpe_mean": -0.025363488550497696,
+      "cv_sharpe_mean": -0.024549175050046817,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "1d"
@@ -142,11 +142,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.04978853115739935,
-      "sharpe_net_ann": -0.2944900753402946,
-      "dsr": 0.022150009165600306,
-      "placebo_p_value": 0.013245033112582781,
+      "sharpe_net_ann": -0.2598982820783285,
+      "dsr": 0.0016704804092067824,
+      "placebo_p_value": 0.07947019867549669,
       "surrogate_p_value": 0.006622516556291391,
-      "cv_sharpe_mean": -0.030176853780927344,
+      "cv_sharpe_mean": -0.028029595260090818,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "1d"
@@ -161,11 +161,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.02146923241699242,
-      "sharpe_net_ann": -1.4529533234222263,
-      "dsr": 0.00014270912020579893,
-      "placebo_p_value": 0.23841059602649006,
+      "sharpe_net_ann": -1.4427655977693785,
+      "dsr": 3.924565139668459e-06,
+      "placebo_p_value": 0.5562913907284768,
       "surrogate_p_value": 0.7682119205298014,
-      "cv_sharpe_mean": -0.07049526286105658,
+      "cv_sharpe_mean": -0.06990654079084688,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "1d"
@@ -180,11 +180,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.036139701168212315,
-      "sharpe_net_ann": -0.3484614590287427,
-      "dsr": 0.010910957053856871,
-      "placebo_p_value": 0.006622516556291391,
+      "sharpe_net_ann": -0.3320959991046818,
+      "dsr": 0.0011322969561699363,
+      "placebo_p_value": 0.06622516556291391,
       "surrogate_p_value": 0.039735099337748346,
-      "cv_sharpe_mean": -0.030221744254117236,
+      "cv_sharpe_mean": -0.029221194232225703,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "1d"
@@ -199,11 +199,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.0030374035976393266,
-      "sharpe_net_ann": -1.2863556677950545,
-      "dsr": 0.00016514941738876712,
-      "placebo_p_value": 0.09271523178807947,
+      "sharpe_net_ann": -1.2172512792266839,
+      "dsr": 1.1365160503429555e-05,
+      "placebo_p_value": 0.37748344370860926,
       "surrogate_p_value": 0.5761589403973509,
-      "cv_sharpe_mean": -0.05046196852669277,
+      "cv_sharpe_mean": -0.046651637890667653,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "1d"
@@ -218,11 +218,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.0019761025220335305,
-      "sharpe_net_ann": 0.7047161261020632,
-      "dsr": 0.16017720643079902,
-      "placebo_p_value": 0.006622516556291391,
+      "sharpe_net_ann": 0.7740298244267597,
+      "dsr": 0.05465321721622669,
+      "placebo_p_value": 0.013245033112582781,
       "surrogate_p_value": 1.0,
-      "cv_sharpe_mean": 0.015285114123090823,
+      "cv_sharpe_mean": 0.019844600264165926,
       "objection": "|IC|=0.0020 below the 0.02 economic-significance floor even in-sample"
      },
      "bar": "1d"
@@ -233,17 +233,17 @@
      "best": {
       "feature": "xsec_volume_trend",
       "params": {
-       "fast": 7,
-       "slow": 60
+       "fast": 14,
+       "slow": 30
       },
       "horizon_bars": 1,
-      "ic_1bar": -0.01963300994906026,
-      "sharpe_net_ann": 0.7653233093934194,
-      "dsr": 0.1634605496424667,
-      "placebo_p_value": 0.006622516556291391,
-      "surrogate_p_value": 0.2052980132450331,
-      "cv_sharpe_mean": 0.019212914928510953,
-      "objection": "|IC|=0.0196 below the 0.02 economic-significance floor even in-sample"
+      "ic_1bar": -0.008095143722950667,
+      "sharpe_net_ann": 0.8249307357212535,
+      "dsr": 0.060833073996179106,
+      "placebo_p_value": 0.013245033112582781,
+      "surrogate_p_value": 0.31788079470198677,
+      "cv_sharpe_mean": 0.03171702667930232,
+      "objection": "|IC|=0.0081 below the 0.02 economic-significance floor even in-sample"
      },
      "bar": "1d"
     },
@@ -257,11 +257,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.008814306735090266,
-      "sharpe_net_ann": -0.10332724471489005,
-      "dsr": 0.015063449651828882,
-      "placebo_p_value": 0.006622516556291391,
+      "sharpe_net_ann": -0.08173578849254881,
+      "dsr": 0.0030279511281151353,
+      "placebo_p_value": 0.019867549668874173,
       "surrogate_p_value": 0.8675496688741722,
-      "cv_sharpe_mean": -0.00240453086135459,
+      "cv_sharpe_mean": -0.0009467383910428846,
       "objection": "|IC|=0.0088 below the 0.02 economic-significance floor even in-sample"
      },
      "bar": "1d"
@@ -277,11 +277,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.006155224398376624,
-      "sharpe_net_ann": 0.7524490542543671,
-      "dsr": 0.14054611718013643,
-      "placebo_p_value": 0.006622516556291391,
+      "sharpe_net_ann": 0.8279381747057727,
+      "dsr": 0.0610381155239925,
+      "placebo_p_value": 0.013245033112582781,
       "surrogate_p_value": 0.8940397350993378,
-      "cv_sharpe_mean": 0.037103780902963006,
+      "cv_sharpe_mean": 0.04123380375940589,
       "objection": "|IC|=0.0062 below the 0.02 economic-significance floor even in-sample"
      },
      "bar": "1d"
@@ -297,11 +297,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.014178625354208161,
-      "sharpe_net_ann": 1.1841177799394575,
-      "dsr": 0.21426196980849616,
+      "sharpe_net_ann": 1.231929564410182,
+      "dsr": 0.12206086631344193,
       "placebo_p_value": 0.006622516556291391,
       "surrogate_p_value": 0.5099337748344371,
-      "cv_sharpe_mean": 0.10138062613846181,
+      "cv_sharpe_mean": 0.1058001992371334,
       "objection": "|IC|=0.0142 below the 0.02 economic-significance floor even in-sample"
      },
      "bar": "3d"
@@ -316,11 +316,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.037638351535530586,
-      "sharpe_net_ann": -0.10245267443687135,
-      "dsr": 0.0061980536391495165,
-      "placebo_p_value": 0.1986754966887417,
+      "sharpe_net_ann": -0.0024359008662524573,
+      "dsr": 0.0026163540072594487,
+      "placebo_p_value": 0.26490066225165565,
       "surrogate_p_value": 0.09271523178807947,
-      "cv_sharpe_mean": -0.013624036174215192,
+      "cv_sharpe_mean": -0.0032996772195869723,
       "objection": "in-sample |IC|=0.0376 does not clear the surrogate noise ceiling q99=0.1201"
      },
      "bar": "3d"
@@ -335,11 +335,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.0512226271659855,
-      "sharpe_net_ann": -0.013327038213496331,
-      "dsr": 0.008469193054371438,
-      "placebo_p_value": 0.1390728476821192,
+      "sharpe_net_ann": 0.0175497221289982,
+      "dsr": 0.002839291148189027,
+      "placebo_p_value": 0.2052980132450331,
       "surrogate_p_value": 0.08609271523178808,
-      "cv_sharpe_mean": -0.02105958988022477,
+      "cv_sharpe_mean": -0.017282311389673313,
       "objection": "in-sample |IC|=0.0512 does not clear the surrogate noise ceiling q99=0.0635"
      },
      "bar": "3d"
@@ -354,11 +354,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.05207486482214355,
-      "sharpe_net_ann": -0.3033095480227561,
-      "dsr": 0.002394865921471068,
-      "placebo_p_value": 0.33774834437086093,
+      "sharpe_net_ann": -0.2766206140463608,
+      "dsr": 0.0006975302842502526,
+      "placebo_p_value": 0.45695364238410596,
       "surrogate_p_value": 0.006622516556291391,
-      "cv_sharpe_mean": -0.04036233403165578,
+      "cv_sharpe_mean": -0.03727137796021523,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "3d"
@@ -373,11 +373,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.039666484568788275,
-      "sharpe_net_ann": -1.3860159578713098,
-      "dsr": 8.957032097203341e-06,
-      "placebo_p_value": 0.8543046357615894,
+      "sharpe_net_ann": -1.3755694709707231,
+      "dsr": 1.4502670815454054e-06,
+      "placebo_p_value": 0.8940397350993378,
       "surrogate_p_value": 0.8145695364238411,
-      "cv_sharpe_mean": -0.09129528192511764,
+      "cv_sharpe_mean": -0.09024021968774436,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "3d"
@@ -392,11 +392,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.038233767216972275,
-      "sharpe_net_ann": -0.3041472944702837,
-      "dsr": 0.0022331107573419513,
-      "placebo_p_value": 0.304635761589404,
+      "sharpe_net_ann": -0.28002696225690504,
+      "dsr": 0.0006819915719740299,
+      "placebo_p_value": 0.4105960264900662,
       "surrogate_p_value": 0.039735099337748346,
-      "cv_sharpe_mean": -0.04184208241662837,
+      "cv_sharpe_mean": -0.038904376932607204,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "3d"
@@ -411,11 +411,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.0053529343780404715,
-      "sharpe_net_ann": -0.741426563164842,
-      "dsr": 0.0004232889046867216,
-      "placebo_p_value": 0.5298013245033113,
+      "sharpe_net_ann": -0.6489378759590437,
+      "dsr": 0.0001579993195401966,
+      "placebo_p_value": 0.6026490066225165,
       "surrogate_p_value": 0.5894039735099338,
-      "cv_sharpe_mean": -0.05492687250240034,
+      "cv_sharpe_mean": -0.04621353608477099,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "3d"
@@ -430,11 +430,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.012426356837098577,
-      "sharpe_net_ann": 0.5828868812055936,
-      "dsr": 0.049437734261455014,
-      "placebo_p_value": 0.046357615894039736,
+      "sharpe_net_ann": 0.6153752369898309,
+      "dsr": 0.024151433746249652,
+      "placebo_p_value": 0.07947019867549669,
       "surrogate_p_value": 0.9470198675496688,
-      "cv_sharpe_mean": 0.029795856904868245,
+      "cv_sharpe_mean": 0.03417011503919629,
       "objection": "|IC|=0.0124 below the 0.02 economic-significance floor even in-sample"
      },
      "bar": "3d"
@@ -450,11 +450,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.008184082880683254,
-      "sharpe_net_ann": 1.182133191799953,
-      "dsr": 0.17300491032235732,
-      "placebo_p_value": 0.033112582781456956,
+      "sharpe_net_ann": 1.2141820706796402,
+      "dsr": 0.10145590780993702,
+      "placebo_p_value": 0.046357615894039736,
       "surrogate_p_value": 0.6754966887417219,
-      "cv_sharpe_mean": 0.06583618168039387,
+      "cv_sharpe_mean": 0.06851817020849356,
       "objection": "|IC|=0.0082 below the 0.02 economic-significance floor even in-sample"
      },
      "bar": "3d"
@@ -469,11 +469,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.0015872934984371414,
-      "sharpe_net_ann": -0.3203589778396955,
-      "dsr": 0.0016652484200554453,
-      "placebo_p_value": 0.32450331125827814,
+      "sharpe_net_ann": -0.3023114700498765,
+      "dsr": 0.0005419948021829416,
+      "placebo_p_value": 0.41721854304635764,
       "surrogate_p_value": 1.0,
-      "cv_sharpe_mean": -0.01878557405355018,
+      "cv_sharpe_mean": -0.016585604257864123,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "3d"
@@ -489,11 +489,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.004858559736555864,
-      "sharpe_net_ann": 1.236075606126728,
-      "dsr": 0.20198124908004222,
+      "sharpe_net_ann": 1.2982755037436913,
+      "dsr": 0.1362550736095673,
       "placebo_p_value": 0.013245033112582781,
       "surrogate_p_value": 0.7814569536423841,
-      "cv_sharpe_mean": 0.07227745517248406,
+      "cv_sharpe_mean": 0.07814154318843837,
       "objection": "|IC|=0.0049 below the 0.02 economic-significance floor even in-sample"
      },
      "bar": "3d"
@@ -512,11 +512,11 @@
       "params": {},
       "horizon_bars": 1,
       "ic_1bar": 0.004717391791886646,
-      "sharpe_net_ann": -0.7437443942276077,
-      "dsr": 0.0008875165110018431,
-      "placebo_p_value": 0.046357615894039736,
+      "sharpe_net_ann": -0.4938236101094535,
+      "dsr": 0.00042240791681337063,
+      "placebo_p_value": 0.10596026490066225,
       "surrogate_p_value": 0.609271523178808,
-      "cv_sharpe_mean": -0.029877537801577578,
+      "cv_sharpe_mean": -0.016113559745838547,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "1d"
@@ -531,11 +531,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.008565710177598744,
-      "sharpe_net_ann": 1.056852609372413,
-      "dsr": 0.2361378931113567,
+      "sharpe_net_ann": 1.1403440166090986,
+      "dsr": 0.12556532283380045,
       "placebo_p_value": 0.006622516556291391,
       "surrogate_p_value": 0.5496688741721855,
-      "cv_sharpe_mean": 0.05761794479397983,
+      "cv_sharpe_mean": 0.06251615164508983,
       "objection": "|IC|=0.0086 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "1d"
@@ -550,11 +550,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.010741134722728453,
-      "sharpe_net_ann": -2.4514209717713764,
-      "dsr": 2.5103123952138353e-08,
-      "placebo_p_value": 0.7483443708609272,
+      "sharpe_net_ann": -2.029448908568117,
+      "dsr": 3.511276543476038e-08,
+      "placebo_p_value": 0.8609271523178808,
       "surrogate_p_value": 0.16556291390728478,
-      "cv_sharpe_mean": -0.12349458015175653,
+      "cv_sharpe_mean": -0.10093733893904504,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "1d"
@@ -569,11 +569,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.008335839824503774,
-      "sharpe_net_ann": -2.7128723103114245,
-      "dsr": 9.884219252229252e-10,
-      "placebo_p_value": 0.7417218543046358,
+      "sharpe_net_ann": -2.231494279564009,
+      "dsr": 2.8611065910422014e-09,
+      "placebo_p_value": 0.8211920529801324,
       "surrogate_p_value": 0.2582781456953642,
-      "cv_sharpe_mean": -0.1468796480239244,
+      "cv_sharpe_mean": -0.12027457621446352,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "1d"
@@ -586,11 +586,11 @@
       "params": {},
       "horizon_bars": 1,
       "ic_1bar": 0.028928462408005035,
-      "sharpe_net_ann": 0.5799027658977907,
-      "dsr": 0.04305043086828086,
-      "placebo_p_value": 0.0728476821192053,
+      "sharpe_net_ann": 0.6620802216577221,
+      "dsr": 0.02561035324573795,
+      "placebo_p_value": 0.09271523178807947,
       "surrogate_p_value": 0.304635761589404,
-      "cv_sharpe_mean": 0.033527520988289934,
+      "cv_sharpe_mean": 0.041345378030508556,
       "objection": "|IC|=0.0289 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "3d"
@@ -605,11 +605,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.026957938456264832,
-      "sharpe_net_ann": 0.7278392911907515,
-      "dsr": 0.06248178736173058,
-      "placebo_p_value": 0.039735099337748346,
+      "sharpe_net_ann": 0.7888293110633602,
+      "dsr": 0.03630647791457668,
+      "placebo_p_value": 0.06622516556291391,
       "surrogate_p_value": 0.46357615894039733,
-      "cv_sharpe_mean": 0.03696217891386939,
+      "cv_sharpe_mean": 0.042937115470807086,
       "objection": "|IC|=0.0270 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "3d"
@@ -624,11 +624,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.004243740406796562,
-      "sharpe_net_ann": -0.04449084951839895,
-      "dsr": 0.005288242470420758,
-      "placebo_p_value": 0.2185430463576159,
+      "sharpe_net_ann": 0.09065697423342253,
+      "dsr": 0.003287836177970449,
+      "placebo_p_value": 0.25165562913907286,
       "surrogate_p_value": 0.8079470198675497,
-      "cv_sharpe_mean": -0.016629545363721673,
+      "cv_sharpe_mean": -0.003937707102304663,
       "objection": "|IC|=0.0042 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "3d"
@@ -643,11 +643,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.007209629194794773,
-      "sharpe_net_ann": -0.4116860685700544,
-      "dsr": 0.0012154385071390852,
-      "placebo_p_value": 0.3509933774834437,
+      "sharpe_net_ann": -0.23633282265747454,
+      "dsr": 0.0008633959412213395,
+      "placebo_p_value": 0.3576158940397351,
       "surrogate_p_value": 0.5562913907284768,
-      "cv_sharpe_mean": -0.030839130502214845,
+      "cv_sharpe_mean": -0.015502205613072166,
       "objection": "|IC|=0.0072 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "3d"
@@ -668,11 +668,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.010919242875511855,
-      "sharpe_net_ann": 1.1176109088349173,
-      "dsr": 0.2352083388804984,
+      "sharpe_net_ann": 1.2461387569008466,
+      "dsr": 0.1537658004342109,
       "placebo_p_value": 0.006622516556291391,
       "surrogate_p_value": 0.9668874172185431,
-      "cv_sharpe_mean": 0.04321617744294539,
+      "cv_sharpe_mean": 0.050054322682797574,
       "objection": "|IC|=0.0109 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "1d"
@@ -687,11 +687,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.00010278617633534597,
-      "sharpe_net_ann": -2.333531868194468,
-      "dsr": 6.349002746140338e-08,
-      "placebo_p_value": 0.5894039735099338,
+      "sharpe_net_ann": -2.0259734050772136,
+      "dsr": 4.54827216655891e-08,
+      "placebo_p_value": 0.7880794701986755,
       "surrogate_p_value": 1.0,
-      "cv_sharpe_mean": -0.11197956110649344,
+      "cv_sharpe_mean": -0.09570701253468476,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "1d"
@@ -706,11 +706,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.0016181237594427066,
-      "sharpe_net_ann": -0.499189247178717,
-      "dsr": 0.0018874464571490754,
-      "placebo_p_value": 0.013245033112582781,
+      "sharpe_net_ann": -0.325224359909747,
+      "dsr": 0.0009307762417629598,
+      "placebo_p_value": 0.07947019867549669,
       "surrogate_p_value": 0.9470198675496688,
-      "cv_sharpe_mean": -0.029852684379631983,
+      "cv_sharpe_mean": -0.02019843084502827,
       "objection": "|IC|=0.0016 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "1d"
@@ -725,11 +725,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.0020191888534511994,
-      "sharpe_net_ann": 0.44778574848063185,
-      "dsr": 0.04879556738070759,
-      "placebo_p_value": 0.006622516556291391,
+      "sharpe_net_ann": 0.6226895544266604,
+      "dsr": 0.03127309067041011,
+      "placebo_p_value": 0.019867549668874173,
       "surrogate_p_value": 0.9801324503311258,
-      "cv_sharpe_mean": 0.010696336912051727,
+      "cv_sharpe_mean": 0.020161908501099977,
       "objection": "|IC|=0.0020 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "1d"
@@ -744,11 +744,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.03174474925563342,
-      "sharpe_net_ann": 0.8716387863909011,
-      "dsr": 0.08454073562639275,
-      "placebo_p_value": 0.006622516556291391,
+      "sharpe_net_ann": 0.9559318538060113,
+      "dsr": 0.05572791132171295,
+      "placebo_p_value": 0.019867549668874173,
       "surrogate_p_value": 0.6423841059602649,
-      "cv_sharpe_mean": 0.043322277087462,
+      "cv_sharpe_mean": 0.0509753756233873,
       "objection": "in-sample |IC|=0.0317 does not clear the surrogate noise ceiling q99=0.0775"
      },
      "bar": "3d"
@@ -763,11 +763,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.03174474925563342,
-      "sharpe_net_ann": -1.4294478857943003,
-      "dsr": 4.868932645022649e-06,
-      "placebo_p_value": 0.8543046357615894,
+      "sharpe_net_ann": -1.3468999481275632,
+      "dsr": 1.767593562224525e-06,
+      "placebo_p_value": 0.8874172185430463,
       "surrogate_p_value": 0.6158940397350994,
-      "cv_sharpe_mean": -0.0919076257397571,
+      "cv_sharpe_mean": -0.08433544351839162,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "3d"
@@ -782,11 +782,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.012283654619051258,
-      "sharpe_net_ann": -0.6756410589253674,
-      "dsr": 0.00028830417154650375,
-      "placebo_p_value": 0.4900662251655629,
+      "sharpe_net_ann": -0.6185769377040262,
+      "dsr": 0.00011393962811183198,
+      "placebo_p_value": 0.543046357615894,
       "surrogate_p_value": 0.7947019867549668,
-      "cv_sharpe_mean": -0.05414836732921106,
+      "cv_sharpe_mean": -0.04856598031256476,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "3d"
@@ -801,11 +801,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.0037711530498461075,
-      "sharpe_net_ann": 0.6036280461642332,
-      "dsr": 0.040449643787997126,
-      "placebo_p_value": 0.0728476821192053,
+      "sharpe_net_ann": 0.6672116848329669,
+      "dsr": 0.02384188575388003,
+      "placebo_p_value": 0.09933774834437085,
       "surrogate_p_value": 0.9006622516556292,
-      "cv_sharpe_mean": -0.0027621279913771723,
+      "cv_sharpe_mean": 0.0036197338860923622,
       "objection": "|IC|=0.0038 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "3d"
@@ -826,11 +826,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.012817259663777654,
-      "sharpe_net_ann": 0.061242261783533876,
-      "dsr": 0.014328094471510266,
+      "sharpe_net_ann": 0.29111446359948123,
+      "dsr": 0.010631130004663501,
       "placebo_p_value": 0.006622516556291391,
       "surrogate_p_value": 0.2185430463576159,
-      "cv_sharpe_mean": 0.017456701172054376,
+      "cv_sharpe_mean": 0.02951150830215943,
       "objection": "|IC|=0.0128 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "1d"
@@ -845,11 +845,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.02946794994239594,
-      "sharpe_net_ann": -0.9347451188181181,
-      "dsr": 0.00022193496286374261,
-      "placebo_p_value": 0.07947019867549669,
+      "sharpe_net_ann": -0.6226374849770419,
+      "dsr": 0.00022232886793746643,
+      "placebo_p_value": 0.1390728476821192,
       "surrogate_p_value": 0.039735099337748346,
-      "cv_sharpe_mean": -0.05455683947303955,
+      "cv_sharpe_mean": -0.03749416177272572,
       "objection": "|IC|=0.0295 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "1d"
@@ -865,11 +865,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.019574770205461205,
-      "sharpe_net_ann": 0.13403843977796334,
-      "dsr": 0.016728736103165023,
+      "sharpe_net_ann": 0.24556090613427833,
+      "dsr": 0.00895938445258869,
       "placebo_p_value": 0.006622516556291391,
       "surrogate_p_value": 0.11920529801324503,
-      "cv_sharpe_mean": 0.00021341134140984383,
+      "cv_sharpe_mean": 0.006385844095128535,
       "objection": "|IC|=0.0196 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "1d"
@@ -885,11 +885,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.0108639665305245,
-      "sharpe_net_ann": -0.38699887100958347,
-      "dsr": 0.0024008796627612863,
-      "placebo_p_value": 0.019867549668874173,
+      "sharpe_net_ann": -0.281328884570705,
+      "dsr": 0.0010943629195989222,
+      "placebo_p_value": 0.06622516556291391,
       "surrogate_p_value": 0.12582781456953643,
-      "cv_sharpe_mean": -0.012271195488606085,
+      "cv_sharpe_mean": -0.006748603968411491,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "1d"
@@ -905,11 +905,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.014005953970722563,
-      "sharpe_net_ann": -0.3867865539724707,
-      "dsr": 0.0022322556729634504,
-      "placebo_p_value": 0.006622516556291391,
+      "sharpe_net_ann": -0.2749305024646183,
+      "dsr": 0.0010698387814870082,
+      "placebo_p_value": 0.046357615894039736,
       "surrogate_p_value": 0.11258278145695365,
-      "cv_sharpe_mean": -0.035252291584626616,
+      "cv_sharpe_mean": -0.02915099218522418,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "1d"
@@ -924,11 +924,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.008203862300338186,
-      "sharpe_net_ann": -1.0930870039883784,
-      "dsr": 1.5063352307890207e-05,
-      "placebo_p_value": 0.7748344370860927,
+      "sharpe_net_ann": -1.0438039114853213,
+      "dsr": 4.98146104464314e-06,
+      "placebo_p_value": 0.8079470198675497,
       "surrogate_p_value": 0.7615894039735099,
-      "cv_sharpe_mean": -0.01730267301338816,
+      "cv_sharpe_mean": -0.013927931422962453,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "3d"
@@ -943,11 +943,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.038097002044210224,
-      "sharpe_net_ann": -0.766221414746125,
-      "dsr": 0.00014796158067538194,
-      "placebo_p_value": 0.5033112582781457,
+      "sharpe_net_ann": -0.6724662526509028,
+      "dsr": 7.285172553186153e-05,
+      "placebo_p_value": 0.5827814569536424,
       "surrogate_p_value": 0.0728476821192053,
-      "cv_sharpe_mean": -0.06734173945465032,
+      "cv_sharpe_mean": -0.057610342485772355,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
      },
      "bar": "3d"
@@ -963,11 +963,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.0024935506770970496,
-      "sharpe_net_ann": 0.773691148415387,
-      "dsr": 0.057453877796532965,
-      "placebo_p_value": 0.013245033112582781,
+      "sharpe_net_ann": 0.8345161929989624,
+      "dsr": 0.03499854040543968,
+      "placebo_p_value": 0.026490066225165563,
       "surrogate_p_value": 0.9072847682119205,
-      "cv_sharpe_mean": 0.02701602731312769,
+      "cv_sharpe_mean": 0.032708073551243756,
       "objection": "|IC|=0.0025 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "3d"
@@ -983,11 +983,11 @@
       },
       "horizon_bars": 1,
       "ic_1bar": 0.007647747318847164,
-      "sharpe_net_ann": 0.9321146589636948,
-      "dsr": 0.09702119028055417,
-      "placebo_p_value": 0.019867549668874173,
+      "sharpe_net_ann": 1.131085065232019,
+      "dsr": 0.09135838654879103,
+      "placebo_p_value": 0.026490066225165563,
       "surrogate_p_value": 0.4768211920529801,
-      "cv_sharpe_mean": 0.1268162383732339,
+      "cv_sharpe_mean": 0.14451096336475333,
       "objection": "|IC|=0.0076 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "3d"
@@ -1003,12 +1003,706 @@
       },
       "horizon_bars": 1,
       "ic_1bar": -0.00029510381792649667,
-      "sharpe_net_ann": -1.2322620359419012,
-      "dsr": 6.615080167934607e-06,
-      "placebo_p_value": 0.7019867549668874,
+      "sharpe_net_ann": -1.1719075335499407,
+      "dsr": 2.3897575152226423e-06,
+      "placebo_p_value": 0.7549668874172185,
       "surrogate_p_value": 0.9867549668874173,
-      "cv_sharpe_mean": -0.07198424498015553,
+      "cv_sharpe_mean": -0.06621740817777656,
       "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "3d"
+    }
+   ]
+  },
+  "F_DIR": {
+   "n_configs": 30,
+   "survivors": [],
+   "verdicts": [
+    {
+     "feature": "dir_rsi",
+     "status": "FAIL",
+     "best": {
+      "feature": "dir_rsi",
+      "params": {
+       "n": 7
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.03658362002582811,
+      "sharpe_net_ann": -0.585569583638089,
+      "dsr": 0.00024435824356452626,
+      "placebo_p_value": 0.1456953642384106,
+      "surrogate_p_value": 0.006622516556291391,
+      "cv_sharpe_mean": -0.021006701276566415,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "dir_macd",
+     "status": "FAIL",
+     "best": {
+      "feature": "dir_macd",
+      "params": {
+       "fast": 12,
+       "slow": 34
+      },
+      "horizon_bars": 1,
+      "ic_1bar": -0.03377069996975332,
+      "sharpe_net_ann": -0.795174531681452,
+      "dsr": 7.743032761597325e-05,
+      "placebo_p_value": 0.19205298013245034,
+      "surrogate_p_value": 0.006622516556291391,
+      "cv_sharpe_mean": -0.05828535983529495,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "dir_ma_cross",
+     "status": "FAIL",
+     "best": {
+      "feature": "dir_ma_cross",
+      "params": {
+       "fast": 10,
+       "slow": 60
+      },
+      "horizon_bars": 1,
+      "ic_1bar": -0.005758428504306944,
+      "sharpe_net_ann": 1.051470717117602,
+      "dsr": 0.08920296002016859,
+      "placebo_p_value": 0.006622516556291391,
+      "surrogate_p_value": 0.8344370860927153,
+      "cv_sharpe_mean": 0.04655779142127362,
+      "objection": "|IC|=0.0058 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "dir_bollinger_z",
+     "status": "FAIL",
+     "best": {
+      "feature": "dir_bollinger_z",
+      "params": {
+       "n": 30
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.03150432845255992,
+      "sharpe_net_ann": -0.8391313077946657,
+      "dsr": 6.139321531109045e-05,
+      "placebo_p_value": 0.2913907284768212,
+      "surrogate_p_value": 0.013245033112582781,
+      "cv_sharpe_mean": -0.03553441873270675,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "dir_donchian_pos",
+     "status": "FAIL",
+     "best": {
+      "feature": "dir_donchian_pos",
+      "params": {
+       "n": 30
+      },
+      "horizon_bars": 1,
+      "ic_1bar": -0.009449469010740442,
+      "sharpe_net_ann": 1.0143833128516317,
+      "dsr": 0.08318155778615188,
+      "placebo_p_value": 0.013245033112582781,
+      "surrogate_p_value": 0.8807947019867549,
+      "cv_sharpe_mean": 0.04251737788798973,
+      "objection": "|IC|=0.0094 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "dir_rsi",
+     "status": "FAIL",
+     "best": {
+      "feature": "dir_rsi",
+      "params": {
+       "n": 2
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.03433619126068564,
+      "sharpe_net_ann": -0.4669581095729618,
+      "dsr": 0.00023372379111459384,
+      "placebo_p_value": 0.4503311258278146,
+      "surrogate_p_value": 0.15894039735099338,
+      "cv_sharpe_mean": -0.029232965226375727,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "3d"
+    },
+    {
+     "feature": "dir_macd",
+     "status": "FAIL",
+     "best": {
+      "feature": "dir_macd",
+      "params": {
+       "fast": 4,
+       "slow": 11
+      },
+      "horizon_bars": 1,
+      "ic_1bar": -0.0275747096240269,
+      "sharpe_net_ann": 0.13874868154744188,
+      "dsr": 0.003628422545663185,
+      "placebo_p_value": 0.23178807947019867,
+      "surrogate_p_value": 0.18543046357615894,
+      "cv_sharpe_mean": -0.008611029316807373,
+      "objection": "|IC|=0.0276 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "3d"
+    },
+    {
+     "feature": "dir_ma_cross",
+     "status": "FAIL",
+     "best": {
+      "feature": "dir_ma_cross",
+      "params": {
+       "fast": 3,
+       "slow": 20
+      },
+      "horizon_bars": 1,
+      "ic_1bar": -0.008260235749266407,
+      "sharpe_net_ann": 1.084918417619355,
+      "dsr": 0.07232654164202884,
+      "placebo_p_value": 0.013245033112582781,
+      "surrogate_p_value": 0.8079470198675497,
+      "cv_sharpe_mean": 0.07338454112274176,
+      "objection": "|IC|=0.0083 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "3d"
+    },
+    {
+     "feature": "dir_bollinger_z",
+     "status": "FAIL",
+     "best": {
+      "feature": "dir_bollinger_z",
+      "params": {
+       "n": 5
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.02771450798467551,
+      "sharpe_net_ann": -0.028097789524769594,
+      "dsr": 0.001859249471177792,
+      "placebo_p_value": 0.2052980132450331,
+      "surrogate_p_value": 0.09933774834437085,
+      "cv_sharpe_mean": -0.013375977597516435,
+      "objection": "|IC|=0.0277 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "3d"
+    },
+    {
+     "feature": "dir_donchian_pos",
+     "status": "FAIL",
+     "best": {
+      "feature": "dir_donchian_pos",
+      "params": {
+       "n": 10
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.0030694354511238485,
+      "sharpe_net_ann": 0.9386235936153656,
+      "dsr": 0.052540980073234045,
+      "placebo_p_value": 0.033112582781456956,
+      "surrogate_p_value": 0.9933774834437086,
+      "cv_sharpe_mean": 0.06426591237315166,
+      "objection": "|IC|=0.0031 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "3d"
+    }
+   ]
+  },
+  "F_TRANSFORM": {
+   "n_configs": 10,
+   "survivors": [],
+   "verdicts": [
+    {
+     "feature": "transform_hurst",
+     "status": "FAIL",
+     "best": {
+      "feature": "transform_hurst",
+      "params": {
+       "n": 30
+      },
+      "horizon_bars": 1,
+      "ic_1bar": -0.004722940512470981,
+      "sharpe_net_ann": 0.377870426700227,
+      "dsr": 0.01249183304344929,
+      "placebo_p_value": 0.006622516556291391,
+      "surrogate_p_value": 0.6026490066225165,
+      "cv_sharpe_mean": 0.02176118979123858,
+      "objection": "|IC|=0.0047 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "transform_spectral_entropy",
+     "status": "FAIL",
+     "best": {
+      "feature": "transform_spectral_entropy",
+      "params": {
+       "n": 64
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.00380204972892102,
+      "sharpe_net_ann": 0.23574932452213365,
+      "dsr": 0.007810265907506182,
+      "placebo_p_value": 0.019867549668874173,
+      "surrogate_p_value": 0.5761589403973509,
+      "cv_sharpe_mean": 0.01760984749936642,
+      "objection": "|IC|=0.0038 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "transform_hurst",
+     "status": "FAIL",
+     "best": {
+      "feature": "transform_hurst",
+      "params": {
+       "n": 20
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.018651825018510804,
+      "sharpe_net_ann": 1.886524894688529,
+      "dsr": 0.3456534008970815,
+      "placebo_p_value": 0.006622516556291391,
+      "surrogate_p_value": 0.10596026490066225,
+      "cv_sharpe_mean": 0.1419253805876172,
+      "objection": "|IC|=0.0187 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "3d"
+    },
+    {
+     "feature": "transform_spectral_entropy",
+     "status": "FAIL",
+     "best": {
+      "feature": "transform_spectral_entropy",
+      "params": {
+       "n": 11
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.024570578709356954,
+      "sharpe_net_ann": 0.3404079357952174,
+      "dsr": 0.00710000158881657,
+      "placebo_p_value": 0.15894039735099338,
+      "surrogate_p_value": 0.039735099337748346,
+      "cv_sharpe_mean": -0.023309639600791316,
+      "objection": "|IC|=0.0246 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "3d"
+    }
+   ]
+  },
+  "F_DEP": {
+   "n_configs": 8,
+   "survivors": [],
+   "verdicts": [
+    {
+     "feature": "dep_variance_ratio",
+     "status": "FAIL",
+     "best": {
+      "feature": "dep_variance_ratio",
+      "params": {
+       "n": 30
+      },
+      "horizon_bars": 1,
+      "ic_1bar": -0.00011431240632351288,
+      "sharpe_net_ann": -0.296764642564537,
+      "dsr": 0.0009416600425071357,
+      "placebo_p_value": 0.046357615894039736,
+      "surrogate_p_value": 0.9470198675496688,
+      "cv_sharpe_mean": -0.011020367261601258,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "dep_autocorr1",
+     "status": "FAIL",
+     "best": {
+      "feature": "dep_autocorr1",
+      "params": {
+       "n": 45
+      },
+      "horizon_bars": 1,
+      "ic_1bar": -0.0113642122917907,
+      "sharpe_net_ann": -1.0032181125198185,
+      "dsr": 2.0857532960876438e-05,
+      "placebo_p_value": 0.23178807947019867,
+      "surrogate_p_value": 0.2251655629139073,
+      "cv_sharpe_mean": -0.04258612038500098,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "dep_variance_ratio",
+     "status": "FAIL",
+     "best": {
+      "feature": "dep_variance_ratio",
+      "params": {
+       "n": 20
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.013119394447346269,
+      "sharpe_net_ann": 1.1361651540653446,
+      "dsr": 0.08466566489963911,
+      "placebo_p_value": 0.019867549668874173,
+      "surrogate_p_value": 0.271523178807947,
+      "cv_sharpe_mean": 0.07124943706383163,
+      "objection": "|IC|=0.0131 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "3d"
+    },
+    {
+     "feature": "dep_autocorr1",
+     "status": "FAIL",
+     "best": {
+      "feature": "dep_autocorr1",
+      "params": {
+       "n": 7
+      },
+      "horizon_bars": 1,
+      "ic_1bar": -0.006202999786601104,
+      "sharpe_net_ann": 0.22939326216551226,
+      "dsr": 0.0049292482820583955,
+      "placebo_p_value": 0.15894039735099338,
+      "surrogate_p_value": 0.6556291390728477,
+      "cv_sharpe_mean": -0.0011820557110355835,
+      "objection": "|IC|=0.0062 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "3d"
+    }
+   ]
+  },
+  "F_PATH": {
+   "n_configs": 8,
+   "survivors": [],
+   "verdicts": [
+    {
+     "feature": "path_run_length",
+     "status": "FAIL",
+     "best": {
+      "feature": "path_run_length",
+      "params": {},
+      "horizon_bars": 1,
+      "ic_1bar": 0.02406900113459593,
+      "sharpe_net_ann": -1.2137432843354827,
+      "dsr": 2.5688500878781424e-07,
+      "placebo_p_value": 0.37748344370860926,
+      "surrogate_p_value": 0.006622516556291391,
+      "cv_sharpe_mean": -0.07537160031959207,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "path_mfe_mae",
+     "status": "FAIL",
+     "best": {
+      "feature": "path_mfe_mae",
+      "params": {
+       "n": 45
+      },
+      "horizon_bars": 1,
+      "ic_1bar": -0.010206338097378052,
+      "sharpe_net_ann": 0.9304868195270843,
+      "dsr": 0.06254219413077154,
+      "placebo_p_value": 0.006622516556291391,
+      "surrogate_p_value": 0.271523178807947,
+      "cv_sharpe_mean": 0.06431487901461609,
+      "objection": "|IC|=0.0102 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "path_run_length",
+     "status": "FAIL",
+     "best": {
+      "feature": "path_run_length",
+      "params": {},
+      "horizon_bars": 1,
+      "ic_1bar": 0.022170643361230466,
+      "sharpe_net_ann": -1.166202494064961,
+      "dsr": 8.120903383516647e-06,
+      "placebo_p_value": 0.8145695364238411,
+      "surrogate_p_value": 0.16556291390728478,
+      "cv_sharpe_mean": -0.10508670912716835,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "3d"
+    },
+    {
+     "feature": "path_mfe_mae",
+     "status": "FAIL",
+     "best": {
+      "feature": "path_mfe_mae",
+      "params": {
+       "n": 15
+      },
+      "horizon_bars": 1,
+      "ic_1bar": -0.004670925175264912,
+      "sharpe_net_ann": 0.8809247799026585,
+      "dsr": 0.03636845122059504,
+      "placebo_p_value": 0.046357615894039736,
+      "surrogate_p_value": 0.7615894039735099,
+      "cv_sharpe_mean": 0.05471484605410009,
+      "objection": "|IC|=0.0047 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "3d"
+    }
+   ]
+  },
+  "F_MULTI": {
+   "n_configs": 8,
+   "survivors": [],
+   "verdicts": [
+    {
+     "feature": "multi_tf_agreement",
+     "status": "FAIL",
+     "best": {
+      "feature": "multi_tf_agreement",
+      "params": {},
+      "horizon_bars": 1,
+      "ic_1bar": -0.02948797914841542,
+      "sharpe_net_ann": 0.4778423187322657,
+      "dsr": 0.016743063437165914,
+      "placebo_p_value": 0.013245033112582781,
+      "surrogate_p_value": 0.019867549668874173,
+      "cv_sharpe_mean": 0.016859827176939377,
+      "objection": "|IC|=0.0295 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "multi_fast_slow",
+     "status": "FAIL",
+     "best": {
+      "feature": "multi_fast_slow",
+      "params": {
+       "fast": 3,
+       "slow": 21
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.00945335548260159,
+      "sharpe_net_ann": -0.46211619105916507,
+      "dsr": 0.00036673364217524186,
+      "placebo_p_value": 0.09933774834437085,
+      "surrogate_p_value": 0.5562913907284768,
+      "cv_sharpe_mean": -0.019517712714120127,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "multi_tf_agreement",
+     "status": "FAIL",
+     "best": {
+      "feature": "multi_tf_agreement",
+      "params": {},
+      "horizon_bars": 1,
+      "ic_1bar": -0.03178157875274874,
+      "sharpe_net_ann": 0.6893360523418062,
+      "dsr": 0.030539742321591245,
+      "placebo_p_value": 0.046357615894039736,
+      "surrogate_p_value": 0.2847682119205298,
+      "cv_sharpe_mean": 0.07856377496077832,
+      "objection": "in-sample |IC|=0.0318 does not clear the surrogate noise ceiling q99=0.0773"
+     },
+     "bar": "3d"
+    },
+    {
+     "feature": "multi_fast_slow",
+     "status": "FAIL",
+     "best": {
+      "feature": "multi_fast_slow",
+      "params": {
+       "fast": 2,
+       "slow": 15
+      },
+      "horizon_bars": 1,
+      "ic_1bar": -0.007129925227439626,
+      "sharpe_net_ann": -1.381083395966171,
+      "dsr": 7.282386353483229e-07,
+      "placebo_p_value": 0.8741721854304636,
+      "surrogate_p_value": 0.7880794701986755,
+      "cv_sharpe_mean": -0.0909416712023741,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "3d"
+    }
+   ]
+  },
+  "F_VOL": {
+   "n_configs": 8,
+   "survivors": [],
+   "verdicts": [
+    {
+     "feature": "vol_yang_zhang",
+     "status": "FAIL",
+     "best": {
+      "feature": "vol_yang_zhang",
+      "params": {
+       "n": 14
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.054648201231657256,
+      "sharpe_net_ann": -0.08022427522085956,
+      "dsr": 0.00203805405640513,
+      "placebo_p_value": 0.059602649006622516,
+      "surrogate_p_value": 0.006622516556291391,
+      "cv_sharpe_mean": -0.015703855167851288,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "vol_semivar_skew",
+     "status": "FAIL",
+     "best": {
+      "feature": "vol_semivar_skew",
+      "params": {
+       "n": 14
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.021158620120581617,
+      "sharpe_net_ann": -1.0326780855080888,
+      "dsr": 1.830135939420511e-05,
+      "placebo_p_value": 0.31125827814569534,
+      "surrogate_p_value": 0.033112582781456956,
+      "cv_sharpe_mean": -0.050966818586676364,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "vol_yang_zhang",
+     "status": "FAIL",
+     "best": {
+      "feature": "vol_yang_zhang",
+      "params": {
+       "n": 10
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.06643720843089845,
+      "sharpe_net_ann": -0.19734287199848105,
+      "dsr": 0.0007875131583359833,
+      "placebo_p_value": 0.3708609271523179,
+      "surrogate_p_value": 0.0728476821192053,
+      "cv_sharpe_mean": -0.05236411892378267,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "3d"
+    },
+    {
+     "feature": "vol_semivar_skew",
+     "status": "FAIL",
+     "best": {
+      "feature": "vol_semivar_skew",
+      "params": {
+       "n": 5
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.028057030674864092,
+      "sharpe_net_ann": -1.048323406372476,
+      "dsr": 7.3523778977827456e-06,
+      "placebo_p_value": 0.8079470198675497,
+      "surrogate_p_value": 0.17880794701986755,
+      "cv_sharpe_mean": -0.06679167419900839,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "3d"
+    }
+   ]
+  },
+  "F_LIQ": {
+   "n_configs": 6,
+   "survivors": [],
+   "verdicts": [
+    {
+     "feature": "liq_kyle_bar",
+     "status": "FAIL",
+     "best": {
+      "feature": "liq_kyle_bar",
+      "params": {
+       "n": 60
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.015448082280281562,
+      "sharpe_net_ann": 0.8554485991793764,
+      "dsr": 0.050132213452608994,
+      "placebo_p_value": 0.013245033112582781,
+      "surrogate_p_value": 0.9801324503311258,
+      "cv_sharpe_mean": 0.03069586450409764,
+      "objection": "|IC|=0.0154 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "liq_kyle_bar",
+     "status": "FAIL",
+     "best": {
+      "feature": "liq_kyle_bar",
+      "params": {
+       "n": 20
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.007326149465979583,
+      "sharpe_net_ann": 0.8044627725249921,
+      "dsr": 0.03146109115313183,
+      "placebo_p_value": 0.059602649006622516,
+      "surrogate_p_value": 0.9205298013245033,
+      "cv_sharpe_mean": 0.006707202874354741,
+      "objection": "|IC|=0.0073 below the 0.03 economic-significance floor even in-sample"
+     },
+     "bar": "3d"
+    }
+   ]
+  },
+  "F_STATE": {
+   "n_configs": 8,
+   "survivors": [],
+   "verdicts": [
+    {
+     "feature": "state_vol_regime_mom",
+     "status": "FAIL",
+     "best": {
+      "feature": "state_vol_regime_mom",
+      "params": {
+       "vol_n": 14,
+       "mom_n": 30
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.002945296317505736,
+      "sharpe_net_ann": -0.9351603724235003,
+      "dsr": 2.7495300230538808e-05,
+      "placebo_p_value": 0.17218543046357615,
+      "surrogate_p_value": 0.7019867549668874,
+      "cv_sharpe_mean": -0.03761976843625702,
+      "objection": "gross edge is non-positive before costs - nothing to salvage"
+     },
+     "bar": "1d"
+    },
+    {
+     "feature": "state_vol_regime_mom",
+     "status": "FAIL",
+     "best": {
+      "feature": "state_vol_regime_mom",
+      "params": {
+       "vol_n": 5,
+       "mom_n": 10
+      },
+      "horizon_bars": 1,
+      "ic_1bar": 0.010209408115526213,
+      "sharpe_net_ann": -0.10296085410216409,
+      "dsr": 0.0011923823709624032,
+      "placebo_p_value": 0.33112582781456956,
+      "surrogate_p_value": 0.41721854304635764,
+      "cv_sharpe_mean": 0.011510059872291733,
+      "objection": "|IC|=0.0102 below the 0.03 economic-significance floor even in-sample"
      },
      "bar": "3d"
     }
@@ -1016,6 +1710,6 @@
   }
  },
  "s7": {},
- "total_trials_ledger": 107,
- "seconds": 720.3
+ "total_trials_ledger": 301,
+ "seconds": 1235.1
 }
