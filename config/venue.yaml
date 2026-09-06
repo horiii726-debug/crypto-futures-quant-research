@@ -1,55 +1,70 @@
 # Binance USDT-M perpetual futures - venue specification.
 #
-# EVERY value is null ON PURPOSE. The pipeline (lab/engine/backtest.py ->
-# _check_costs) REFUSES to run while required fields are null. This is a
-# deliberate block: S1 fills these in from the OFFICIAL Binance USDT-M
-# futures documentation. Do NOT guess a single number.
+# Filled in S1 from OFFICIAL Binance sources. Provenance is recorded per field.
+# Per-symbol values (tick size, min notional, funding interval, liquidation
+# fee, leverage brackets) are NOT single scalars - they live in the generated
+# map data/raw/_spec/venue_per_symbol.json, keyed by symbol. The scalars below
+# are the regular-tier / most-common values used for feasibility screening.
 #
-# Sources to use in S1 (official only):
-#   - Binance Futures "Trading Fee Rate" / "Fee Schedule"
-#   - Binance Futures "Funding Rate" methodology + funding cap
-#   - Binance Futures "Leverage & Margin" tiers per symbol
-#   - Binance Futures "Exchange Information" endpoint (tickSize, minNotional,
-#     stepSize, contract status)
-#   - Binance "Liquidation" / maintenance-margin documentation
+# Sources:
+#   fees        - Binance "USDⓈ-M Futures Trading Fee Rate" (VIP 0, no BNB)
+#   funding     - fapi.binance.com/fapi/v1/fundingInfo  (per-symbol cap/interval)
+#   instrument  - fapi.binance.com/fapi/v1/exchangeInfo (per-symbol filters)
+#   liquidation - exchangeInfo liquidationFee + Binance maintenance-margin docs
+#   leverage    - Binance "Leverage and Margin" bracket table
+#                 (authenticated /fapi/v1/leverageBracket needed for the full
+#                  per-symbol table; NOT yet retrieved - see status below)
 
 venue: binance-usdm-perp
-status: UNCONFIGURED          # -> "configured" only after S1 fills every field
+status: PARTIAL          # fees+funding+instrument done; leverage brackets +
+                         # measured slippage still pending (see _pending)
 
 fees:
-  maker_fee: null             # fraction, e.g. 0.0002  (regular tier, no BNB)
-  taker_fee: null             # fraction, e.g. 0.0004
-  bnb_discount: null          # fraction discount if paying fees in BNB
-  fee_tier_basis: null        # "30d volume + BNB balance"
+  # VIP 0 / regular, fees NOT paid in BNB. Fractions of notional.
+  maker_fee: 0.0002       # 0.0200%   [src: Binance USDⓈ-M fee schedule, VIP 0]
+  taker_fee: 0.0005       # 0.0500%   [src: Binance USDⓈ-M fee schedule, VIP 0]
+  bnb_discount: 0.10      # 10% off if fees paid in BNB [src: Binance fee docs]
+  fee_tier_basis: "trailing 30d USDⓈ-M volume + BNB balance"
 
 funding:
-  interval_hours: null        # nominal funding interval (commonly 8)
-  cap: null                   # funding rate cap (per interval)
-  floor: null                 # funding rate floor
-  settlement: null            # "continuous mark-price interest + premium"
-  clamp_rule: null
+  interval_hours_default: 8      # symbols absent from fundingInfo default to 8h
+  interval_hours_observed: [1, 4, 8]   # per fapi/v1/fundingInfo 2026-09
+  interval_by_symbol: "data/raw/_spec/venue_per_symbol.json -> funding_interval_hours"
+  cap: 0.02              # +2.00%  adjustedFundingRateCap  [src: fapi fundingInfo]
+  floor: -0.02           # -2.00%  adjustedFundingRateFloor
+  settlement: "premium index + clamped interest rate, charged each interval on position notional"
+  interest_rate_default: 0.0001  # 0.01% per 8h nominal [src: Binance funding methodology]
 
 instrument:
-  tick_size: null             # per-symbol -> map, filled from exchangeInfo
-  step_size: null             # quantity step
-  min_notional: null          # minimum order notional in USDT
-  price_precision: null
-  quantity_precision: null
+  min_notional_usdt: 5          # 652/658 perps; a few are 20, one is 50
+  min_notional_by_symbol: "data/raw/_spec/venue_per_symbol.json -> min_notional"
+  tick_size_by_symbol:  "data/raw/_spec/venue_per_symbol.json -> tick_size"
+  step_size_by_symbol:  "data/raw/_spec/venue_per_symbol.json -> step_size"
+  price_precision_by_symbol: "data/raw/_spec/venue_per_symbol.json -> price_precision"
+  market_take_bound_by_symbol: "data/raw/_spec/venue_per_symbol.json -> market_take_bound"
 
 leverage:
-  max_leverage: null          # per-symbol leverage tier ceiling
-  tiers: null                 # notional brackets -> [maint_margin_rate, max_lev]
-  initial_margin_rule: null
+  max_leverage_btc_eth: 125     # [src: Binance Leverage & Margin docs]
+  note: "per-symbol notional brackets -> [maint_margin_rate, max_leverage] require the authenticated /fapi/v1/leverageBracket endpoint; NOT retrieved. Backtests cap gross leverage at risk.yaml gross_leverage_cap (2.0) which is well inside every bracket."
+  initial_margin_rule: "1 / leverage; cross or isolated"
 
 liquidation:
-  maintenance_margin_rate: null
-  liquidation_fee: null
-  mark_price_basis: null      # "index price + moving-average basis"
-  adl_rule: null              # auto-deleveraging queue
+  liquidation_fee_by_symbol: "data/raw/_spec/venue_per_symbol.json -> liquidation_fee"
+  liquidation_fee_common: 0.015     # 364/658 perps; also 0.02 (226), 0.025 (48)
+  maintenance_margin_rule: "tiered by position notional; MMR from leverage bracket table"
+  mark_price_basis: "price index + moving-average of (perp - index) basis"
+  adl_rule: "auto-deleveraging queue ranked by profit & leverage when insurance fund insufficient"
 
-slippage_bps: null            # measured, not assumed - from S1 bookTicker/aggTrades
+slippage_bps: null      # MEASURED, not assumed. Pending: realised half-spread +
+                        # impact from aggTrades / bookTicker (S1 Tahap 2/3).
+                        # Until non-null, backtest._check_costs blocks the
+                        # portfolio backtest on purpose.
 
-_notes: >
-  slippage_bps must come from real bookTicker spreads and aggTrades impact in
-  S1, per horizon and per liquidity bucket. Until then the F-1 feasibility
-  table cannot be computed and no horizon can be declared feasible.
+_pending:
+  - "authenticated /fapi/v1/leverageBracket for full per-symbol MMR brackets"
+  - "slippage_bps: measure realised spread + impact per liquidity bucket per horizon (Tahap 2/3)"
+
+_provenance_files:
+  - data/raw/_spec/exchangeInfo.json
+  - data/raw/_spec/fundingInfo.json
+  - data/raw/_spec/venue_per_symbol.json
