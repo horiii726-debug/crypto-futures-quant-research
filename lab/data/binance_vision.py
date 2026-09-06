@@ -167,6 +167,30 @@ def klines(symbol: str, months: list[str], interval: str = "1m",
     return df
 
 
+def index_klines(symbol: str, months: list[str], kind: str = "premiumIndexKlines",
+                 interval: str = "1h", freq: str = "monthly") -> pd.DataFrame:
+    """premiumIndexKlines (perp-index premium) or markPriceKlines. Full history."""
+    frames = []
+    for mo in months:
+        key = f"data/futures/um/{freq}/{kind}/{symbol}/{interval}/{symbol}-{interval}-{mo}.zip"
+        try:
+            blob = fetch_file(key, verify=False)
+        except (NotFound, RuntimeError):
+            continue
+        frames.append(_read_zip_csv(blob, KLINE_COLS))
+    if not frames:
+        return pd.DataFrame(columns=KLINE_COLS + ["dt"])
+    df = pd.concat(frames, ignore_index=True)
+    for c in ["open", "high", "low", "close"]:
+        df[c] = pd.to_numeric(df[c], errors="coerce")
+    df["open_time"] = pd.to_numeric(df["open_time"], errors="coerce").astype("int64")
+    if (df["open_time"] > 2_000_000_000_000_000).any():
+        df.loc[df["open_time"] > 2_000_000_000_000_000, "open_time"] //= 1000
+    df = df.drop_duplicates("open_time").sort_values("open_time").reset_index(drop=True)
+    df["dt"] = pd.to_datetime(df["open_time"], unit="ms", utc=True)
+    return df[["dt", "open_time", "open", "high", "low", "close"]]
+
+
 def agg_trades(symbol: str, days: list[str]) -> pd.DataFrame:
     frames = []
     for d in days:
