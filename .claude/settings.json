@@ -14,7 +14,7 @@
     ]
   },
   "env": {
-    "XAU_LAB_LEDGER_SQLITE": "./ledger/lab.sqlite",
+    "CRYPTO_LAB_LEDGER_SQLITE": "./ledger/lab.sqlite",
     "PYTHONPATH": "."
   },
   "hooks": {

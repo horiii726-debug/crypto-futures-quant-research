@@ -75,7 +75,7 @@ G5 multiplicity · G6 robustness · G7 cost · G8 risk · G9 red team · G10 hum
 ## Environment
 
 - All commands use `python3`, never `python`.
-- `XAU_LAB_LEDGER_SQLITE=./ledger/lab.sqlite`, `PYTHONPATH=.`
+- `CRYPTO_LAB_LEDGER_SQLITE=./ledger/lab.sqlite`, `PYTHONPATH=.`
 - Guards run as hooks: `test_seal.py` (PreToolUse/Bash),
   `numeric_firewall.py` (PreToolUse/Write|Edit),
   `leak_canary.py` (PostToolUse/Write|Edit).

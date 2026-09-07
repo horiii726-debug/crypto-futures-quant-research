@@ -32,7 +32,7 @@ tests/test_lab.py  10 mandatory checks
 ## Quick start
 
 ```bash
-export PYTHONPATH=. XAU_LAB_LEDGER_SQLITE=./ledger/lab.sqlite
+export PYTHONPATH=. CRYPTO_LAB_LEDGER_SQLITE=./ledger/lab.sqlite
 python3 tests/test_lab.py                 # 10/10 must pass
 python3 lab/engine/kernels.py             # numba IDENTICAL
 python3 tests/calibration.py              # edge0 not a candidate; edge0.35 is

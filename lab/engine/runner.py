@@ -82,7 +82,7 @@ def run_grid(hyp_id: str, family: str, grid: dict, evaluate, *,
 
 if __name__ == "__main__":
     import os
-    os.environ.setdefault("XAU_LAB_LEDGER_SQLITE", "./ledger/lab.sqlite")
+    os.environ.setdefault("CRYPTO_LAB_LEDGER_SQLITE", "./ledger/lab.sqlite")
     L = Ledger()
     hyp = L.add_hypothesis({
         "claim": "demo", "mechanism": "demo", "math_form": "f(x)=x",

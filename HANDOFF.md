@@ -28,7 +28,7 @@ Append-only SQLite. `UPDATE`/`DELETE` blocked by triggers on all result
 tables. Tables: `sources hypotheses datasets trials experiments metrics
 verdicts lessons test_looks bounds universe`.
 `Ledger.trial_count(family=…)` is the ONLY source of the number DSR reads (R3).
-Env: `XAU_LAB_LEDGER_SQLITE=./ledger/lab.sqlite`.
+Env: `CRYPTO_LAB_LEDGER_SQLITE=./ledger/lab.sqlite`.
 
 ### Stats (`lab/stats/`)
 `dsr.py` (Deflated Sharpe; trial count from ledger, refuses a manual
@@ -246,7 +246,7 @@ The tape (`aggTrades`) has FULL history and was only used via a crude
 
 ```bash
 cd /root/crypto-lab
-export PYTHONPATH=. XAU_LAB_LEDGER_SQLITE=./ledger/lab.sqlite PYTHONHASHSEED=0
+export PYTHONPATH=. CRYPTO_LAB_LEDGER_SQLITE=./ledger/lab.sqlite PYTHONHASHSEED=0
 
 python3 tests/test_lab.py            # S0: 10/10 must pass (isolated ledger)
 python3 lab/engine/kernels.py        # numba IDENTICAL

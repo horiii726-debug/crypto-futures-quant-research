@@ -1,0 +1,23 @@
+[package]
+name = "clkernels"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "tape"
+path = "src/tape.rs"
+
+[[bin]]
+name = "book"
+path = "src/book.rs"
+
+[dependencies]
+zip = { version = "2", default-features = false, features = ["deflate"] }
+rayon = "1"
+polars = { version = "0.44", default-features = false, features = ["parquet", "dtype-full"] }
+memchr = "2"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1

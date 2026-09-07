@@ -9,7 +9,7 @@ R6  Failures are never deleted. UPDATE and DELETE are rejected by triggers on
 
 Usage:
     from lab.ledger import Ledger
-    L = Ledger()                       # uses $XAU_LAB_LEDGER_SQLITE
+    L = Ledger()                       # uses $CRYPTO_LAB_LEDGER_SQLITE
     exp = L.new_experiment(hyp_id, family="F_XSEC", spec={...})
     L.log_trial(exp, config={...}, status="planned")   # BEFORE the fit
     L.log_metric(exp, "sharpe_oos", 1.23, trial_id=tid)
@@ -201,7 +201,7 @@ def _exp_id() -> str:
 
 class Ledger:
     def __init__(self, path: str | os.PathLike | None = None):
-        env = os.environ.get("XAU_LAB_LEDGER_SQLITE")
+        env = os.environ.get("CRYPTO_LAB_LEDGER_SQLITE") or os.environ.get("XAU_LAB_LEDGER_SQLITE")
         self.path = Path(path or env or DEFAULT_DB)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.conn = sqlite3.connect(str(self.path))
