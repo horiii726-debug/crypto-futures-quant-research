@@ -44,14 +44,15 @@ impact entirely** — it understated real taker cost by ~2×.
 `RescoreLedger` proxies the real trial counts and swallows all writes). Signals,
 params, universe, dates unchanged.
 
-**Result (193 configs, 12 families, 1d + 3d):**
+**Result (193 unique configs, 12 families, 1d + 3d):**
 
 | | |
 |---|---|
 | gate-status changes | **0** |
-| net Sharpe worse under v2 | ~91 % |
+| net Sharpe worse under v2 | 176 / 193 |
 | net Sharpe better under v2 | 0 |
-| mean Δ net Sharpe (v2 − v1) | **−0.13** |
+| net Sharpe ~unchanged | 17 / 193 |
+| mean Δ net Sharpe (v2 − v1) | **−0.118** (median −0.10) |
 
 The 55-coin cross-sectional universe is thin-coin-heavy, so per-coin cost is
 *higher* on average and every already-failing verdict fails by a little more.
