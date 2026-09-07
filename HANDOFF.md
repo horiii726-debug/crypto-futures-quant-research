@@ -279,3 +279,37 @@ Reports so far: `reports/FINAL_REPORT.md` (the full P1–P4 result),
 > (3) cross-venue dislocations; (4) live recorders for the missing streams.**
 > Do NOT repeat the 305 cross-sectional configs. Fix the single-global-DSR
 > design first (`SYSTEM_SPEC.md` [FIX 1]) or nothing will ever survive.
+
+
+---
+
+## RUN 2 UPDATE (autonomous, tape microstructure + carry + cross-venue)
+
+**401 real trials now (was 305). test_looks still 0. 52 bounds. NO_SURVIVOR.**
+
+Implemented SYSTEM_SPEC [FIX 1]: `ledger.log_screen_eval()` (counts_as_trial=0)
++ family-scoped DSR in `study.py` / `micro_study.py`. 432 screen evals logged
+separately.
+
+New BOUNDS:
+- **F_CARRY** (`lab/research/carry_hardened.py`): delta-neutral funding carry,
+  55 coins. ~10%/yr gross funding is a SHORT-PERP RISK PREMIUM (surrogate p=1.0),
+  net Sharpe ~+2.5 maker / +0.6 taker, decaying. Not alpha.
+- **F_MICRO_OFI / F_MICRO_BOOK** (`lab/data/tape.py` + `lab/research/micro*.py`):
+  real event->bar tape features (OFI/VPIN/cum-delta/Kyle-λ/microprice) from
+  10 coins x 12mo aggTrades at M3/M5/M15. 432-config screen, 0 passed.
+  Best gross edge 0.27 bps/bar, all net-negative even with maker execution.
+- **F_MICRO_OFI_EVENT**: event-level OFI 10s-5min, IC~0, gross Sharpe negative.
+- **F_XVENUE** (`lab/research/xvenue_study.py`): Binance-Bybit funding spread IS
+  a real inefficiency (surrogate p=0.01) but tradeable only in illiquid/delisted
+  names (IDEXUSDT ~40% of P&L) -> RED-TEAM VETO. taker cost-stress Sharpe +0.22.
+
+Data added: `data/processed/tape/*_{3,5,15}m.parquet` (10 coins, 12mo),
+`data/processed/basis/*` (premium index + Binance funding, 55 coins, 2y),
+`data/processed/bybit_funding/*` (Bybit funding, 55 coins, 2y). Raw aggTrades
+(31GB) deleted after processing - regenerate via `lab/data/_collect_tape.py`.
+
+**The frontier is now L2 order-book + liquidation/OI stream (needs a live
+recorder - free history does not exist) OR a different target: market making /
+liquidity provision, where earning the spread makes cost a tailwind instead of
+the thing that kills every signal.** Do NOT re-run the 401 trials.
