@@ -1,0 +1,60 @@
+{
+ "period": [
+  "2021-01-01 00:00:00+00:00",
+  "2023-09-28 00:00:00+00:00"
+ ],
+ "n_bars": 24001,
+ "n_coins": 8,
+ "coins": [
+  "BTCUSDT",
+  "XRPUSDT",
+  "AVAXUSDT",
+  "LINKUSDT",
+  "DOTUSDT",
+  "BCHUSDT",
+  "XLMUSDT",
+  "APTUSDT"
+ ],
+ "gross_sr_ann": 0.13,
+ "maker_sr_ann": 0.12,
+ "taker_sr_ann": 0.1,
+ "turnover_per_bar": 0.0008,
+ "walk_forward": [
+  0.0,
+  -0.12,
+  1.05,
+  -0.51
+ ],
+ "placebo_p": 0.46511627906976744,
+ "surrogate_p": 0.46511627906976744,
+ "luna_2022H1": [
+  1.17,
+  0.1343,
+  4344
+ ],
+ "ftx_2022H2": [
+  -1.09,
+  -0.1264,
+  4416
+ ],
+ "recovery_2023": [
+  0.17,
+  0.0342,
+  6481
+ ],
+ "max_drawdown": -0.3255,
+ "also_all23_coins": {
+  "maker_sr_ann": 0.03,
+  "taker_sr_ann": 0.01,
+  "gross_sr_ann": 0.04,
+  "n_coins": 23,
+  "walk_forward": [
+   0.0,
+   1.29,
+   -0.57,
+   -0.63
+  ],
+  "surrogate_p": 0.4850498338870432
+ },
+ "verdict": "FAILS on Binance 2021-2023 \u2014 oi_leverage_state is Bybit/regime-specific (a finding)"
+}

@@ -55,11 +55,18 @@ def _elig_mask(index, cols):
     return daily.reindex(idx.floor("D")).set_index(idx)
 
 
-def run(use_filter=True) -> dict:
+def run(use_filter=True, oi_validated_only=True) -> dict:
     C = pd.read_parquet(MV / "close_1h.parquet")
     QV = pd.read_parquet(MV / "quote_volume_1h.parquet")
     OI = pd.read_parquet(MV / "oi_usd_1h.parquet")
     common = [c for c in C.columns if c in OI.columns and OI[c].notna().sum() > 2000]
+    if oi_validated_only:
+        try:
+            val = json.loads((MV / "_validation.json").read_text())
+            ok = {c for c, r in val.items() if r.get("pass")}
+            common = [c for c in common if c in ok]
+        except Exception:
+            pass
     C, QV, OI = C[common], QV[common], OI[common]
 
     lev = OI * C / QV.rolling(CFG["n"], min_periods=CFG["n"] // 2).mean().replace(0, np.nan)
@@ -114,7 +121,14 @@ def run(use_filter=True) -> dict:
 
 
 if __name__ == "__main__":
-    r = run(use_filter=True)
+    # the frozen liquidity filter has no data before 2023-09 (klines_1m starts
+    # then), so for the 2021-2022 window the HIST_UNIVERSE (hand-picked liquid
+    # majors) is used directly — use_filter=False.
+    r = run(use_filter=False, oi_validated_only=True)
+    r_all = run(use_filter=False, oi_validated_only=False)
+    r["also_all23_coins"] = {k: r_all[k] for k in
+                             ("maker_sr_ann", "taker_sr_ann", "gross_sr_ann", "n_coins",
+                              "walk_forward", "surrogate_p")}
     verdict = ("HOLDS cross-venue + cross-regime — evidence strengthened"
                if (r["maker_sr_ann"] > 0.5 and r["surrogate_p"] < 0.10
                    and all(x > -0.5 for x in r["walk_forward"]))

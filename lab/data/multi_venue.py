@@ -32,28 +32,19 @@ HIST_UNIVERSE = ["BTCUSDT", "ETHUSDT", "BNBUSDT", "SOLUSDT", "XRPUSDT", "DOGEUSD
                  "ETCUSDT", "TRXUSDT", "NEARUSDT", "ICPUSDT", "APTUSDT"]
 
 
-def _binance_price(sym: str, months: list[str]) -> pd.Series | None:
+def _binance_klines_ch_qv(sym: str, months: list[str]):
+    """one download per coin -> (close, quote_volume) hourly series."""
     from lab.data.binance_vision import klines
     try:
         d = klines(sym, months, interval="1h", freq="monthly")
     except Exception:
-        return None
+        return None, None
     if d is None or d.empty:
-        return None
+        return None, None
     ts = pd.to_datetime(d["open_time"], unit="ms", utc=True)
-    return pd.Series(d["close"].astype(float).values, index=ts).sort_index()
-
-
-def _binance_qv(sym: str, months: list[str]) -> pd.Series | None:
-    from lab.data.binance_vision import klines
-    try:
-        d = klines(sym, months, interval="1h", freq="monthly")
-    except Exception:
-        return None
-    if d is None or d.empty:
-        return None
-    ts = pd.to_datetime(d["open_time"], unit="ms", utc=True)
-    return pd.Series(d["quote_volume"].astype(float).values, index=ts).sort_index()
+    c = pd.Series(d["close"].astype(float).values, index=ts).sort_index()
+    q = pd.Series(d["quote_volume"].astype(float).values, index=ts).sort_index()
+    return c, q
 
 
 def _binance_funding_ann(sym: str, months: list[str]) -> pd.Series | None:
@@ -73,19 +64,25 @@ def build(start="2021-01", end="2023-09") -> dict:
     months = [str(p) for p in pd.period_range(start, end, freq="M")]
     idx = pd.date_range(f"{start}-01", f"{end}-28", freq="1h", tz="UTC")
 
+    from concurrent.futures import ThreadPoolExecutor
     close, qv, oi_usd = {}, {}, {}
-    for s in HIST_UNIVERSE:
-        px = _binance_price(s, months)
-        if px is None or len(px) < 500:
-            continue
-        close[s] = px.reindex(idx)
-        q = _binance_qv(s, months)
-        qv[s] = q.reindex(idx) if q is not None else np.nan
-        p = BIN_OI / f"{s}.parquet"
-        if p.exists():
-            o = pd.read_parquet(p)["oi_usd"]
-            o.index = pd.to_datetime(o.index, utc=True)
-            oi_usd[s] = o.reindex(idx)
+
+    def _one(s):
+        c, q = _binance_klines_ch_qv(s, months)
+        return s, c, q
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        for s, c, q in ex.map(_one, HIST_UNIVERSE):
+            if c is None or len(c) < 500:
+                continue
+            close[s] = c.reindex(idx)
+            qv[s] = q.reindex(idx) if q is not None else np.nan
+            p = BIN_OI / f"{s}.parquet"
+            if p.exists():
+                o = pd.read_parquet(p)["oi_usd"]
+                o.index = pd.to_datetime(o.index, utc=True)
+                oi_usd[s] = o.reindex(idx)
+            print(f"  {s:10} price {c.index[0].date()}..{c.index[-1].date()} "
+                  f"oi={'y' if s in oi_usd else 'n'}", flush=True)
     C = pd.DataFrame(close).sort_index()
     QV = pd.DataFrame(qv).reindex(columns=C.columns)
     OI = pd.DataFrame(oi_usd).reindex(columns=C.columns)
