@@ -84,13 +84,19 @@ def step(*, arm: bool, mode: str = "hybrid"):
             continue
         side = "buy" if dw > 0 else "sell"
         notional = abs(dw) * AUM_USD
+        # spec C1: split; spec C2/I1: maker-first ladder prediction
+        from lab.exec.execution import split_order, plan_ladder, LadderConfig
+        slices = split_order(notional, n_slices=4)
+        lad = plan_ladder(coin, side, slices[0], now, cfg=LadderConfig())
         pc = cost_bps(coin, side, notional, now, mode, leg="entry")
         intended = float(px.get(coin, np.nan))
         row = {"ts": now, "coin": coin, "side": side, "target_w": float(w_new),
-               "delta_w": float(dw), "notional": notional,
+               "delta_w": float(dw), "notional": notional, "n_slices": len(slices),
                "intended_price": intended, "actual_fill": None,
-               "predicted_cost_bps": pc["total_bps"], "realized_cost_bps": None,
-               "p_fill_predicted": pc["p_fill"], "filled": False,
+               "predicted_cost_bps": pc["total_bps"],
+               "predicted_cost_bps_ladder": lad.predicted_cost_bps,
+               "realized_cost_bps": None,
+               "p_fill_predicted": lad.p_fill_predicted, "filled": False,
                "latency_ms": None, "mode": mode, "armed": arm}
         if arm:
             row = _place_real_order(row)          # fills in actual_fill / realized_cost / latency
