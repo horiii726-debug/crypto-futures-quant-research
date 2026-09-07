@@ -1,0 +1,93 @@
+
+=== D7_VOLUME (20 formulas) ===
+  U01_abnormal_vol       n=  483 win=0.466 exp=   -57.7bps t= -0.94 SR=-0.721 hold=134h TP/SL/T=105/98/280
+  U02_turnover_rev       n=  181 win=0.453 exp=  -113.0bps t= -1.25 SR=-0.952 hold=131h TP/SL/T=37/50/94
+  U03_vol_trend          n=  717 win=0.464 exp=   -96.3bps t= -1.94 SR=-1.48 hold=127h TP/SL/T=169/192/356
+  U04_vpt                n=  913 win=0.464 exp=   -85.2bps t= -2.09 SR=-1.587 hold=126h TP/SL/T=222/236/455
+  U05_cgw_reversal       n=  941 win=0.520 exp=    -7.1bps t= -0.16 SR=-0.125 hold=126h TP/SL/T=224/264/453
+  U06_taker_imb          n=  707 win=0.468 exp=   -26.1bps t= -0.59 SR=-0.45 hold=129h TP/SL/T=171/173/363
+  U07_taker_imb_fade     n=  914 win=0.474 exp=   -89.6bps t= -2.31 SR=-1.755 hold=126h TP/SL/T=219/247/448
+  U08_amihud             n=   47 win=0.447 exp=  -188.4bps t= -1.00 SR=-0.765 hold=136h TP/SL/T=8/14/25
+  U09_vol_shock          n=  963 win=0.490 exp=    -3.9bps t= -0.10 SR=-0.073 hold=126h TP/SL/T=260/234/469
+  U10_vol_vol            n=  174 win=0.540 exp=  +107.9bps t= +0.94 SR=0.719 hold=124h TP/SL/T=43/42/89
+  U11_mfi                n=  887 win=0.515 exp=   +19.4bps t= +0.46 SR=0.352 hold=127h TP/SL/T=209/230/448
+  U12_vwap_dev           n=  905 win=0.474 exp=   -36.7bps t= -0.81 SR=-0.619 hold=127h TP/SL/T=191/239/475
+  U13_illiq_shock        n=  971 win=0.488 exp=    +9.8bps t= +0.24 SR=0.185 hold=125h TP/SL/T=278/238/455
+  U14_vol_price_corr     n=  757 win=0.495 exp=   -31.6bps t= -0.73 SR=-0.556 hold=126h TP/SL/T=201/200/356
+  U15_dollar_vol         n=   93 win=0.559 exp=   -79.3bps t= -0.60 SR=-0.461 hold=121h TP/SL/T=24/29/40
+  U16_vol_regime         n=  229 win=0.437 exp=  -114.5bps t= -1.16 SR=-0.9 hold=132h TP/SL/T=52/43/134
+  U17_signed_vol_mom     n=  885 win=0.489 exp=    +2.2bps t= +0.06 SR=0.044 hold=124h TP/SL/T=234/217/434
+  U18_vol_breakout       n=  863 win=0.466 exp=   -87.6bps t= -2.11 SR=-1.619 hold=128h TP/SL/T=197/235/431
+  U19_liquidity_beta     n=  578 win=0.516 exp=    +3.3bps t= +0.06 SR=0.045 hold=128h TP/SL/T=144/139/295
+  U20_kyle_from_vol      n=  101 win=0.485 exp=   -69.8bps t= -0.55 SR=-0.419 hold=127h TP/SL/T=25/26/50
+
+=== D8_REGIME (20 formulas) ===
+  R01_trend_regime       n=  174 win=0.431 exp=   +35.1bps t= +0.35 SR=0.272 hold=131h TP/SL/T=37/43/94
+  R02_vol_regime_switch  n=  859 win=0.504 exp=    -4.6bps t= -0.10 SR=-0.075 hold=129h TP/SL/T=202/212/445
+  R03_risk_on_off        n=  264 win=0.489 exp=   -70.1bps t= -0.89 SR=-0.687 hold=138h TP/SL/T=51/53/160
+  R04_cusum              n=  789 win=0.479 exp=   -13.5bps t= -0.30 SR=-0.229 hold=129h TP/SL/T=194/186/409
+  R05_range_regime       n=  896 win=0.488 exp=   -30.0bps t= -0.71 SR=-0.54 hold=127h TP/SL/T=212/238/446
+  R06_hurst_regime       n=  817 win=0.490 exp=   -24.8bps t= -0.54 SR=-0.411 hold=130h TP/SL/T=188/167/462
+  R07_drawdown_state     n=  547 win=0.484 exp=   -19.9bps t= -0.33 SR=-0.251 hold=129h TP/SL/T=139/124/284
+  R08_vol_term           n=  403 win=0.511 exp=   +67.8bps t= +1.04 SR=0.808 hold=134h TP/SL/T=86/85/232
+  R09_rel_strength       n=  728 win=0.435 exp=  -126.3bps t= -2.38 SR=-1.82 hold=126h TP/SL/T=186/184/358
+  R10_btc_beta           n=  127 win=0.488 exp=  -167.4bps t= -1.27 SR=-0.981 hold=128h TP/SL/T=32/37/58
+  R11_btc_leadlag        n=  441 win=0.497 exp=   +21.7bps t= +0.36 SR=0.275 hold=133h TP/SL/T=99/99/243
+  R12_pca_residual       n=  807 win=0.482 exp=   -56.4bps t= -1.20 SR=-0.923 hold=127h TP/SL/T=185/209/413
+  R13_peer_momentum      n=  827 win=0.473 exp=   -18.2bps t= -0.39 SR=-0.297 hold=131h TP/SL/T=196/175/456
+  R14_dispersion         n=  835 win=0.525 exp=  +117.2bps t= +2.45 SR=1.886 hold=127h TP/SL/T=231/182/422
+  R15_corr_regime        n=  293 win=0.505 exp=   +65.8bps t= +0.77 SR=0.595 hold=132h TP/SL/T=67/64/162
+  R16_idio_mom           n=  846 win=0.455 exp=   -56.4bps t= -1.31 SR=-1.013 hold=126h TP/SL/T=213/228/405
+  R17_beta_dispersion    n=   97 win=0.505 exp=  -178.2bps t= -1.22 SR=-0.947 hold=135h TP/SL/T=17/23/57
+  R18_corr_to_btc        n=  157 win=0.478 exp=   -55.1bps t= -0.47 SR=-0.362 hold=134h TP/SL/T=36/31/90
+  R19_eigen_exposure     n=   79 win=0.519 exp=   -35.3bps t= -0.22 SR=-0.172 hold=144h TP/SL/T=15/16/48
+  R20_lead_lag_net       n=  493 win=0.491 exp=   -63.1bps t= -1.00 SR=-0.759 hold=133h TP/SL/T=102/108/283
+
+=== D3_DOM (20 formulas) ===
+  B01_qi_follow          n=  280 win=0.486 exp=    -1.3bps t= -0.02 SR=-0.02 hold=126h TP/SL/T=76/72/132
+  B02_qi_fade            n=  286 win=0.493 exp=   -11.1bps t= -0.16 SR=-0.185 hold=131h TP/SL/T=62/74/150
+  B03_qi_deep            n=  239 win=0.510 exp=   -13.4bps t= -0.17 SR=-0.2 hold=130h TP/SL/T=61/56/122
+  B04_microprice         n=  284 win=0.500 exp=   -14.3bps t= -0.20 SR=-0.237 hold=132h TP/SL/T=74/62/148
+  B05_micro_revert       n=  307 win=0.531 exp=   +85.4bps t= +1.20 SR=1.432 hold=127h TP/SL/T=92/76/139
+  B06_book_slope         n=  208 win=0.471 exp=   -88.3bps t= -0.99 SR=-1.181 hold=121h TP/SL/T=55/65/88
+  B07_slope_amplify      n=  307 win=0.560 exp=  +124.0bps t= +1.79 SR=2.129 hold=128h TP/SL/T=92/69/146
+  B08_withdraw_fade      n=  316 win=0.462 exp=   -98.9bps t= -1.43 SR=-1.699 hold=126h TP/SL/T=78/95/143
+  B09_imbvol_fade        n=  313 win=0.530 exp=   +66.7bps t= +0.95 SR=1.131 hold=125h TP/SL/T=86/88/139
+  B10_depth_total        ok                     n=22
+  B11_depth_shock        n=  265 win=0.468 exp=   -46.5bps t= -0.65 SR=-0.769 hold=129h TP/SL/T=62/69/134
+  B12_qi_momentum        n=  302 win=0.464 exp=  -106.6bps t= -1.55 SR=-1.842 hold=129h TP/SL/T=75/82/145
+  B13_qi_extreme         n=  311 win=0.550 exp=   +94.6bps t= +1.38 SR=1.638 hold=127h TP/SL/T=93/71/147
+  B14_near_far           n=  266 win=0.500 exp=   +36.3bps t= +0.49 SR=0.583 hold=128h TP/SL/T=71/58/137
+  B15_book_pressure      n=  268 win=0.481 exp=    +6.9bps t= +0.09 SR=0.107 hold=127h TP/SL/T=74/67/127
+  B16_resiliency         n=  302 win=0.500 exp=   +29.6bps t= +0.44 SR=0.52 hold=128h TP/SL/T=79/71/152
+  B17_imb_vol_level      n=  195 win=0.462 exp=  -225.1bps t= -2.48 SR=-2.967 hold=129h TP/SL/T=42/64/89
+  B18_snap_density       ok                     n=5
+  B19_micro_x_qi         n=  296 win=0.493 exp=   -15.3bps t= -0.22 SR=-0.26 hold=124h TP/SL/T=77/75/144
+  B20_depth_asym_mom     n=  309 win=0.508 exp=   +88.4bps t= +1.29 SR=1.532 hold=126h TP/SL/T=91/76/142
+
+=== D4_TAPE (20 formulas) ===
+  O01_ofi                n= 1112 win=0.506 exp=   +36.4bps t= +1.01 SR=0.717 hold=122h TP/SL/T=312/304/496
+  O02_ofi_reversal       n= 1137 win=0.485 exp=   -19.8bps t= -0.56 SR=-0.395 hold=120h TP/SL/T=319/324/494
+  O03_cum_delta          n= 1119 win=0.490 exp=    +2.4bps t= +0.07 SR=0.047 hold=120h TP/SL/T=332/315/472
+  O04_aggr_imb           n= 1132 win=0.480 exp=   -15.2bps t= -0.42 SR=-0.301 hold=120h TP/SL/T=312/333/487
+  O05_vpin               n=  652 win=0.472 exp=    -6.2bps t= -0.13 SR=-0.091 hold=122h TP/SL/T=192/172/288
+  O06_kyle_lambda        n=   52 win=0.538 exp=   +79.3bps t= +0.55 SR=0.554 hold=121h TP/SL/T=18/15/19
+  O07_roll_spread        n=  185 win=0.595 exp=    +1.8bps t= +0.02 SR=0.014 hold=131h TP/SL/T=48/45/92
+  O08_sign_ac            n= 1004 win=0.483 exp=   +40.5bps t= +1.08 SR=0.768 hold=121h TP/SL/T=299/247/458
+  O09_big_trade          n= 1138 win=0.491 exp=   -19.8bps t= -0.55 SR=-0.388 hold=119h TP/SL/T=327/331/480
+  O10_big_trade_fade     n= 1137 win=0.495 exp=   -57.5bps t= -1.60 SR=-1.133 hold=119h TP/SL/T=314/336/487
+  O11_intensity          n= 1040 win=0.475 exp=   -50.2bps t= -1.37 SR=-0.974 hold=124h TP/SL/T=275/282/483
+  O12_hawkes_proxy       n= 1125 win=0.476 exp=   -33.5bps t= -0.94 SR=-0.668 hold=118h TP/SL/T=320/331/474
+  O13_branching          n=  181 win=0.525 exp=  +101.0bps t= +1.06 SR=0.751 hold=129h TP/SL/T=50/44/87
+  O14_propagator         n= 1115 win=0.500 exp=   -15.1bps t= -0.43 SR=-0.304 hold=121h TP/SL/T=310/321/484
+  O15_vwap_tilt          n= 1132 win=0.495 exp=   -46.2bps t= -1.27 SR=-0.898 hold=120h TP/SL/T=306/333/493
+  O16_vwap_revert        n= 1116 win=0.489 exp=   -32.4bps t= -0.87 SR=-0.619 hold=121h TP/SL/T=306/327/483
+  O17_amihud_bar         ok                     n=28
+  O18_realised_vol       n=   36 win=0.583 exp=   +53.9bps t= +0.30 SR=0.234 hold=122h TP/SL/T=11/9/16
+  O19_ofi_x_vol          n= 1138 win=0.513 exp=    -1.9bps t= -0.05 SR=-0.037 hold=120h TP/SL/T=323/320/495
+  O20_absorption         n= 1112 win=0.478 exp=   -60.4bps t= -1.67 SR=-1.187 hold=122h TP/SL/T=295/335/482
+
+=== CHAMPIONS (expectancy>0, t>2, n>=50) ===
+  D8_REGIME  R14_dispersion         exp=  +117.2bps t=+2.45 win=0.525 n=835 SR=1.886
+
+77 formulas scored, 1 champions

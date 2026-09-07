@@ -1,0 +1,96 @@
+
+=== D1_TREND (20 formulas) ===
+  T01_tsmom              n=  887 win=0.454 exp=   -89.8bps t= -2.11 SR=-1.602 hold=129h TP/SL/T=209/213/465
+  T02_xsmom              n=  555 win=0.445 exp=   -61.6bps t= -1.09 SR=-0.841 hold=128h TP/SL/T=126/126/303
+  T03_macd               n=  927 win=0.486 exp=   -22.4bps t= -0.51 SR=-0.388 hold=128h TP/SL/T=221/232/474
+  T04_ma_cross           n=  728 win=0.486 exp=    +0.2bps t= +0.00 SR=0.003 hold=127h TP/SL/T=200/161/367
+  T05_donchian           n=  918 win=0.490 exp=   +16.8bps t= +0.41 SR=0.309 hold=126h TP/SL/T=237/231/450
+  T06_aroon              n=  859 win=0.516 exp=    +9.7bps t= +0.23 SR=0.175 hold=128h TP/SL/T=200/206/453
+  T07_adx_dmi            n=  926 win=0.470 exp=   -20.7bps t= -0.51 SR=-0.386 hold=127h TP/SL/T=230/221/475
+  T08_vortex             n=  918 win=0.503 exp=   +33.6bps t= +0.81 SR=0.615 hold=129h TP/SL/T=253/203/462
+  T09_kama               n=  927 win=0.469 exp=   -35.5bps t= -0.87 SR=-0.661 hold=126h TP/SL/T=226/243/458
+  T10_hurst_tilt         n=  936 win=0.502 exp=   +33.4bps t= +0.84 SR=0.638 hold=126h TP/SL/T=248/227/461
+  T11_vr_tilt            n=  927 win=0.437 exp=  -130.3bps t= -3.21 SR=-2.448 hold=125h TP/SL/T=210/268/449
+  T12_tema               n=  969 win=0.476 exp=   -55.1bps t= -1.27 SR=-0.964 hold=124h TP/SL/T=238/263/468
+  T13_ichimoku           n=  920 win=0.509 exp=    +7.8bps t= +0.18 SR=0.135 hold=128h TP/SL/T=231/206/483
+  T14_supertrend         n=  860 win=0.452 exp=   -32.2bps t= -0.65 SR=-0.497 hold=125h TP/SL/T=232/200/428
+  T15_cmo                n=  941 win=0.480 exp=   -33.9bps t= -0.81 SR=-0.619 hold=126h TP/SL/T=249/226/466
+  T16_trix               n=  773 win=0.470 exp=   -42.4bps t= -0.87 SR=-0.662 hold=130h TP/SL/T=188/181/404
+  T17_ppo                n=  771 win=0.476 exp=   -41.1bps t= -0.84 SR=-0.641 hold=128h TP/SL/T=197/173/401
+  T18_elder_ray          n=  943 win=0.503 exp=   +24.1bps t= +0.54 SR=0.412 hold=126h TP/SL/T=255/224/464
+  T19_coppock            n=  485 win=0.454 exp=  -102.0bps t= -1.50 SR=-1.149 hold=125h TP/SL/T=135/119/231
+  T20_reg_slope          n=  804 win=0.478 exp=   -40.9bps t= -0.92 SR=-0.701 hold=132h TP/SL/T=189/186/429
+
+=== D2_VOL (20 formulas) ===
+  V01_lowvol             n=  123 win=0.496 exp=   +47.7bps t= +0.37 SR=0.282 hold=138h TP/SL/T=19/23/81
+  V02_yang_zhang         n=  297 win=0.572 exp=  +236.6bps t= +2.82 SR=2.142 hold=131h TP/SL/T=67/61/169
+  V03_parkinson          n=  291 win=0.553 exp=  +112.7bps t= +1.36 SR=1.037 hold=133h TP/SL/T=57/64/170
+  V04_garman_klass       n=  287 win=0.571 exp=  +187.9bps t= +2.16 SR=1.638 hold=129h TP/SL/T=66/64/157
+  V05_rogers_satchell    n=  300 win=0.560 exp=  +163.6bps t= +1.90 SR=1.444 hold=129h TP/SL/T=68/66/166
+  V06_ewma               n=  765 win=0.531 exp=   +17.9bps t= +0.35 SR=0.267 hold=128h TP/SL/T=170/203/392
+  V07_vol_change         n=  819 win=0.509 exp=   +34.5bps t= +0.76 SR=0.584 hold=128h TP/SL/T=195/204/420
+  V08_har_rv             n=  581 win=0.546 exp=   +35.3bps t= +0.58 SR=0.448 hold=128h TP/SL/T=134/147/300
+  V09_semivar_skew       n=  684 win=0.469 exp=   -41.3bps t= -0.81 SR=-0.619 hold=126h TP/SL/T=174/175/335
+  V10_bipower_jump       n=  677 win=0.541 exp=  +159.5bps t= +3.27 SR=2.498 hold=127h TP/SL/T=183/153/341
+  V11_vol_of_vol         n=  121 win=0.488 exp=  -144.5bps t= -1.13 SR=-0.873 hold=141h TP/SL/T=16/24/81
+  V12_atr_norm           n=  573 win=0.532 exp=   +38.3bps t= +0.62 SR=0.469 hold=131h TP/SL/T=123/132/318
+  V13_bb_width           n=  639 win=0.518 exp=   +43.4bps t= +0.77 SR=0.587 hold=130h TP/SL/T=155/154/330
+  V14_keltner_width      n=  364 win=0.516 exp=    -2.6bps t= -0.03 SR=-0.026 hold=135h TP/SL/T=64/90/210
+  V15_chaikin_vol        n=  748 win=0.515 exp=   +22.4bps t= +0.48 SR=0.362 hold=129h TP/SL/T=165/185/398
+  V16_idio_vol           n=  148 win=0.513 exp=   +50.8bps t= +0.39 SR=0.303 hold=136h TP/SL/T=26/33/89
+  V17_downside_beta      n=  182 win=0.511 exp=   +51.4bps t= +0.53 SR=0.411 hold=134h TP/SL/T=41/35/106
+  V18_max_lottery        n=  413 win=0.523 exp=   +78.3bps t= +1.06 SR=0.809 hold=136h TP/SL/T=76/89/248
+  V19_ret_skew           n=  344 win=0.491 exp=  -115.0bps t= -1.67 SR=-1.27 hold=129h TP/SL/T=63/92/189
+  V20_ret_kurt           n=  215 win=0.526 exp=   +47.1bps t= +0.57 SR=0.431 hold=132h TP/SL/T=40/52/123
+
+=== D5_OI (20 formulas) ===
+  I01_leverage_ratio     n=  428 win=0.467 exp=   -14.4bps t= -0.24 SR=-0.181 hold=132h TP/SL/T=95/88/245
+  I02_oi_delta_rev       n=  915 win=0.498 exp=    +5.0bps t= +0.12 SR=0.088 hold=127h TP/SL/T=226/238/451
+  I03_oi_delta_mom       n=  915 win=0.496 exp=   -26.7bps t= -0.61 SR=-0.464 hold=127h TP/SL/T=238/226/451
+  I04_oi_price_confirm   n=  921 win=0.507 exp=    +6.2bps t= +0.14 SR=0.109 hold=127h TP/SL/T=235/226/460
+  I05_short_cover        n=  937 win=0.497 exp=    -9.1bps t= -0.22 SR=-0.168 hold=127h TP/SL/T=234/240/463
+  I06_oi_extreme         n=  823 win=0.520 exp=   +10.2bps t= +0.24 SR=0.185 hold=124h TP/SL/T=219/220/384
+  I07_oi_per_volume      n=  938 win=0.486 exp=   -57.6bps t= -1.40 SR=-1.067 hold=124h TP/SL/T=236/275/427
+  I08_oi_accel           n=  940 win=0.479 exp=   -83.4bps t= -1.95 SR=-1.48 hold=127h TP/SL/T=224/253/463
+  I09_oi_vol_ratio       n=  957 win=0.484 exp=   -45.9bps t= -1.19 SR=-0.903 hold=126h TP/SL/T=239/242/476
+  I10_oi_persist         n=  511 win=0.501 exp=   +45.0bps t= +0.82 SR=0.628 hold=124h TP/SL/T=146/130/235
+  I11_oi_dispersion      n=  915 win=0.498 exp=    +5.0bps t= +0.12 SR=0.088 hold=127h TP/SL/T=226/238/451
+  I12_oi_shock           n=  980 win=0.471 exp=   -40.7bps t= -1.11 SR=-0.842 hold=124h TP/SL/T=248/269/463
+  I13_oi_x_vol           n=  896 win=0.489 exp=   +46.8bps t= +1.09 SR=0.831 hold=128h TP/SL/T=226/218/452
+  I14_oi_x_funding       n=  906 win=0.475 exp=   -76.3bps t= -1.75 SR=-1.333 hold=129h TP/SL/T=208/233/465
+  I15_oi_notional        ok                     n=17
+  I16_oi_turnover        n=  428 win=0.463 exp=   -27.2bps t= -0.45 SR=-0.343 hold=132h TP/SL/T=94/88/246
+  I17_long_liq_bounce    n=  920 win=0.504 exp=   +47.2bps t= +1.14 SR=0.863 hold=129h TP/SL/T=255/198/467
+  I18_squeeze_setup      n=  927 win=0.498 exp=   +46.5bps t= +1.21 SR=0.921 hold=127h TP/SL/T=264/203/460
+  I19_oi_breadth         n=  905 win=0.503 exp=   +12.4bps t= +0.28 SR=0.215 hold=128h TP/SL/T=220/229/456
+  I20_oi_meanrev         n=  628 win=0.527 exp=   +22.2bps t= +0.42 SR=0.318 hold=127h TP/SL/T=150/170/308
+
+=== D6_FUND (20 formulas) ===
+  C01_carry              n=  844 win=0.493 exp=   -23.2bps t= -0.53 SR=-0.4 hold=128h TP/SL/T=207/195/442
+  C02_funding_mom        n=  685 win=0.523 exp=   +24.2bps t= +0.49 SR=0.373 hold=128h TP/SL/T=162/163/360
+  C03_funding_z          n=  897 win=0.519 exp=   +68.3bps t= +1.73 SR=1.323 hold=127h TP/SL/T=246/200/451
+  C04_funding_accel      n=  891 win=0.484 exp=   -43.0bps t= -1.01 SR=-0.767 hold=129h TP/SL/T=211/219/461
+  C05_funding_persist    n=  723 win=0.509 exp=    +1.0bps t= +0.02 SR=0.016 hold=128h TP/SL/T=173/159/391
+  C06_premium            n=  682 win=0.490 exp=   -13.4bps t= -0.28 SR=-0.223 hold=128h TP/SL/T=158/170/354
+  C07_mark_index         n=  811 win=0.482 exp=    +0.2bps t= +0.01 SR=0.004 hold=130h TP/SL/T=193/182/436
+  C08_basis_mom          n=  822 win=0.488 exp=    +2.0bps t= +0.04 SR=0.034 hold=127h TP/SL/T=214/195/413
+  C09_funding_vol        n=  157 win=0.478 exp=   +13.1bps t= +0.11 SR=0.087 hold=137h TP/SL/T=27/38/92
+  C10_funding_skew       n=  326 win=0.463 exp=   -70.1bps t= -1.03 SR=-0.785 hold=133h TP/SL/T=72/72/182
+  C11_funding_revert     n=  810 win=0.500 exp=    +7.2bps t= +0.16 SR=0.125 hold=129h TP/SL/T=180/195/435
+  C12_funding_px_div     n=  801 win=0.514 exp=   +64.7bps t= +1.44 SR=1.096 hold=131h TP/SL/T=197/173/431
+  C13_carry_x_vol        n=  852 win=0.474 exp=   -14.1bps t= -0.35 SR=-0.269 hold=127h TP/SL/T=212/206/434
+  C14_funding_breadth    n=  685 win=0.467 exp=   -49.7bps t= -1.01 SR=-0.767 hold=128h TP/SL/T=163/162/360
+  C15_funding_disp       n=  685 win=0.467 exp=   -49.7bps t= -1.01 SR=-0.767 hold=128h TP/SL/T=163/162/360
+  C16_cum_funding        n=  268 win=0.444 exp=   -78.1bps t= -0.99 SR=-0.751 hold=137h TP/SL/T=52/52/164
+  C17_premium_vol        n=  198 win=0.571 exp=  +197.4bps t= +2.09 SR=1.588 hold=132h TP/SL/T=50/40/108
+  C18_basis_extreme      n=  956 win=0.493 exp=   -38.2bps t= -0.96 SR=-0.733 hold=125h TP/SL/T=250/260/446
+  C19_funding_regime     n=  698 win=0.457 exp=   -77.0bps t= -1.56 SR=-1.192 hold=128h TP/SL/T=153/174/371
+  C20_carry_x_mom        n=  856 win=0.460 exp=   -40.2bps t= -0.90 SR=-0.686 hold=130h TP/SL/T=200/196/460
+
+=== CHAMPIONS (expectancy>0, t>2, n>=50) ===
+  D2_VOL     V02_yang_zhang         exp=  +236.6bps t=+2.82 win=0.572 n=297 SR=2.142
+  D2_VOL     V04_garman_klass       exp=  +187.9bps t=+2.16 win=0.571 n=287 SR=1.638
+  D2_VOL     V10_bipower_jump       exp=  +159.5bps t=+3.27 win=0.541 n=677 SR=2.498
+  D6_FUND    C17_premium_vol        exp=  +197.4bps t=+2.09 win=0.571 n=198 SR=1.588
+
+79 formulas scored, 4 champions
