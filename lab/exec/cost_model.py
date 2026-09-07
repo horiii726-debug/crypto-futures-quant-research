@@ -30,9 +30,27 @@ ROOT = Path(__file__).resolve().parents[2]
 PROC = ROOT / "data" / "processed"
 _CACHE = PROC / "cost_model_cache.parquet"
 
+# ---- fee tier (spec A1) — from config/account.yaml, NOT a hardcoded retail guess
+def _account_fees(venue: str = "binance_usdm") -> dict:
+    try:
+        import yaml
+        cfg = yaml.safe_load((ROOT / "config" / "account.yaml").read_text())
+        v = cfg[venue]
+        return {"maker": float(v["maker_bps"]), "taker": float(v["taker_bps"]),
+                "vip_tier": v.get("vip_tier", 0), "bnb_discount": v.get("bnb_discount", False)}
+    except Exception:
+        return {"maker": 1.8, "taker": 4.5, "vip_tier": 0, "bnb_discount": True}
+
+
+def fee_tier(venue: str = "binance_usdm", mode: str = "taker") -> float:
+    f = _account_fees(venue)
+    return f["maker"] if mode in ("maker", "hybrid") else f["taker"]
+
+
+_FEES = _account_fees()
+FEE_TAKER_BPS = _FEES["taker"]
+FEE_MAKER_BPS = _FEES["maker"]
 # ---- frozen global constants (REPRICING_RULE §2, §3, §4) --------------------
-FEE_TAKER_BPS = 4.5          # Binance USDT-M perp VIP-0 taker, post BNB schedule
-FEE_MAKER_BPS = 1.8          # VIP-0 maker
 Y_IMPACT = 0.5               # square-root-law coefficient, ONE value for the universe
 TIF_ENTRY_SEC = 45.0
 TIF_EXIT_SEC = 10.0
@@ -95,6 +113,41 @@ def _load_queue() -> dict:
     return out
 
 
+def _load_ladder() -> dict:
+    p = PROC / "book_ladder.json"
+    return json.loads(p.read_text()) if p.exists() else {}
+
+
+def walk_the_book_bps(coin: str, notional: float) -> float:
+    """spec A6 — consume the real +-1%..+-5% bookDepth ladder in order, return
+    the VWAP slippage vs mid in bps. Falls back to the sqrt model when the coin
+    has no ladder."""
+    lad = _calib()["ladder"].get(coin)
+    if not lad or notional <= 0:
+        return 0.0
+    bands = lad["pct_bands"]                       # [1,2,3,4,5] (% from mid)
+    cum = lad["cum_notional_usd_median"]           # cumulative $ within +-k%
+    prev_cum, prev_edge, filled_cost = 0.0, 0.0, 0.0
+    remaining = notional
+    for edge_pct, c in zip(bands, cum):
+        if not np.isfinite(c) or c <= prev_cum:
+            continue
+        band_notional = c - prev_cum
+        take = min(remaining, band_notional)
+        # price rises linearly from prev_edge% to edge% across this band
+        avg_px_in_band = 0.5 * (prev_edge + edge_pct) if take >= band_notional else \
+            prev_edge + 0.5 * (edge_pct - prev_edge) * (take / band_notional)
+        filled_cost += take * avg_px_in_band
+        remaining -= take
+        prev_cum, prev_edge = c, edge_pct
+        if remaining <= 0:
+            break
+    if remaining > 0:                              # ran off the top of the ladder
+        filled_cost += remaining * (prev_edge + 5.0)
+    vwap_slip_pct = filled_cost / notional
+    return 1e4 * vwap_slip_pct / 100.0             # % -> bps
+
+
 def _load_near_touch() -> dict:
     out = {}
     p = PROC / "bookdepth_features.json"
@@ -151,6 +204,7 @@ def _calib() -> dict:
         "adverse": _load_adverse_sel(),
         "queue": _load_queue(),
         "near_touch": _load_near_touch(),
+        "ladder": _load_ladder(),
         "vol_adv": va,
         "sigma_daily_median": float(np.nanmedian(va["sigma_daily"])),
         "half_spread_median": float(np.nanmedian(list(hs.values()))),
@@ -283,10 +337,15 @@ def cost_bps(coin: str, side: str, notional: float, ts=None,
         pf = p_fill(coin, leg=leg, notional=notional, sigma_1h_ratio=sigma_1h_ratio)
 
     as_bps = adverse_sel_bps(coin)
-    # residual walk-the-book slippage for the part of the order beyond L1 depth
-    near = _calib()["near_touch"].get(coin)
-    l1 = (near * 1e-3) if near else _adv_usd(coin) * 1e-5
-    resid = 0.0 if notional <= l1 else hsb * min(4.0, np.sqrt(notional / max(l1, 1.0)) - 1.0)
+    # spec A6 — walk the real bookDepth ladder; the part beyond the touch
+    # half-spread is genuine slippage. Fall back to a sqrt proxy with no ladder.
+    if coin in _calib()["ladder"]:
+        wtb = walk_the_book_bps(coin, notional)
+        resid = max(0.0, wtb - hsb)
+    else:
+        near = _calib()["near_touch"].get(coin)
+        l1 = (near * 1e-3) if near else _adv_usd(coin) * 1e-5
+        resid = 0.0 if notional <= l1 else hsb * min(4.0, np.sqrt(notional / max(l1, 1.0)) - 1.0)
 
     maker_leg = FEE_MAKER_BPS + as_bps - hsb                 # earn the spread if filled
     taker_leg = FEE_TAKER_BPS + hsb + imp + resid

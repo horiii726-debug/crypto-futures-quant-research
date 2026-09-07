@@ -1,0 +1,25 @@
+# Account fee tier — spec A1.
+# The cost model uses THESE numbers. If the live account is a higher VIP tier
+# than what is set here, the backtest OVER-states cost (conservative). If it is
+# LOWER (or BNB discount is assumed but not enabled), the backtest UNDER-states
+# cost — that is the bug A1 warns about. Verify against the exchange fee page
+# before trusting a live P&L reconciliation.
+
+binance_usdm:
+  vip_tier: 0                 # actual account VIP level
+  bnb_discount: true          # 10% off when paying fees in BNB (perp: applies)
+  # resulting bps (VIP-0, BNB on): maker 1.80, taker 4.50
+  #   VIP-0 base:  maker 2.00  taker 5.00
+  #   -10% BNB:    maker 1.80  taker 4.50
+  maker_bps: 1.80
+  taker_bps: 4.50
+
+bybit_perp:
+  vip_tier: 0
+  maker_bps: 2.00
+  taker_bps: 5.50
+
+okx_perp:
+  vip_tier: 0
+  maker_bps: 2.00
+  taker_bps: 5.00

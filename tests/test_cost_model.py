@@ -27,11 +27,24 @@ def check(name, cond, detail=""):
 def main() -> int:
     print("=== cost_model unit tests (P0.4) ===")
 
-    # 1. liquidity ordering: cost(BTC) < cost(HOOK) < cost(DAR)
+    # 1. liquidity ordering (spec A test): cost(BTC) < cost(SOL) < cost(CRV)
     b = cm.roundtrip_bps("BTCUSDT", 20_000, "hybrid")
+    s = cm.roundtrip_bps("SOLUSDT", 20_000, "hybrid")
+    cr = cm.roundtrip_bps("CRVUSDT", 20_000, "hybrid")
+    check("ordering  BTC < SOL < CRV", b < s < cr, f"{b:.2f} < {s:.2f} < {cr:.2f}")
     h = cm.roundtrip_bps("HOOKUSDT", 20_000, "hybrid")
     d = cm.roundtrip_bps("DARUSDT", 20_000, "hybrid")
     check("ordering  BTC < HOOK < DAR", b < h < d, f"{b:.2f} < {h:.2f} < {d:.2f}")
+
+    # 1b. fee tier comes from config, not a retail guess (spec A1)
+    check("fee tier from account.yaml (maker 1.8 / taker 4.5)",
+          cm.fee_tier("binance_usdm", "maker") == 1.8 and cm.fee_tier("binance_usdm", "taker") == 4.5,
+          f"{cm.fee_tier('binance_usdm','maker')} / {cm.fee_tier('binance_usdm','taker')}")
+
+    # 1c. walk-the-book rises with size and is ~0 for a tiny order (spec A6)
+    w_small = cm.walk_the_book_bps("SOLUSDT", 5_000)
+    w_big = cm.walk_the_book_bps("SOLUSDT", 1_000_000)
+    check("walk-the-book: small ~0, grows with size", w_small < 0.5 < w_big, f"{w_small:.2f} -> {w_big:.2f}")
 
     # 2. cost monotone increasing in notional
     sizes = [1_000, 10_000, 100_000, 1_000_000]

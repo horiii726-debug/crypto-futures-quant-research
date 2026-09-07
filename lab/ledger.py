@@ -40,6 +40,9 @@ RESULT_TABLES = [
     "bounds",
     "universe",
 ]
+# `fills` is operational execution telemetry, not a research result: its
+# `realized_bps` is reconciled from real fills after the fact, so it is NOT
+# under the append-only R6 guard.
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS sources (
@@ -164,6 +167,22 @@ CREATE TABLE IF NOT EXISTS universe (
     symbol       TEXT NOT NULL,
     status       TEXT NOT NULL,          -- in|out|delisted
     reason       TEXT
+);
+
+-- spec A: one row PER FILL. Never aggregate before it lands here.
+CREATE TABLE IF NOT EXISTS fills (
+    id           TEXT PRIMARY KEY,
+    ts           REAL NOT NULL,
+    run_id       TEXT,                   -- backtest / paper session id
+    coin         TEXT NOT NULL,
+    side         TEXT NOT NULL,
+    bar_ts       TEXT,                   -- the strategy bar this fill belongs to
+    notional     REAL NOT NULL,
+    mode         TEXT NOT NULL,          -- maker|taker|hybrid
+    fee_bps      REAL, half_spread_bps REAL, impact_bps REAL, slippage_bps REAL,
+    adverse_sel_bps REAL, p_fill REAL, tier INTEGER,
+    total_bps    REAL NOT NULL,
+    realized_bps REAL                    -- filled in later from real fills
 );
 """
 
@@ -297,6 +316,34 @@ class Ledger:
             if isinstance(v, (int, float)) and v == v:
                 self.log_metric(exp_id, f"screen_{k}", float(v), trial_id=tid)
         return tid
+
+    # ---- fills (spec A — one row per fill) ----------------------------
+    def log_fill(self, *, coin, side, notional, mode, total_bps, run_id=None,
+                 bar_ts=None, fee_bps=None, half_spread_bps=None, impact_bps=None,
+                 slippage_bps=None, adverse_sel_bps=None, p_fill=None, tier=None,
+                 realized_bps=None) -> str:
+        return self._insert("fills", dict(
+            id="F-" + uuid.uuid4().hex[:12], ts=_now(), run_id=run_id, coin=coin,
+            side=side, bar_ts=bar_ts, notional=float(notional), mode=mode,
+            fee_bps=fee_bps, half_spread_bps=half_spread_bps, impact_bps=impact_bps,
+            slippage_bps=slippage_bps, adverse_sel_bps=adverse_sel_bps,
+            p_fill=p_fill, tier=tier, total_bps=float(total_bps), realized_bps=realized_bps,
+        ))
+
+    def reconcile_fill(self, fill_id: str, realized_bps: float) -> None:
+        self.conn.execute("UPDATE fills SET realized_bps=? WHERE id=?",
+                          (float(realized_bps), fill_id))
+        self.conn.commit()
+
+    def fills_summary(self, run_id=None) -> dict:
+        cur = self.conn.cursor()
+        q = "SELECT mode, COUNT(*), AVG(total_bps), AVG(realized_bps), AVG(p_fill) FROM fills"
+        a = []
+        if run_id:
+            q += " WHERE run_id=?"; a.append(run_id)
+        q += " GROUP BY mode"
+        return {r[0]: {"n": r[1], "predicted_bps": r[2], "realized_bps": r[3], "p_fill": r[4]}
+                for r in cur.execute(q, tuple(a))}
 
     def screen_count(self, *, family=None) -> int:
         q = "SELECT COUNT(*) FROM trials WHERE stage='screen'"
