@@ -15,6 +15,10 @@ reachable horizon — is stated with the evidence attached.
 
 ---
 
+**Start here:** [`STATUS.md`](STATUS.md) (where it stands + what to do next) ·
+[`WINNERS.md`](WINNERS.md) (the 5 formulas that passed, and why they failed) ·
+[`DATA_INVENTORY.md`](DATA_INVENTORY.md) (every dataset + how to regenerate it)
+
 ## The result in one table
 
 | | |
