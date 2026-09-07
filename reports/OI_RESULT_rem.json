@@ -1,0 +1,121 @@
+{
+ "survivors": [],
+ "n_results": 36,
+ "verdicts": [
+  {
+   "feature": "oi_short_cover",
+   "status": "FAIL",
+   "best": {
+    "params": {
+     "k": 12
+    },
+    "hold_h": 72,
+    "ic_1h": 0.013464559669377757,
+    "maker_sr_ann": -0.9649931517068304,
+    "taker_sr_ann": -1.2998122680291622,
+    "dsr_family": 6.883484458819193e-05,
+    "placebo_p": 0.5619834710743802,
+    "surrogate_p": 0.008264462809917356,
+    "walk_forward": [
+     -0.58,
+     -1.24,
+     -1.12,
+     -0.9
+    ],
+    "objection": "makerSR=-0.96/taker -1.30 WF=[-0.58, -1.24, -1.12, -0.9] DSRfam=0.000 cvSR=-0.01"
+   }
+  },
+  {
+   "feature": "oi_extreme_rev",
+   "status": "FAIL",
+   "best": {
+    "params": {
+     "n": 336
+    },
+    "hold_h": 24,
+    "ic_1h": 0.0051525157494386594,
+    "maker_sr_ann": -0.14888539792790714,
+    "taker_sr_ann": -0.38622730588959875,
+    "dsr_family": 0.0038680419730458666,
+    "placebo_p": 0.36363636363636365,
+    "surrogate_p": 0.008264462809917356,
+    "walk_forward": [
+     -0.76,
+     0.88,
+     -0.94,
+     0.28
+    ],
+    "objection": "|IC|=0.0052 surr_p=0.008"
+   }
+  },
+  {
+   "feature": "oi_per_volume",
+   "status": "FAIL",
+   "best": {
+    "params": {
+     "k": 24
+    },
+    "hold_h": 72,
+    "ic_1h": 0.012144531479491693,
+    "maker_sr_ann": -0.35707724964842774,
+    "taker_sr_ann": -0.4162991869449556,
+    "dsr_family": 0.0013531398443650195,
+    "placebo_p": 0.5289256198347108,
+    "surrogate_p": 0.7107438016528925,
+    "walk_forward": [
+     -2.15,
+     1.25,
+     -1.25,
+     0.3
+    ],
+    "objection": "|IC|=0.0121 surr_p=0.711"
+   }
+  },
+  {
+   "feature": "oi_accel_rev",
+   "status": "FAIL",
+   "best": {
+    "params": {
+     "k": 12
+    },
+    "hold_h": 72,
+    "ic_1h": 0.001080412872208836,
+    "maker_sr_ann": -1.3832955981966846,
+    "taker_sr_ann": -2.3254100316424178,
+    "dsr_family": 3.507918822784592e-06,
+    "placebo_p": 0.2396694214876033,
+    "surrogate_p": 0.33884297520661155,
+    "walk_forward": [
+     -2.45,
+     -0.79,
+     -1.42,
+     -0.8
+    ],
+    "objection": "|IC|=0.0011 surr_p=0.339"
+   }
+  },
+  {
+   "feature": "oi_leverage_state",
+   "status": "FAIL",
+   "best": {
+    "params": {
+     "n": 168
+    },
+    "hold_h": 24,
+    "ic_1h": -0.007780762705533689,
+    "maker_sr_ann": 1.1833212545106595,
+    "taker_sr_ann": 1.1253544417912564,
+    "dsr_family": 0.1937392257995097,
+    "placebo_p": 0.024793388429752067,
+    "surrogate_p": 0.008264462809917356,
+    "walk_forward": [
+     0.63,
+     0.16,
+     2.47,
+     1.28
+    ],
+    "objection": "|IC|=0.0078 surr_p=0.008"
+   }
+  }
+ ]
+}

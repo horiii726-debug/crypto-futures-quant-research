@@ -1,0 +1,106 @@
+{
+ "survivors": [],
+ "verdicts": [
+  {
+   "signal": "liq_sell_spike",
+   "status": "FAIL",
+   "best": {
+    "n": 48,
+    "hold": 24,
+    "ic": -0.0015862660265557695,
+    "maker_sr_ann": -0.057415117119316315,
+    "taker_sr_ann": -0.2883764430494068,
+    "gross_sr_ann": 0.5641519696442906,
+    "surrogate_p": 0.04477611940298507,
+    "dsr_family": 0.12172697328899235,
+    "walk_forward": [
+     -0.47,
+     0.94,
+     0.02,
+     0.65
+    ]
+   }
+  },
+  {
+   "signal": "liq_imb_reversal",
+   "status": "FAIL",
+   "best": {
+    "n": 48,
+    "hold": 24,
+    "ic": 0.002817758668813129,
+    "maker_sr_ann": -0.2690701843673734,
+    "taker_sr_ann": -0.45142391239055596,
+    "gross_sr_ann": 0.2216636521694512,
+    "surrogate_p": 0.6616915422885572,
+    "dsr_family": 0.00941973111416696,
+    "walk_forward": [
+     -0.35,
+     0.56,
+     -0.48,
+     -0.13
+    ]
+   }
+  },
+  {
+   "signal": "liq_imb_follow",
+   "status": "FAIL",
+   "best": {
+    "n": 48,
+    "hold": 24,
+    "ic": -0.002817758668813129,
+    "maker_sr_ann": -0.7123101127470784,
+    "taker_sr_ann": -0.8945868531547349,
+    "gross_sr_ann": -0.2216636521694512,
+    "surrogate_p": 0.2736318407960199,
+    "dsr_family": 0.00030369579668398407,
+    "walk_forward": [
+     -1.31,
+     -1.04,
+     -0.7,
+     -0.12
+    ]
+   }
+  },
+  {
+   "signal": "liq_intensity_rev",
+   "status": "FAIL",
+   "best": {
+    "n": 168,
+    "hold": 24,
+    "ic": 0.006042779291743486,
+    "maker_sr_ann": -1.3307551178832322,
+    "taker_sr_ann": -1.5829195698309941,
+    "gross_sr_ann": -0.6518954310536605,
+    "surrogate_p": 0.945273631840796,
+    "dsr_family": 3.269512969903992e-07,
+    "walk_forward": [
+     -1.09,
+     -0.03,
+     -2.42,
+     -1.06
+    ]
+   }
+  },
+  {
+   "signal": "liq_exhaustion",
+   "status": "FAIL",
+   "best": {
+    "n": 72,
+    "hold": 24,
+    "ic": -0.004089160441221642,
+    "maker_sr_ann": 0.1391180147750611,
+    "taker_sr_ann": -0.14020557039121614,
+    "gross_sr_ann": 0.8910717603252026,
+    "surrogate_p": 0.06965174129353234,
+    "dsr_family": 0.02069279850347636,
+    "walk_forward": [
+     0.72,
+     0.3,
+     -0.04,
+     -0.83
+    ]
+   }
+  }
+ ],
+ "n": 60
+}

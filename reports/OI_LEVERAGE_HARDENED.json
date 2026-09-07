@@ -1,0 +1,76 @@
+{
+ "oos": {
+  "n": 168,
+  "q": 0.3,
+  "hold": 24,
+  "oos_maker_sr_ann": 1.2527916307332971,
+  "oos_taker_sr_ann": 1.1861288884961207,
+  "oos_gross_sr_ann": 1.4321880178424984,
+  "oos_ic": 0.0024394129379137004,
+  "oos_turn": 0.006644318853427898
+ },
+ "best_selected": {
+  "n": 168,
+  "q": 0.3,
+  "hold": 24,
+  "sel_maker_sr": 2.5932404058958793,
+  "sel_taker_sr": 2.5281020415672235,
+  "sel_gross_sr": 2.768536160309686,
+  "sel_ic": -0.006496276848016429,
+  "sel_turn": 0.008111418370732298
+ },
+ "full": {
+  "maker_sr_ann": 2.272985705413415,
+  "taker_sr_ann": 2.2077750871475663,
+  "gross_sr_ann": 2.4484754456996862,
+  "ic": -0.003696127504120132,
+  "turn_per_bar": 0.007680127795088752,
+  "walk_forward": [
+   3.07,
+   2.3,
+   2.05,
+   1.54
+  ],
+  "cv_folds": 6,
+  "cv_sr_mean": 2.2541821029179547,
+  "placebo_p": 0.0033222591362126247,
+  "surrogate_p": 0.019933554817275746,
+  "dsr_family": 0.715139113831637,
+  "dsr_family_n": 141,
+  "monthly_sr_min": -3.558212677224025,
+  "monthly_sr_med": 1.5140229007313994,
+  "monthly_sr_pos_frac": 0.75
+ },
+ "status": "FAIL",
+ "objection": "|IC|=0.0037<0.010; DSR(F_OI)=0.72"
+}
+
+per-coin P&L:
+  LDOUSDT      -0.1358
+  LTCUSDT      -0.0818
+  XMRUSDT      -0.0539
+  DASHUSDT     -0.0415
+  ICPUSDT      -0.0240
+  LINKUSDT     -0.0069
+  AAVEUSDT     -0.0046
+  APTUSDT      -0.0028
+  ZECUSDT      +0.0018
+  INJUSDT      +0.0241
+  XLMUSDT      +0.0256
+  XRPUSDT      +0.0270
+  DOTUSDT      +0.0307
+  BTCUSDT      +0.0309
+  DOGEUSDT     +0.0327
+  BCHUSDT      +0.0361
+  FILUSDT      +0.0383
+  ADAUSDT      +0.0436
+  UNIUSDT      +0.0514
+  AVAXUSDT     +0.0554
+  OPUSDT       +0.0560
+  ETHUSDT      +0.0593
+  CRVUSDT      +0.0607
+  ARBUSDT      +0.0638
+  BNBUSDT      +0.0662
+  SOLUSDT      +0.1027
+  NEARUSDT     +0.1704
+  SUIUSDT      +0.1764

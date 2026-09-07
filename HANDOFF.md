@@ -313,3 +313,35 @@ Data added: `data/processed/tape/*_{3,5,15}m.parquet` (10 coins, 12mo),
 recorder - free history does not exist) OR a different target: market making /
 liquidity provision, where earning the spread makes cost a tailwind instead of
 the thing that kills every signal.** Do NOT re-run the 401 trials.
+
+---
+
+## RUN 3 UPDATE (2026-09-07) — queue fully bounded, one human decision open
+
+See `reports/FINAL_REPORT_v3.md` (supersedes v2). 745 trials, 20 families, test_looks=0.
+
+New this run:
+- **F_OI** (`lab/research/oi_study.py`, Bybit 2y hourly OI, 41 coins, 8 mechanisms,
+  105 trials): bounded. Best |IC(1h)| 0.013, best maker Sharpe 1.18, DSR(F_OI) 0.19.
+- **F_OI · oi_leverage_state** escalated to `lab/research/oi_leverage_hardened.py`:
+  short high-OI/volume coins. Held-out (last 30%) maker Sharpe **+1.25** / taker
+  **+1.19**; 6/6 CV folds and 4/4 walk-forward windows positive; placebo p 0.003,
+  surrogate p 0.020; P&L spread across 28 names; turnover 0.008/bar. FAILS gate on
+  rank-IC (0.004<0.010; effect is a monotone tercile spread t~3.7) and family DSR
+  (0.72; inflated by 3 F_OI reruns). Slow near-static book (3m position autocorr
+  0.36), only 0.27 corr with momentum, decaying WF (3.07->1.54). **NOT a refutation
+  - a genuine human decision.** Recommended: 60-90d forward paper test.
+- **F_BOOK intraday** (`lab/research/book_study.py`, 120 configs, 5m/15m DOM,
+  2023-09..2024-05): bounded. `imbvol_fade`/`slope_amplify` have REAL 5m IC up to
+  0.021 and gross Sharpe up to 4.3 (surrogate p 0.012) - obliterated by turnover
+  (maker Sharpe -6 to -99). Textbook F-1 feasibility bound.
+- **F_LIQD** (`lab/research/liq_study.py` + `lab/data/liqsnap.py`, coin-M
+  BTCUSD/ETHUSD liquidationSnapshot, 60 configs): UNDERPOWERED (only 2 correlated
+  instruments exist). Best gross Sharpe 0.89, maker net 0.14.
+
+Data added: `data/processed/tape/*` now 14 coins x 2y (Rust-built),
+`data/processed/bookdepth_bars/*` 18 coins, `data/processed/bybit_oi/*` 41 coins,
+`data/processed/liqsnap/{BTCUSD_PERP,ETHUSD_PERP}.parquet`.
+
+Study speedups this run: vectorised surrogate (rank-once, block-permute rows) in
+oi_study + book_study; `_PANEL_CACHE` in book_study. S0 tests still 10/10 green.

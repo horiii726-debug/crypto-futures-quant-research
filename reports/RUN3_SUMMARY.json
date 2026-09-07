@@ -1,0 +1,10 @@
+{
+ "families_bounded": 20,
+ "total_trials": 745,
+ "test_looks": 0,
+ "positive_leads": {
+  "F_XVENUE": "red-team VETO (IDEXUSDT ~40% of P&L)",
+  "F_OI/oi_leverage_state": "held-out maker SR +1.25 / taker +1.19, fails |IC| 0.004<0.010 and DSR(F_OI) 0.72<0.95 -> human decision"
+ },
+ "stop_condition": "B: whole objective queue bounded"
+}

@@ -127,8 +127,11 @@ def _positions(sig, q=0.2):
     return (long.div(nl, axis=0) - short.div(ns, axis=0)).fillna(0.0) / 2.0
 
 
+_PANEL_CACHE = {}
 def run_one(feature, params, hold_h, ledger, exp_id, hyp_id, n_placebo=150, n_surrogate=150, seed=0):
-    close, qv, oi = _panel("1h")
+    if "p" not in _PANEL_CACHE:
+        _PANEL_CACHE["p"] = _panel("1h")
+    close, qv, oi = _PANEL_CACHE["p"]
     rng = np.random.default_rng(seed)
     sig = FEATURES[feature](close, qv, oi, **params)
     valid = close.notna().sum(axis=1) >= 8
@@ -163,27 +166,37 @@ def run_one(feature, params, hold_h, ledger, exp_id, hyp_id, n_placebo=150, n_su
         if len(seg) > 5 and seg.std() > 0:
             fold.append(float(seg.mean() / seg.std(ddof=1)))
 
-    plc = []
-    names = sig.notna()
-    for _ in range(n_placebo):
-        n = pd.DataFrame(rng.normal(size=sig.shape), index=sig.index, columns=sig.columns).where(names)
-        p = _positions(n)
-        if hold_h > 1: p = p.rolling(hold_h, min_periods=1).mean()
-        h = p.shift(2)
-        gp = (h * bwd).sum(axis=1); tp = h.diff().abs().sum(axis=1).fillna(h.abs().sum(axis=1))
-        nn = (gp - tp * MAKER_1W).dropna()
-        plc.append(float(nn.mean() / nn.std(ddof=1)) if nn.std() > 0 else 0.0)
-    plc = np.array(plc)
+    posv = np.nan_to_num(pos.values); bwdv = np.nan_to_num(bwd.values); nm = pos.shape[1]
+    absP = np.abs(posv)
+    plc = np.empty(n_placebo)
+    for i in range(n_placebo):
+        fl = rng.choice(np.array([-1.0, 1.0]), size=nm)
+        h = np.zeros_like(absP); h[2:] = (absP * fl[None, :])[:-2]
+        gp = np.nansum(h * bwdv, axis=1)
+        dh = np.zeros_like(h); dh[1:] = np.abs(h[1:] - h[:-1]); dh[0] = np.abs(h[0])
+        nn = gp - dh.sum(axis=1) * MAKER_1W
+        nn = nn[np.isfinite(nn)]
+        plc[i] = float(nn.mean() / nn.std(ddof=1)) if nn.std() > 0 else 0.0
     placebo_p = float((np.sum(plc >= mk_sr / np.sqrt(365 * 24)) + 1) / (n_placebo + 1))
 
-    arr = fwd1.values
-    surr = []
-    for _ in range(n_surrogate):
-        st = rng.integers(0, len(arr), int(np.ceil(len(arr) / 24)))
-        order = np.concatenate([np.arange(s, s + 24) % len(arr) for s in st])[:len(arr)]
-        sh = pd.DataFrame(arr[order], index=fwd1.index, columns=fwd1.columns)
-        surr.append(abs(float(sig.rank(axis=1).corrwith(sh.rank(axis=1), axis=1).mean(skipna=True))))
-    surr = np.array(surr)
+    # surrogate: block-bootstrap whole rows of the realised forward-return ranks.
+    # rank is row-wise (axis=1), so rank(arr[order]) == rank(arr)[order] -> rank ONCE.
+    sr_ = sig.rank(axis=1).values
+    fr_all = fwd1.rank(axis=1).values
+    Ln = len(fr_all)
+    src = sr_ - np.nanmean(sr_, axis=1, keepdims=True)
+    src_ss = np.nansum(src ** 2, axis=1)
+    surr = np.empty(n_surrogate)
+    for i in range(n_surrogate):
+        stt = rng.integers(0, Ln, int(np.ceil(Ln / 24)))
+        order = np.concatenate([np.arange(x, x + 24) % Ln for x in stt])[:Ln]
+        fr = fr_all[order]
+        frc = fr - np.nanmean(fr, axis=1, keepdims=True)
+        num = np.nansum(src * frc, axis=1)
+        den = np.sqrt(src_ss * np.nansum(frc ** 2, axis=1))
+        with np.errstate(invalid="ignore", divide="ignore"):
+            rr = num / den
+        surr[i] = abs(float(np.nanmean(rr)))
     surr_p = float((np.sum(surr >= abs(ic)) + 1) / (n_surrogate + 1))
 
     dsr = deflated_sharpe(mk_net.values, ledger=ledger, family="F_OI")
@@ -218,10 +231,12 @@ GRID = {
 HOLDS = [6, 24, 72]
 
 
-def run(ledger: Ledger, max_full=45):
+def run(ledger: Ledger, max_full=45, only=None):
     results, verdicts, survivors = [], [], []
     n_full = 0
     for feature, gp in GRID.items():
+        if only is not None and feature not in only:
+            continue
         keys = list(gp); cfgs = [dict(zip(keys, v)) for v in itertools.product(*[gp[k] for k in keys])]
         hyp = ledger.add_hypothesis({
             "claim": f"{feature}: open-interest dynamics predict the cross-section of next-bar return",

@@ -1,0 +1,160 @@
+{
+ "survivors": [],
+ "n_results": 120,
+ "verdicts": [
+  {
+   "feature": "book_imb_follow",
+   "status": "FAIL",
+   "best": {
+    "bar_min": 15,
+    "k": 6,
+    "hold": 6,
+    "ic_1bar": -0.002471844395578227,
+    "maker_sr_ann": -13.0451844149923,
+    "taker_sr_ann": -16.628622475346113,
+    "dsr_family": 7.142376218911957e-41,
+    "placebo_p": 0.01639344262295082,
+    "surrogate_p": 0.654320987654321,
+    "walk_forward": [
+     -15.36,
+     -14.31,
+     -11.69,
+     -11.68
+    ],
+    "objection": "|IC|=0.0025 surr_p=0.654"
+   }
+  },
+  {
+   "feature": "book_imb_fade",
+   "status": "FAIL",
+   "best": {
+    "bar_min": 15,
+    "k": 6,
+    "hold": 6,
+    "ic_1bar": 0.002471844395578227,
+    "maker_sr_ann": -6.755769705242505,
+    "taker_sr_ann": -10.387502781132087,
+    "dsr_family": 1.8511557235800698e-16,
+    "placebo_p": 0.01639344262295082,
+    "surrogate_p": 0.654320987654321,
+    "walk_forward": [
+     -8.55,
+     -4.76,
+     -9.05,
+     -5.42
+    ],
+    "objection": "|IC|=0.0025 surr_p=0.654"
+   }
+  },
+  {
+   "feature": "book_imb5_follow",
+   "status": "FAIL",
+   "best": {
+    "bar_min": 15,
+    "k": 6,
+    "hold": 6,
+    "ic_1bar": 0.00471120635432894,
+    "maker_sr_ann": -5.943289809841255,
+    "taker_sr_ann": -7.684021394340424,
+    "dsr_family": 2.025027523569104e-14,
+    "placebo_p": 0.01639344262295082,
+    "surrogate_p": 0.09876543209876543,
+    "walk_forward": [
+     -4.79,
+     -8.65,
+     -1.48,
+     -9.02
+    ],
+    "objection": "|IC|=0.0047 surr_p=0.099"
+   }
+  },
+  {
+   "feature": "microprice_drift",
+   "status": "FAIL",
+   "best": {
+    "bar_min": 15,
+    "k": 6,
+    "hold": 6,
+    "ic_1bar": -0.0025273616306902666,
+    "maker_sr_ann": -12.961043576311798,
+    "taker_sr_ann": -16.54388978093405,
+    "dsr_family": 1.012492511779041e-42,
+    "placebo_p": 0.01639344262295082,
+    "surrogate_p": 0.7037037037037037,
+    "walk_forward": [
+     -15.22,
+     -14.3,
+     -11.58,
+     -11.57
+    ],
+    "objection": "|IC|=0.0025 surr_p=0.704"
+   }
+  },
+  {
+   "feature": "withdraw_fade",
+   "status": "FAIL",
+   "best": {
+    "bar_min": 15,
+    "k": 6,
+    "hold": 6,
+    "ic_1bar": 0.0005134599437268357,
+    "maker_sr_ann": -18.38338194843984,
+    "taker_sr_ann": -26.095845281824,
+    "dsr_family": 7.44765828007886e-77,
+    "placebo_p": 0.01639344262295082,
+    "surrogate_p": 0.7777777777777778,
+    "walk_forward": [
+     -28.57,
+     -12.31,
+     -17.13,
+     -21.58
+    ],
+    "objection": "|IC|=0.0005 surr_p=0.778"
+   }
+  },
+  {
+   "feature": "slope_amplify",
+   "status": "FAIL",
+   "best": {
+    "bar_min": 15,
+    "k": 6,
+    "hold": 6,
+    "ic_1bar": 0.012495834697715045,
+    "maker_sr_ann": -16.853207065215102,
+    "taker_sr_ann": -23.673731966531808,
+    "dsr_family": 2.4995634018508446e-67,
+    "placebo_p": 0.01639344262295082,
+    "surrogate_p": 0.012345679012345678,
+    "walk_forward": [
+     -28.15,
+     -11.39,
+     -14.56,
+     -20.59
+    ],
+    "objection": "mkSR=-16.85/tk -23.67 WF=[-28.15, -11.39, -14.56, -20.59] DSRf=0.000 cvSR=-0.11"
+   }
+  },
+  {
+   "feature": "imbvol_fade",
+   "status": "FAIL",
+   "best": {
+    "bar_min": 15,
+    "k": 6,
+    "hold": 6,
+    "ic_1bar": 0.020118015598922966,
+    "maker_sr_ann": -16.5081346282403,
+    "taker_sr_ann": -22.623703083227667,
+    "dsr_family": 6.358121117806546e-65,
+    "placebo_p": 0.01639344262295082,
+    "surrogate_p": 0.012345679012345678,
+    "walk_forward": [
+     -19.67,
+     -12.54,
+     -15.71,
+     -23.43
+    ],
+    "objection": "mkSR=-16.51/tk -22.62 WF=[-19.67, -12.54, -15.71, -23.43] DSRf=0.000 cvSR=-0.10"
+   }
+  }
+ ]
+}
