@@ -48,3 +48,7 @@ data/processed/tape/
 data/processed/basis/
 data/processed/bybit_funding/
 data/processed/*_RESULT.json
+
+# secrets - never commit
+config/secrets.yaml
+.env
