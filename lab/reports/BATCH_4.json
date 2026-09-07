@@ -1,0 +1,305 @@
+{
+ "results": [
+  {
+   "formula": "F060_leverage_ratio",
+   "screen": {
+    "by_tf": {
+     "H1": {
+      "ic_raw": -0.01522,
+      "breadth": 39.0,
+      "sigma_fwd_bps": 62.4,
+      "edge_bps_est": 0.95,
+      "turnover_est": 0.01,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 0.092,
+      "ratio": 10.32
+     },
+     "H4": {
+      "ic_raw": -0.02251,
+      "breadth": 39.0,
+      "sigma_fwd_bps": 126.9,
+      "edge_bps_est": 2.86,
+      "turnover_est": 0.01,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 0.092,
+      "ratio": 31.07
+     },
+     "D1": {
+      "ic_raw": -0.04181,
+      "breadth": 39.0,
+      "sigma_fwd_bps": 325.0,
+      "edge_bps_est": 13.59,
+      "turnover_est": 0.01,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 0.092,
+      "ratio": 147.73
+     }
+    },
+    "best_tf": "D1",
+    "best_ratio": 147.73,
+    "passes_screen": true,
+    "short_tf_dead": true
+   },
+   "gate": {
+    "tf": "D1",
+    "ic": -0.04180506212028643,
+    "gross_sr_ann": -0.15245805205125262,
+    "net_sr_ann": -0.1716641858045028,
+    "turnover": 0.017883601641414143,
+    "cv_folds_positive": 4,
+    "cv_n": 6,
+    "cv_sr_mean": -0.14857479978429008,
+    "placebo_p": 0.23588039867109634,
+    "surrogate_p": 0.2292358803986711,
+    "pbo": 0.2857142857142857,
+    "dsr_family": 0.41030265431409074,
+    "dsr_n_trials": 1,
+    "walk_forward": [
+     0.79,
+     -1.86,
+     2.88,
+     -2.01
+    ],
+    "max_drawdown": -0.28035900233136235
+   },
+   "verdict": "FAIL",
+   "root_cause": "NO_EDGE",
+   "why": "placebo p=0.236, surrogate p=0.229",
+   "exp_id": "EXP-16e050",
+   "hyp_id": "HYP-71f8e20d"
+  },
+  {
+   "formula": "F061_oi_divergence",
+   "screen": {
+    "by_tf": {
+     "H1": {
+      "ic_raw": -0.01674,
+      "breadth": 41.0,
+      "sigma_fwd_bps": 62.4,
+      "edge_bps_est": 1.04,
+      "turnover_est": 0.137,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 1.259,
+      "ratio": 0.83
+     },
+     "H4": {
+      "ic_raw": -0.01889,
+      "breadth": 41.0,
+      "sigma_fwd_bps": 126.9,
+      "edge_bps_est": 2.4,
+      "turnover_est": 0.158,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 1.451,
+      "ratio": 1.65
+     },
+     "D1": {
+      "ic_raw": -0.02386,
+      "breadth": 41.0,
+      "sigma_fwd_bps": 325.0,
+      "edge_bps_est": 7.76,
+      "turnover_est": 0.2,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 1.84,
+      "ratio": 4.21
+     }
+    },
+    "best_tf": "D1",
+    "best_ratio": 4.21,
+    "passes_screen": true,
+    "short_tf_dead": true
+   },
+   "gate": {
+    "tf": "D1",
+    "ic": -0.023863780065959156,
+    "gross_sr_ann": 0.41428266522340307,
+    "net_sr_ann": 0.25795706455253775,
+    "turnover": 0.14946362058080812,
+    "cv_folds_positive": 3,
+    "cv_n": 6,
+    "cv_sr_mean": 0.2869282986694968,
+    "placebo_p": 0.11627906976744186,
+    "surrogate_p": 0.0033222591362126247,
+    "pbo": 0.2857142857142857,
+    "dsr_family": 0.4292047768295458,
+    "dsr_n_trials": 2,
+    "walk_forward": [
+     -0.17,
+     0.77,
+     1.59,
+     -1.11
+    ],
+    "max_drawdown": -0.1591404348594242
+   },
+   "verdict": "FAIL",
+   "root_cause": "NO_EDGE",
+   "why": "placebo p=0.116, surrogate p=0.003",
+   "exp_id": "EXP-3288ca",
+   "hyp_id": "HYP-da24febb"
+  },
+  {
+   "formula": "F063_funding_momentum",
+   "screen": {
+    "by_tf": {
+     "H1": {
+      "ic_raw": 0.00179,
+      "breadth": 55.0,
+      "sigma_fwd_bps": 62.4,
+      "edge_bps_est": 0.11,
+      "turnover_est": 0.027,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 0.252,
+      "ratio": 0.44
+     },
+     "H4": {
+      "ic_raw": 0.00154,
+      "breadth": 55.0,
+      "sigma_fwd_bps": 126.9,
+      "edge_bps_est": 0.2,
+      "turnover_est": 0.035,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 0.319,
+      "ratio": 0.61
+     },
+     "D1": {
+      "ic_raw": 0.00095,
+      "breadth": 55.0,
+      "sigma_fwd_bps": 325.0,
+      "edge_bps_est": 0.31,
+      "turnover_est": 0.044,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 0.406,
+      "ratio": 0.76
+     }
+    },
+    "best_tf": "D1",
+    "best_ratio": 0.76,
+    "passes_screen": false,
+    "short_tf_dead": false
+   },
+   "gate": null,
+   "verdict": "SCREEN_FAIL",
+   "root_cause": "NO_EDGE",
+   "why": "screen ratio 0.76 < 3 at every TF",
+   "exp_id": "EXP-b44925",
+   "hyp_id": "HYP-bd69b3a0"
+  },
+  {
+   "formula": "F068_liq_magnet",
+   "screen": {
+    "by_tf": {
+     "H1": {
+      "ic_raw": -0.00298,
+      "breadth": 41.0,
+      "sigma_fwd_bps": 62.4,
+      "edge_bps_est": 0.19,
+      "turnover_est": 0.6,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 5.513,
+      "ratio": 0.03
+     },
+     "H4": {
+      "ic_raw": 0.00526,
+      "breadth": 41.0,
+      "sigma_fwd_bps": 126.9,
+      "edge_bps_est": 0.67,
+      "turnover_est": 0.764,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 7.03,
+      "ratio": 0.09
+     },
+     "D1": {
+      "ic_raw": -0.0036,
+      "breadth": 41.0,
+      "sigma_fwd_bps": 325.0,
+      "edge_bps_est": 1.17,
+      "turnover_est": 1.127,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 10.362,
+      "ratio": 0.11
+     }
+    },
+    "best_tf": "D1",
+    "best_ratio": 0.11,
+    "passes_screen": false,
+    "short_tf_dead": false
+   },
+   "gate": null,
+   "verdict": "SCREEN_FAIL",
+   "root_cause": "NO_EDGE",
+   "why": "screen ratio 0.11 < 3 at every TF",
+   "exp_id": "EXP-826d0c",
+   "hyp_id": "HYP-1a5e8d63"
+  },
+  {
+   "formula": "F062_funding_level",
+   "screen": {
+    "by_tf": {
+     "H1": {
+      "ic_raw": -0.00234,
+      "breadth": 55.0,
+      "sigma_fwd_bps": 62.4,
+      "edge_bps_est": 0.15,
+      "turnover_est": 0.11,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 1.01,
+      "ratio": 0.14
+     },
+     "H4": {
+      "ic_raw": -0.00136,
+      "breadth": 55.0,
+      "sigma_fwd_bps": 126.9,
+      "edge_bps_est": 0.17,
+      "turnover_est": 0.429,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 3.944,
+      "ratio": 0.04
+     },
+     "D1": {
+      "ic_raw": 0.00346,
+      "breadth": 55.0,
+      "sigma_fwd_bps": 325.0,
+      "edge_bps_est": 1.13,
+      "turnover_est": 0.994,
+      "cost_bps": 9.2,
+      "cost_per_bar_bps": 9.138,
+      "ratio": 0.12
+     }
+    },
+    "best_tf": "H1",
+    "best_ratio": 0.14,
+    "passes_screen": false,
+    "short_tf_dead": false
+   },
+   "gate": null,
+   "verdict": "SCREEN_FAIL",
+   "root_cause": "NO_EDGE",
+   "why": "screen ratio 0.14 < 3 at every TF",
+   "exp_id": "EXP-6ffbab",
+   "hyp_id": "HYP-f6260a74"
+  },
+  {
+   "formula": "F070_basis_carry",
+   "screen": {
+    "by_tf": {},
+    "best_tf": null,
+    "best_ratio": 0.0,
+    "passes_screen": false,
+    "short_tf_dead": false
+   },
+   "gate": null,
+   "verdict": "SCREEN_FAIL",
+   "root_cause": "NO_EDGE",
+   "why": "screen ratio 0.00 < 3 at every TF",
+   "exp_id": "EXP-3a0403",
+   "hyp_id": "HYP-12c6d1b6"
+  }
+ ],
+ "survivors": [],
+ "spent": 6,
+ "data_limited": {
+  "F064_term_structure": "needs perp+quarterly futures; only BTC/ETH have quarterly -> 2-asset TS, not XS. Queue to a term-structure study.",
+  "F065_xvenue_funding": "needs OKX funding (not yet ingested). Queue to module J.",
+  "F066_liq_cascade": "coin-M liquidationSnapshot is BTC/ETH only -> F_LIQD, already bounded (UNDERPOWERED).",
+  "F067_liq_imbalance": "same as F066 \u2014 F_LIQD, bounded."
+ }
+}
