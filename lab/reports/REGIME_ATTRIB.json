@@ -1,0 +1,112 @@
+{
+ "overall": {
+  "n_bar": 17544,
+  "sharpe_ann": 2.26,
+  "pnl": 0.7386,
+  "max_dd": -0.0704,
+  "turnover": 0.0077
+ },
+ "by_regime": {
+  "btc_trend": [
+   {
+    "bucket": "flat",
+    "n_bar": 7680,
+    "frac": 0.44,
+    "sharpe_ann": 2.91,
+    "pnl": 0.4252,
+    "pnl_share": 0.58,
+    "max_dd": -0.0675,
+    "turnover": 0.0079
+   },
+   {
+    "bucket": "up",
+    "n_bar": 8952,
+    "frac": 0.51,
+    "sharpe_ann": 1.78,
+    "pnl": 0.2988,
+    "pnl_share": 0.4,
+    "max_dd": -0.0704,
+    "turnover": 0.0076
+   },
+   {
+    "bucket": "down",
+    "n_bar": 912,
+    "frac": 0.05,
+    "sharpe_ann": 1.11,
+    "pnl": 0.0146,
+    "pnl_share": 0.02,
+    "max_dd": -0.0308,
+    "turnover": 0.0067
+   }
+  ],
+  "vol_bucket": [
+   {
+    "bucket": "mid",
+    "n_bar": 6312,
+    "frac": 0.36,
+    "sharpe_ann": 3.56,
+    "pnl": 0.4446,
+    "pnl_share": 0.6,
+    "max_dd": -0.0533,
+    "turnover": 0.0085
+   },
+   {
+    "bucket": "high",
+    "n_bar": 5616,
+    "frac": 0.32,
+    "sharpe_ann": 2.45,
+    "pnl": 0.2833,
+    "pnl_share": 0.38,
+    "max_dd": -0.0657,
+    "turnover": 0.0074
+   },
+   {
+    "bucket": "low",
+    "n_bar": 5616,
+    "frac": 0.32,
+    "sharpe_ann": 0.13,
+    "pnl": 0.0107,
+    "pnl_share": 0.01,
+    "max_dd": -0.0975,
+    "turnover": 0.007
+   }
+  ],
+  "fund_sign": [
+   {
+    "bucket": "pos",
+    "n_bar": 16096,
+    "frac": 0.92,
+    "sharpe_ann": 2.22,
+    "pnl": 0.6778,
+    "pnl_share": 0.92,
+    "max_dd": -0.0899,
+    "turnover": 0.0078
+   },
+   {
+    "bucket": "neg",
+    "n_bar": 1425,
+    "frac": 0.08,
+    "sharpe_ann": 2.87,
+    "pnl": 0.0608,
+    "pnl_share": 0.08,
+    "max_dd": -0.0264,
+    "turnover": 0.006
+   },
+   {
+    "bucket": "na",
+    "n_bar": 23,
+    "frac": 0.0,
+    "sharpe_ann": 0.0,
+    "pnl": 0.0,
+    "pnl_share": 0.0,
+    "max_dd": 0.0,
+    "turnover": 0.0
+   }
+  ]
+ },
+ "verdict": {
+  "btc_trend": "EVEN \u2014 P&L tracks time spent in each bucket; regime-robust on this dimension",
+  "vol_bucket": "WEAK in ['low'] (Sharpe there ~0) \u2014 edge needs the other regimes; still net-positive everywhere",
+  "fund_sign": "EVEN \u2014 P&L tracks time spent in each bucket; regime-robust on this dimension"
+ }
+}
