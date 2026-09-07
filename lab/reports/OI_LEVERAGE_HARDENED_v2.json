@@ -1,0 +1,81 @@
+{
+ "oos": {
+  "n": 168,
+  "q": 0.3,
+  "hold": 24,
+  "oos_maker_sr_ann": 1.2197482189382423,
+  "oos_taker_sr_ann": 0.8966023740857277,
+  "oos_gross_sr_ann": 1.4321880178424984,
+  "oos_ic": 0.0024394129379137004,
+  "oos_turn": 0.006644318853427898
+ },
+ "concentration": {
+  "per_coin_pnl": {
+   "LDOUSDT": -0.13585,
+   "LTCUSDT": -0.08177,
+   "XMRUSDT": -0.05387,
+   "DASHUSDT": -0.04147,
+   "ICPUSDT": -0.02405,
+   "LINKUSDT": -0.00685,
+   "AAVEUSDT": -0.00457,
+   "APTUSDT": -0.00279,
+   "ZECUSDT": 0.00184,
+   "INJUSDT": 0.02408,
+   "XLMUSDT": 0.02565,
+   "XRPUSDT": 0.02701,
+   "DOTUSDT": 0.03065,
+   "BTCUSDT": 0.03086,
+   "DOGEUSDT": 0.03268,
+   "BCHUSDT": 0.03607,
+   "FILUSDT": 0.03831,
+   "ADAUSDT": 0.04358,
+   "UNIUSDT": 0.05142,
+   "AVAXUSDT": 0.0554,
+   "OPUSDT": 0.05601,
+   "ETHUSDT": 0.05927,
+   "CRVUSDT": 0.06066,
+   "ARBUSDT": 0.06381,
+   "BNBUSDT": 0.06622,
+   "SOLUSDT": 0.10265,
+   "NEARUSDT": 0.17044,
+   "SUIUSDT": 0.17635
+  },
+  "top1_share": 0.11724250800471071,
+  "top3_share": 0.32087143115621897,
+  "n_coins": 28
+ },
+ "best_selected": {
+  "n": 168,
+  "q": 0.3,
+  "hold": 24,
+  "sel_maker_sr": 2.580018812744614,
+  "sel_taker_sr": 2.2914178875659483,
+  "sel_gross_sr": 2.768536160309686,
+  "sel_ic": -0.006496276848016429,
+  "sel_turn": 0.008111418370732298
+ },
+ "full": {
+  "maker_sr_ann": 2.2556866865868876,
+  "taker_sr_ann": 1.9610183661538374,
+  "gross_sr_ann": 2.4484754456996862,
+  "ic": -0.003696127504120132,
+  "turn_per_bar": 0.007680127795088752,
+  "walk_forward": [
+   3.06,
+   2.3,
+   2.02,
+   1.51
+  ],
+  "cv_folds": 6,
+  "cv_sr_mean": 2.218789999929541,
+  "placebo_p": 0.0033222591362126247,
+  "surrogate_p": 0.019933554817275746,
+  "dsr_family": 0.6799832169179367,
+  "dsr_family_n": 177,
+  "monthly_sr_min": -3.5419017868804272,
+  "monthly_sr_med": 1.479758518222835,
+  "monthly_sr_pos_frac": 0.75
+ },
+ "status": "FAIL",
+ "objection": "|IC|=0.0037<0.010; DSR(F_OI)=0.68"
+}

@@ -35,8 +35,8 @@ from lab.stats.dsr import deflated_sharpe
 
 ROOT = Path(__file__).resolve().parents[2]
 _EXEC = json.loads((ROOT / "data" / "processed" / "exec_summary.json").read_text())
-MK = _EXEC["hybrid_roundtrip_bps_mean"] / 2 * 1e-4          # hybrid one-way
-TK = 0.0005 + 0.85e-4                                        # taker one-way + slip
+_V1_MK = _EXEC["hybrid_roundtrip_bps_mean"] / 2 * 1e-4       # RESEARCH ROUND 1 flat
+_V1_TK = 0.0005 + 0.85e-4
 ANN = np.sqrt(365 * 24)
 
 # names with a continuous, liquid Binance perp for the whole 2y window
@@ -45,6 +45,13 @@ LIQUID = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT", "DOGEUSDT", "BNBUSDT",
           "NEARUSDT", "APTUSDT", "ARBUSDT", "OPUSDT", "SUIUSDT", "INJUSDT",
           "FILUSDT", "LDOUSDT", "CRVUSDT", "XLMUSDT", "ICPUSDT", "UNIUSDT",
           "AAVEUSDT", "XMRUSDT", "DASHUSDT", "ZECUSDT"]
+
+try:                                                         # universe-mean cost for placebo/CV
+    from lab.exec.cost_model import cost_frac_by_coin as _cfbc
+    MK = float(np.nanmean(_cfbc(LIQUID, mode="hybrid").values))
+    TK = float(np.nanmean(_cfbc(LIQUID, mode="taker").values))
+except Exception:
+    MK, TK = _V1_MK, _V1_TK
 
 
 def _lev_signal(close, qv, oi, n=168):
@@ -69,6 +76,17 @@ def _sr(x):
     return float(x.mean() / x.std(ddof=1))
 
 
+def _cost_vecs(cols):
+    """RESEARCH ROUND 2 · P0.2 — per-coin one-way cost fractions."""
+    try:
+        from lab.exec.cost_model import cost_frac_by_coin
+        mk = cost_frac_by_coin(list(cols), mode="hybrid").reindex(cols)
+        tk = cost_frac_by_coin(list(cols), mode="taker").reindex(cols)
+        return mk.fillna(mk.median()), tk.fillna(tk.median())
+    except Exception:
+        return (pd.Series(_V1_MK, index=cols), pd.Series(_V1_TK, index=cols))
+
+
 def _run_cfg(close, qv, oi, n, q, hold):
     sig = _lev_signal(close, qv, oi, n=n)
     valid = close.notna().sum(axis=1) >= 8
@@ -80,9 +98,12 @@ def _run_cfg(close, qv, oi, n, q, hold):
     held = pos.shift(2)                                  # R9
     per_coin_gross = held * bwd
     gross = per_coin_gross.sum(axis=1)
-    turn = held.diff().abs().sum(axis=1).fillna(held.abs().sum(axis=1))
-    net_mk = (gross - turn * MK).dropna()
-    net_tk = (gross - turn * TK).dropna()
+    turn_coin = held.diff().abs()
+    turn_coin = turn_coin.fillna(held.abs())
+    turn = turn_coin.sum(axis=1)
+    mk_vec, tk_vec = _cost_vecs(close.columns)
+    net_mk = (gross - turn_coin.mul(mk_vec, axis=1).sum(axis=1)).dropna()
+    net_tk = (gross - turn_coin.mul(tk_vec, axis=1).sum(axis=1)).dropna()
     fwd1 = close.shift(-1) / close - 1.0
     ic = float(sig.rank(axis=1).corrwith(fwd1.rank(axis=1), axis=1).mean(skipna=True))
     return dict(gross=gross, net_mk=net_mk, net_tk=net_tk, turn=turn,
