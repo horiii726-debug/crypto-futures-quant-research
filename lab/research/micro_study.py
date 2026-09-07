@@ -22,8 +22,17 @@ from lab.stats.dsr import deflated_sharpe
 
 ROOT = Path(__file__).resolve().parents[2]
 _EXEC = json.loads((ROOT / "data" / "processed" / "exec_summary.json").read_text())
-MAKER_ONEWAY = _EXEC["hybrid_roundtrip_bps_mean"] / 2.0 * 1e-4
-TAKER_ONEWAY = (0.0005 + 0.85e-4)
+_V1_MAKER_ONEWAY = _EXEC["hybrid_roundtrip_bps_mean"] / 2.0 * 1e-4
+_V1_TAKER_ONEWAY = (0.0005 + 0.85e-4)
+try:                                                            # RESEARCH ROUND 2 · P0.2
+    from lab.exec.cost_model import cost_frac_by_coin as _cfbc
+    import numpy as _np
+    _MICRO_UNIVERSE = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT", "DOGEUSDT",
+                       "BNBUSDT", "LINKUSDT", "AVAXUSDT", "ADAUSDT", "LTCUSDT"]
+    MAKER_ONEWAY = float(_np.nanmean(_cfbc(_MICRO_UNIVERSE, mode="hybrid").values))
+    TAKER_ONEWAY = float(_np.nanmean(_cfbc(_MICRO_UNIVERSE, mode="taker").values))
+except Exception:                                               # pragma: no cover
+    MAKER_ONEWAY, TAKER_ONEWAY = _V1_MAKER_ONEWAY, _V1_TAKER_ONEWAY
 BARS_PER_YEAR = {3: 365 * 24 * 20, 5: 365 * 24 * 12, 15: 365 * 24 * 4}
 
 

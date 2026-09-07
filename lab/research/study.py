@@ -39,9 +39,11 @@ except Exception:
     _HYBRID_ONEWAY = None
 
 EXEC_MODE = "hybrid"   # 'taker' or 'hybrid'; set by the campaign
+COST_MODEL = "v2_percoin"   # 'v1_flat' (RESEARCH ROUND 1) or 'v2_percoin' (P0.2)
 
 
 def cost_per_unit_turnover(mode: str | None = None) -> float:
+    """v1 flat pooled cost (RESEARCH ROUND 1). Kept for the re-score comparison."""
     mode = mode or EXEC_MODE
     slip = VENUE.get("slippage_bps")
     if slip is None:
@@ -49,9 +51,22 @@ def cost_per_unit_turnover(mode: str | None = None) -> float:
     taker = float(VENUE["fees"]["taker_fee"]) + float(slip) * 1e-4   # one-way taker
     if mode == "taker" or _HYBRID_ONEWAY is None:
         return taker
-    # hybrid: limit-at-touch with taker fallback, calibrated on the real tape
-    # (lab/exec/maker_model.py). one-way effective cost.
     return float(_HYBRID_ONEWAY)
+
+
+def cost_vector(coins, mode: str | None = None):
+    """v2 per-coin one-way cost fraction (RESEARCH ROUND 2 · P0.3).
+    REPRICING_RULE frozen; nothing tuned per coin."""
+    from lab.exec.cost_model import cost_frac_by_coin
+    mode = mode or EXEC_MODE
+    return cost_frac_by_coin(list(coins), mode=("taker" if mode == "taker" else "hybrid"))
+
+
+def cost_for(panel, mode: str | None = None):
+    """dispatch on COST_MODEL — used by run_study."""
+    if COST_MODEL == "v1_flat":
+        return cost_per_unit_turnover(mode)
+    return cost_vector(panel.close.columns, mode)
 
 
 # ---- positions + backtest ------------------------------------------------
@@ -71,13 +86,23 @@ def signal_to_positions(sig: pd.DataFrame, q: float = 0.2, mode: str = "decile")
     return (w / 2.0).fillna(0.0)                               # sum|w| = 1
 
 
-def bt(close: pd.DataFrame, pos: pd.DataFrame, cost: float,
+def bt(close: pd.DataFrame, pos: pd.DataFrame, cost,
        funding: pd.DataFrame | None = None, execution_lag: int = 1) -> dict:
+    """`cost` is a scalar one-way cost fraction, OR a per-coin pandas Series /
+    dict of one-way cost fractions (RESEARCH ROUND 2 · P0.2)."""
     bwd = close / close.shift(1) - 1.0
     held = pos.shift(execution_lag + 1)                        # signal t -> earn from t+2
     gross = (held * bwd).sum(axis=1)
-    dpos = held.diff().abs().sum(axis=1).fillna(held.abs().sum(axis=1))
-    tc = dpos * cost
+    dpos_coin = held.diff().abs()
+    dpos_coin = dpos_coin.fillna(held.abs())
+    if isinstance(cost, (pd.Series, dict)):
+        cvec = pd.Series(cost, dtype=float).reindex(close.columns).fillna(
+            float(np.nanmedian(list(pd.Series(cost, dtype=float).values))))
+        tc = dpos_coin.mul(cvec, axis=1).sum(axis=1)
+        dpos = dpos_coin.sum(axis=1)
+    else:
+        dpos = dpos_coin.sum(axis=1)
+        tc = dpos * float(cost)
     fund = pd.Series(0.0, index=close.index)
     if funding is not None:
         fund = -(held * funding.reindex_like(held)).sum(axis=1)
@@ -118,7 +143,7 @@ def run_study(name: str, feature: str, params: dict, horizon_bars: int,
     VENUE_BAR_HOURS = panel_train.bar_hours
     fn, fam = REGISTRY[feature]
     assert fam == family, (feature, fam, family)
-    cost = cost_per_unit_turnover()
+    cost = cost_for(panel_train)          # execution cost model (EXEC_MODE), not position `mode`
     rng = np.random.default_rng(seed)
 
     sig = fn(panel_train, **params)
@@ -187,7 +212,9 @@ def run_study(name: str, feature: str, params: dict, horizon_bars: int,
     out = {
         "name": name, "feature": feature, "params": params, "family": family,
         "horizon_bars": horizon_bars, "q": q, "mode": mode,
-        "cost_per_turnover": cost,
+        "cost_per_turnover": (float(np.nanmean(pd.Series(cost, dtype=float).values))
+                              if isinstance(cost, (pd.Series, dict)) else float(cost)),
+        "cost_model": COST_MODEL,
         "ic_1bar": ic_full,
         "sharpe_net": res["sharpe_net"], "sharpe_gross": res["sharpe_gross"],
         "sharpe_net_ann": res["sharpe_net_ann"], "sharpe_gross_ann": res["sharpe_gross_ann"],

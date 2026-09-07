@@ -24,8 +24,18 @@ from lab.stats.dsr import deflated_sharpe
 ROOT = Path(__file__).resolve().parents[2]
 OI = ROOT / "data" / "processed" / "bybit_oi"
 _EXEC = json.loads((ROOT / "data" / "processed" / "exec_summary.json").read_text())
-MAKER_1W = _EXEC["hybrid_roundtrip_bps_mean"] / 2 * 1e-4
-TAKER_1W = 0.0005 + 0.85e-4
+# RESEARCH ROUND 2 · P0.2 — per-coin cost model (turnover-universe mean).
+# Only the cost NUMBER changes; universe/signal/dates unchanged (REPRICING_RULE).
+_V1_MAKER_1W = _EXEC["hybrid_roundtrip_bps_mean"] / 2 * 1e-4   # kept for the re-score diff
+_V1_TAKER_1W = 0.0005 + 0.85e-4
+try:
+    from lab.exec.cost_model import cost_frac_by_coin as _cfbc
+    import numpy as _np
+    _OI_UNIVERSE = sorted({p.stem for p in OI.glob("*.parquet")})
+    MAKER_1W = float(_np.nanmean(_cfbc(_OI_UNIVERSE, mode="hybrid").values))
+    TAKER_1W = float(_np.nanmean(_cfbc(_OI_UNIVERSE, mode="taker").values))
+except Exception:                                              # pragma: no cover
+    MAKER_1W, TAKER_1W = _V1_MAKER_1W, _V1_TAKER_1W
 
 
 def _panel(bar="1h"):

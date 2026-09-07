@@ -1,0 +1,8 @@
+{
+ "n_rebalances": 74832,
+ "baseline_exec_edge_bps": -0.11272052250695036,
+ "overlay_exec_edge_bps": 0.17609484192669603,
+ "delta_bps": 0.2888153644336464,
+ "delta_bps_se": 0.14886681466015722,
+ "_verdict": "no material execution saving from imbvol timing"
+}

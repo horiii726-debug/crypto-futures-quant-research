@@ -1,0 +1,39 @@
+{
+ "5m": {
+  "horizon_bars": 1,
+  "rank_ic": 0.009084510431173627,
+  "t_stat_overlap_adj": 7.2137715524626165,
+  "n_obs": 74826
+ },
+ "15m": {
+  "horizon_bars": 3,
+  "rank_ic": 0.01574602042751997,
+  "t_stat_overlap_adj": 7.172686812381251,
+  "n_obs": 74826
+ },
+ "30m": {
+  "horizon_bars": 6,
+  "rank_ic": 0.018536659965557947,
+  "t_stat_overlap_adj": 6.008594653894859,
+  "n_obs": 74824
+ },
+ "1h": {
+  "horizon_bars": 12,
+  "rank_ic": 0.011365471870402639,
+  "t_stat_overlap_adj": 2.6027207379389816,
+  "n_obs": 74818
+ },
+ "4h": {
+  "horizon_bars": 48,
+  "rank_ic": 0.00962922845564424,
+  "t_stat_overlap_adj": 1.1093326682270594,
+  "n_obs": 74782
+ },
+ "1d": {
+  "horizon_bars": 288,
+  "rank_ic": 0.004357116979126495,
+  "t_stat_overlap_adj": 0.2006469584227565,
+  "n_obs": 74542
+ },
+ "_verdict": "PERSISTS_>=1h \u2014 register F_BOOK_SLOW as a new family (needs budget)"
+}

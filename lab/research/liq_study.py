@@ -29,8 +29,15 @@ from lab.stats.dsr import deflated_sharpe
 ROOT = Path(__file__).resolve().parents[2]
 LIQ = ROOT / "data" / "processed" / "liqsnap"
 _EXEC = json.loads((ROOT / "data" / "processed" / "exec_summary.json").read_text())
-MK = _EXEC["hybrid_roundtrip_bps_mean"] / 2 * 1e-4
-TK = 0.0005 + 0.85e-4
+_V1_MK = _EXEC["hybrid_roundtrip_bps_mean"] / 2 * 1e-4
+_V1_TK = 0.0005 + 0.85e-4
+try:                                                            # RESEARCH ROUND 2 · P0.2
+    from lab.exec.cost_model import cost_frac_by_coin as _cfbc
+    import numpy as _np
+    MK = float(_np.nanmean(_cfbc(["BTCUSDT", "ETHUSDT"], mode="hybrid").values))
+    TK = float(_np.nanmean(_cfbc(["BTCUSDT", "ETHUSDT"], mode="taker").values))
+except Exception:                                               # pragma: no cover
+    MK, TK = _V1_MK, _V1_TK
 ANN = np.sqrt(365 * 24)
 
 _MAP = {"BTCUSD_PERP": "BTCUSDT", "ETHUSD_PERP": "ETHUSDT"}

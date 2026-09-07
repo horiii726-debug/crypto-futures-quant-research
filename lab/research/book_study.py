@@ -25,9 +25,16 @@ from lab.stats.dsr import deflated_sharpe
 ROOT = Path(__file__).resolve().parents[2]
 BOOK = ROOT / "data" / "processed" / "bookdepth_bars"
 _EXEC = json.loads((ROOT / "data" / "processed" / "exec_summary.json").read_text())
-MK = _EXEC["hybrid_roundtrip_bps_mean"] / 2 * 1e-4
-TK = 0.0005 + 0.85e-4
 SYMS = ["BTCUSDT","ETHUSDT","SOLUSDT","XRPUSDT","DOGEUSDT","BNBUSDT","LINKUSDT","AVAXUSDT","ADAUSDT","LTCUSDT","BCHUSDT","INJUSDT"]
+_V1_MK = _EXEC["hybrid_roundtrip_bps_mean"] / 2 * 1e-4
+_V1_TK = 0.0005 + 0.85e-4
+try:                                                            # RESEARCH ROUND 2 · P0.2
+    from lab.exec.cost_model import cost_frac_by_coin as _cfbc
+    import numpy as _np
+    MK = float(_np.nanmean(_cfbc(SYMS, mode="hybrid").values))
+    TK = float(_np.nanmean(_cfbc(SYMS, mode="taker").values))
+except Exception:                                               # pragma: no cover
+    MK, TK = _V1_MK, _V1_TK
 
 
 def _panels(bar_min):
