@@ -283,6 +283,31 @@ class Ledger:
         self.log_metric(self._trial_exp(trial_id), "trial_status", None,
                         text_value=status, context={"trial_id": trial_id})
 
+    def log_screen_eval(self, exp_id, config: dict, metrics: dict) -> str:
+        """SYSTEM_SPEC [FIX 1]: a cheap-screen evaluation. Logged for honesty
+        (stage='screen', counts_as_trial=0) but NOT counted by trial_count() /
+        DSR. Only pre-registered full evaluations are trials."""
+        tid = "T-" + uuid.uuid4().hex[:10]
+        self._insert("trials", dict(
+            id=tid, ts=_now(), exp_id=exp_id, family=self._exp_family(exp_id),
+            config=json.dumps(config), config_sha=_sha(config),
+            stage="screen", status="done", counts_as_trial=0,
+        ))
+        for k, v in (metrics or {}).items():
+            if isinstance(v, (int, float)) and v == v:
+                self.log_metric(exp_id, f"screen_{k}", float(v), trial_id=tid)
+        return tid
+
+    def screen_count(self, *, family=None) -> int:
+        q = "SELECT COUNT(*) FROM trials WHERE stage='screen'"
+        a = []
+        if family:
+            q += " AND family=?"
+            a.append(family)
+        cur = self.conn.cursor()
+        cur.execute(q, tuple(a))
+        return int(cur.fetchone()[0])
+
     # ---- metrics -----------------------------------------------------
     def log_metric(self, exp_id, name, value, *, trial_id=None, text_value=None,
                    context=None) -> str:

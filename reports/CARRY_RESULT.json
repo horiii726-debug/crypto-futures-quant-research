@@ -1,0 +1,21 @@
+{
+ "survivors": 0,
+ "n": 40,
+ "best": {
+  "signal": "funding_ma",
+  "lookback": 42,
+  "rebalance": 3,
+  "execmode": "maker",
+  "sr_net_ann": 2.545358927213335,
+  "sr_net_taker_ann": 0.5970539502329736,
+  "surrogate_p": 1.0,
+  "dsr_family": 0.9375185637515386,
+  "walk_forward_sr": [
+   4.7,
+   3.63,
+   0.48,
+   0.97
+  ],
+  "objection": "surrogate p=1.00 - not distinguishable from a static short-perp basket (risk premium, not alpha)"
+ }
+}

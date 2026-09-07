@@ -44,3 +44,7 @@ ledger/_selftest.sqlite*
 data/processed/bookdepth_daily/
 data/processed/bookdepth_features.json
 lab/data/_collect_micro.py
+data/processed/tape/
+data/processed/basis/
+data/processed/bybit_funding/
+data/processed/*_RESULT.json

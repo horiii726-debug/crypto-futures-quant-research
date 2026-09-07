@@ -175,11 +175,14 @@ def run_study(name: str, feature: str, params: dict, horizon_bars: int,
     surr_q99 = float(np.nanquantile(surr, 0.99))
     surr_p = float((np.sum(surr >= obs_absic) + 1) / (n_surrogate + 1))
 
-    # ---- DSR: trial count FROM LEDGER, whole-lab cumulative (R3) ----
-    # deflated_sharpe() calls ledger.trial_count() itself; family=None/hyp_id=None
-    # => the cumulative count across the entire lab, never reset.
-    dsr = deflated_sharpe(res["net"].values, ledger=ledger)
+    # ---- DSR: FAMILY-scoped trial count from the ledger (SYSTEM_SPEC [FIX 1]) ----
+    # Family DSR gates G5. deflated_sharpe() reads Ledger.trial_count(family=...)
+    # itself - the count is machine-computed, never reset (R3), just scoped so a
+    # new family is not buried under an unrelated family's search.
+    dsr = deflated_sharpe(res["net"].values, ledger=ledger, family=family)
     n_trials_ledger = dsr["n_trials"]
+    dsr_portfolio = deflated_sharpe(res["net"].values, ledger=ledger)  # global, for G10
+    n_trials_global = dsr_portfolio["n_trials"]
 
     out = {
         "name": name, "feature": feature, "params": params, "family": family,
@@ -195,6 +198,7 @@ def run_study(name: str, feature: str, params: dict, horizon_bars: int,
         "placebo_p_value": placebo_p,
         "surrogate_obs_absic": obs_absic, "surrogate_q99": surr_q99, "surrogate_p_value": surr_p,
         "dsr": dsr["dsr"], "dsr_n_trials": n_trials_ledger,
+        "dsr_portfolio": dsr_portfolio["dsr"], "dsr_n_trials_global": n_trials_global,
         "dsr_benchmark_sr": dsr["sr_deflation_benchmark"],
         "net_pnl_daily": res["net"],
     }
